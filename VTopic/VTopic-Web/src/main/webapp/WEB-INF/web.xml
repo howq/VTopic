@@ -60,7 +60,7 @@
     <!-- 防止CSRF、XSS攻击 -->
     <filter>
         <filter-name>XssFilter</filter-name>
-        <filter-class>com.xdth.web.session.filter.XSSFilter</filter-class>
+        <filter-class>com.ihowq.VTopic.filter.XSSFilter</filter-class>
     </filter>
 
     <filter-mapping>

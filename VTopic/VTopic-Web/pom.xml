@@ -57,7 +57,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
