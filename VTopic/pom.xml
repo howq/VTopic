@@ -39,7 +39,6 @@
         <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
         <druid.version>1.0.18</druid.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
     </properties>
 
     <dependencyManagement>
@@ -248,11 +247,6 @@
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
                 <version>2.2.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate.validator.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
