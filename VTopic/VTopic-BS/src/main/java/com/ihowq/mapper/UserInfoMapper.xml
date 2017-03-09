@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihowq.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ihowq.model.UserInfo" >
+    <id column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="ROLEID" property="roleid" jdbcType="TINYINT" />
+    <result column="MAJORID" property="majorid" jdbcType="CHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="SEXTYPE" property="sextype" jdbcType="CHAR" />
+    <result column="USERTEL" property="usertel" jdbcType="VARCHAR" />
+    <result column="USERMOBILE" property="usermobile" jdbcType="VARCHAR" />
+    <result column="USEREMAIL" property="useremail" jdbcType="VARCHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="CREATDATETIME" property="creatdatetime" jdbcType="TIMESTAMP" />
+    <result column="CHANGER" property="changer" jdbcType="VARCHAR" />
+    <result column="CHANGEDATETIME" property="changedatetime" jdbcType="TIMESTAMP" />
+    <result column="DELETEMAN" property="deleteman" jdbcType="VARCHAR" />
+    <result column="DELETEDATETIME" property="deletedatetime" jdbcType="TIMESTAMP" />
+    <result column="DELETEFLG" property="deleteflg" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USERID, ROLEID, MAJORID, USERNAME, SEXTYPE, USERTEL, USERMOBILE, USEREMAIL, CREATER, 
+    CREATDATETIME, CHANGER, CHANGEDATETIME, DELETEMAN, DELETEDATETIME, DELETEFLG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from userinfo
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ihowq.model.UserInfo" >
+    insert into userinfo (USERID, ROLEID, MAJORID, 
+      USERNAME, SEXTYPE, USERTEL, 
+      USERMOBILE, USEREMAIL, CREATER, 
+      CREATDATETIME, CHANGER, CHANGEDATETIME, 
+      DELETEMAN, DELETEDATETIME, DELETEFLG
+      )
+    values (#{userid,jdbcType=VARCHAR}, #{roleid,jdbcType=TINYINT}, #{majorid,jdbcType=CHAR}, 
+      #{username,jdbcType=VARCHAR}, #{sextype,jdbcType=CHAR}, #{usertel,jdbcType=VARCHAR}, 
+      #{usermobile,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{creatdatetime,jdbcType=TIMESTAMP}, #{changer,jdbcType=VARCHAR}, #{changedatetime,jdbcType=TIMESTAMP}, 
+      #{deleteman,jdbcType=VARCHAR}, #{deletedatetime,jdbcType=TIMESTAMP}, #{deleteflg,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihowq.model.UserInfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+      <if test="majorid != null" >
+        MAJORID,
+      </if>
+      <if test="username != null" >
+        USERNAME,
+      </if>
+      <if test="sextype != null" >
+        SEXTYPE,
+      </if>
+      <if test="usertel != null" >
+        USERTEL,
+      </if>
+      <if test="usermobile != null" >
+        USERMOBILE,
+      </if>
+      <if test="useremail != null" >
+        USEREMAIL,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="creatdatetime != null" >
+        CREATDATETIME,
+      </if>
+      <if test="changer != null" >
+        CHANGER,
+      </if>
+      <if test="changedatetime != null" >
+        CHANGEDATETIME,
+      </if>
+      <if test="deleteman != null" >
+        DELETEMAN,
+      </if>
+      <if test="deletedatetime != null" >
+        DELETEDATETIME,
+      </if>
+      <if test="deleteflg != null" >
+        DELETEFLG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=TINYINT},
+      </if>
+      <if test="majorid != null" >
+        #{majorid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sextype != null" >
+        #{sextype,jdbcType=CHAR},
+      </if>
+      <if test="usertel != null" >
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="usermobile != null" >
+        #{usermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null" >
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="creatdatetime != null" >
+        #{creatdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changer != null" >
+        #{changer,jdbcType=VARCHAR},
+      </if>
+      <if test="changedatetime != null" >
+        #{changedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteman != null" >
+        #{deleteman,jdbcType=VARCHAR},
+      </if>
+      <if test="deletedatetime != null" >
+        #{deletedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteflg != null" >
+        #{deleteflg,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihowq.model.UserInfo" >
+    update userinfo
+    <set >
+      <if test="roleid != null" >
+        ROLEID = #{roleid,jdbcType=TINYINT},
+      </if>
+      <if test="majorid != null" >
+        MAJORID = #{majorid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sextype != null" >
+        SEXTYPE = #{sextype,jdbcType=CHAR},
+      </if>
+      <if test="usertel != null" >
+        USERTEL = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="usermobile != null" >
+        USERMOBILE = #{usermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null" >
+        USEREMAIL = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="creatdatetime != null" >
+        CREATDATETIME = #{creatdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changer != null" >
+        CHANGER = #{changer,jdbcType=VARCHAR},
+      </if>
+      <if test="changedatetime != null" >
+        CHANGEDATETIME = #{changedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteman != null" >
+        DELETEMAN = #{deleteman,jdbcType=VARCHAR},
+      </if>
+      <if test="deletedatetime != null" >
+        DELETEDATETIME = #{deletedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteflg != null" >
+        DELETEFLG = #{deleteflg,jdbcType=CHAR},
+      </if>
+    </set>
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihowq.model.UserInfo" >
+    update userinfo
+    set ROLEID = #{roleid,jdbcType=TINYINT},
+      MAJORID = #{majorid,jdbcType=CHAR},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      SEXTYPE = #{sextype,jdbcType=CHAR},
+      USERTEL = #{usertel,jdbcType=VARCHAR},
+      USERMOBILE = #{usermobile,jdbcType=VARCHAR},
+      USEREMAIL = #{useremail,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATDATETIME = #{creatdatetime,jdbcType=TIMESTAMP},
+      CHANGER = #{changer,jdbcType=VARCHAR},
+      CHANGEDATETIME = #{changedatetime,jdbcType=TIMESTAMP},
+      DELETEMAN = #{deleteman,jdbcType=VARCHAR},
+      DELETEDATETIME = #{deletedatetime,jdbcType=TIMESTAMP},
+      DELETEFLG = #{deleteflg,jdbcType=CHAR}
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>
