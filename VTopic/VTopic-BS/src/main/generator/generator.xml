@@ -16,16 +16,16 @@
             <property name="forceBigDecimals" value="false" />  
         </javaTypeResolver>  
         <!-- 生成模型的包名和位置 -->  
-        <javaModelGenerator targetPackage="com.ihowq.model" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
+        <javaModelGenerator targetPackage="com.ihowq.VTopic.model" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
             <property name="enableSubPackages" value="true" />  
             <property name="trimStrings" value="true" />  
         </javaModelGenerator>  
         <!-- 生成的映射文件包名和位置 -->  
-        <sqlMapGenerator targetPackage="com.ihowq.mapper" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
+        <sqlMapGenerator targetPackage="com.ihowq.VTopic.mapper" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
             <property name="enableSubPackages" value="true" />  
         </sqlMapGenerator>  
         <!-- 生成DAO的包名和位置 -->  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ihowq.dao" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ihowq.VTopic.dao" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
             <property name="enableSubPackages" value="true" />  
         </javaClientGenerator>  
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->  
