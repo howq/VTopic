@@ -19,41 +19,29 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.ihowq.VTopic.util</groupId>
-            <artifactId>VTopic-util</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.ihowq.VTopic.bs</groupId>
             <artifactId>VTopic-bs</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.ihowq.VTopic.facade</groupId>-->
-            <!--<artifactId>agentBible-facade</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-ehcache</artifactId>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
         </dependency>
     </dependencies>
 

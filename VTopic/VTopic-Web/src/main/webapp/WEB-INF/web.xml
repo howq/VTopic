@@ -13,9 +13,7 @@
         <!-- <param-value>/WEB-INF/applicationContext.xml,/WEB-INF/applicationContext-db.xml
         </param-value> -->
         <param-value>
-            classpath*:spring/applicationContext-*.xml,
-            classpath*:consumer.xml,
-            classpath*:provider.xml
+            classpath*:spring/applicationContext*.xml
         </param-value>
     </context-param>
     <!-- 监听器 -->
@@ -75,7 +73,7 @@
 
     <!-- 项目欢迎界面 -->
     <welcome-file-list>
-        <welcome-file>login</welcome-file>
+        <welcome-file>index</welcome-file>
     </welcome-file-list>
 
     <!--<resource-ref>-->

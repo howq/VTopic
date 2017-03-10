@@ -1,7 +1,9 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.Topic;
+import org.springframework.stereotype.Repository;
 
+@Repository(value = "TopicMapper")
 public interface TopicMapper {
     int deleteByPrimaryKey(Long topicid);
 

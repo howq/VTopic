@@ -20,6 +20,9 @@
         <ihowq.self.version>1.0-SNAPSHOT</ihowq.self.version>
         <!-- Normal dependency -->
         <spring.version>4.1.2.RELEASE</spring.version>
+        <aopalliance.version>1.0</aopalliance.version>
+        <aspectjweaver.version>1.8.5</aspectjweaver.version>
+
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <mybatis-ehcache.version>1.0.0</mybatis-ehcache.version>
@@ -28,7 +31,6 @@
         <commons-io.version>2.4</commons-io.version>
         <commons.lang.version>2.6</commons.lang.version>
         <sitemesh.version>2.4.2</sitemesh.version>
-        <freemarker.version>2.3.19</freemarker.version>
         <logback.version>1.1.7</logback.version>
         <slf4.version>1.7.12</slf4.version>
         <jackson-mapper.version>1.9.12</jackson-mapper.version>
@@ -151,7 +153,27 @@
                 <version>${spring.version}</version>
                 <scope>test</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${aopalliance.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectjweaver.version}</version>
+            </dependency>
             <!-- ====================Mybatis======================== -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -218,12 +240,7 @@
                 <artifactId>sitemesh</artifactId>
                 <version>${sitemesh.version}</version>
             </dependency>
-            <!-- ====================freemarker======================== -->
-            <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
-            </dependency>
+
             <!-- ====================mysql======================== -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -267,8 +284,8 @@
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.0.1</version>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>

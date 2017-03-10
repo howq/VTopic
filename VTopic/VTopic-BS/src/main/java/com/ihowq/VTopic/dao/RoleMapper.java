@@ -1,7 +1,9 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.Role;
+import org.springframework.stereotype.Repository;
 
+@Repository(value = "RoleMapper")
 public interface RoleMapper {
     int deleteByPrimaryKey(Byte roleid);
 

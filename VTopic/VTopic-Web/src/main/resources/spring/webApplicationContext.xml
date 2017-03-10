@@ -3,82 +3,55 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
-       http://www.springframework.org/schema/beans/spring-beans.xsd 
-       http://www.springframework.org/schema/mvc 
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd 
-       http://www.springframework.org/schema/context 
-       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<util:properties id="env" location="file:/appl/valpro/envconfig/freemarker.properties" />
+    <context:component-scan base-package="com.ihowq.VTopic.controllor"/>
+
     <mvc:annotation-driven />
-    <!--<context:component-scan base-package="com.xingujia.valpro.controller" />-->
-    <!--<context:component-scan base-package="com.xingujia.valpro.util" />-->
-	<!--<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />-->
 
-    <!--<bean id="freemarkerConfiguration"-->
-          <!--class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">-->
-        <!--<property name="templateLoaderPath" value="/" />-->
-        <!--<property name="freemarkerSettings">-->
-            <!--<props>-->
-                <!--<prop key="template_update_delay">#{env['freemarker.template.update.delay']}</prop>-->
-                <!--<prop key="tag_syntax">auto_detect</prop>&lt;!&ndash; 设置标签类型 两种：[] 和 <> 。[] 这种标记解析要快些 &ndash;&gt;-->
-                <!--<prop key="default_encoding">UTF-8</prop>-->
-                <!--<prop key="output_encoding">UTF-8</prop>-->
-                <!--<prop key="locale">zh_CN</prop>-->
-                <!--<prop key="date_format">yyyy-MM-dd</prop>-->
-                <!--<prop key="time_format">HH:mm:ss</prop>-->
-                <!--<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>-->
-                <!--<prop key="number_format">#</prop>&lt;!&ndash; 设置数字格式 以免出现 000.00 &ndash;&gt;-->
-                <!--<prop key="classic_compatible">false</prop>&lt;!&ndash; 可以满足一般需要。默认情况变量为null则替换为空字符串，如果需要自定义，写上${empty!"EmptyValue-->
-					<!--of fbysss"}的形式即可 &ndash;&gt;-->
-                <!--<prop key="whitespace_stripping">true</prop>-->
-                <!--<prop key="template_exception_handler">com.xingujia.valpro.controller.web.FreemarkerExceptionHandler</prop>&lt;!&ndash; ignore,debug,html_debug,rethrow &ndash;&gt;-->
-            <!--</props>-->
-        <!--</property>-->
-        <!--<property name="freemarkerVariables">-->
-            <!--<map>-->
-                <!--<entry key="xml_escape" value-ref="fmXmlEscape" />-->
-                <!--<entry key="staticFileRoot">-->
-                    <!--<value>#{env['staticFileRoot']}</value>-->
-                <!--</entry>-->
-                <!--<entry key="staticFileVer">-->
-                    <!--<value>#{env['staticFileVer']}</value>-->
-                <!--</entry>-->
-            <!--</map>-->
-        <!--</property>-->
-    <!--</bean>-->
-
-    <!--<bean id="freemarkerConfig"-->
-          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
-        <!--<property name="configuration" ref="freemarkerConfiguration" />-->
-    <!--</bean>-->
-    
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="cache" value="true" />
-        <property name="prefix" value="/WEB-INF/pages/ftl/" />
-        <property name="suffix" value=".html" />
-        <property name="requestContextAttribute" value="rc" />
-        <property name="contentType" value="text/html;charset=UTF-8"></property>
-        <property name="exposeSpringMacroHelpers" value="true" />
-    </bean>
     <mvc:interceptors>
-	    <!-- web端拦截器  -->
-    	<!--<mvc:interceptor>-->
-    		<!--<mvc:mapping path="/credit/**"/>-->
-    		<!--<mvc:mapping path="/assess/**"/>-->
-    		<!--<mvc:mapping path="/common/**"/>-->
-    		<!--<mvc:exclude-mapping path="/login/**"/>-->
-    		<!--<mvc:exclude-mapping path="/common/getCode"/>-->
-            <!--<mvc:exclude-mapping path="/common/fileDownloadForSmart"/>-->
-    		<!--<bean class="com.xingujia.valpro.util.LoginInterceptor"></bean>-->
-    	<!--</mvc:interceptor>-->
+	    <!-- 拦截器  -->
+    	<mvc:interceptor>
+    		<mvc:mapping path="/**"/>
+    		<!--<mvc:exclude-mapping path="/error"/>-->
+    		<!--<mvc:exclude-mapping path="/login/getToken"/>-->
+    		<!--<mvc:exclude-mapping path="/common/download"/>-->
+    		<bean id="loginInterceptor" class="com.ihowq.VTopic.util.LoginInterceptor"></bean>
+    	</mvc:interceptor>
 
     </mvc:interceptors>
-    
-    <mvc:view-controller path="/" view-name="redirect:/login" />
+
+    <!--静态资源映射-->
+    <!--
+    http://perfy315.iteye.com/blog/2008763
+    mapping="/js/**"
+    表示当浏览器有静态资源请求的时候，并且请求url路径中带有：/js/，则这个资源跑到webapp目录下的/WEB-INF/statics/js/去找
+    比如我们在 JSP 中引入一个 js 文件：src="${webRoot}/js/jQuery-core/jquery-1.6.1.min.js
+    -->
+    <mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/>
+    <mvc:resources mapping="/images/**" location="/WEB-INF/statics/image/"/>
+
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP-->
+    <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+    <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/view/"/><!--设置JSP文件的目录位置-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <mvc:view-controller path="/" view-name="redirect:/index" />
 
     <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
     <bean id="multipartResolver"
@@ -88,5 +61,6 @@
         <property name="maxUploadSize" value="20000000" />
     </bean>
 
+    <!-- 启动@AspectJ支持 -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
  </beans>
