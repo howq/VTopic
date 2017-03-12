@@ -22,6 +22,9 @@
 		
 		<!--允许JDBC支持自动生成主键,需要驱动的兼容-->
 		<setting name="useGeneratedKeys" value="true"/>
+
+		<!--日志-->
+		<setting name="logImpl" value="LOG4J"/>
 	</settings>
 
 </configuration>
