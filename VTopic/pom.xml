@@ -32,7 +32,7 @@
         <commons.lang.version>2.6</commons.lang.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <logback.version>1.1.7</logback.version>
-        <slf4j.version>1.7.5</slf4j.version>
+        <slf4j.version>1.6.6</slf4j.version>
         <jackson-mapper.version>1.9.12</jackson-mapper.version>
         <jackson-core.version>1.9.12</jackson-core.version>
         <fastjson.version>1.2.11</fastjson.version>
@@ -87,9 +87,9 @@
 
             <!-- ====================logback======================== -->
             <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.16</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -98,20 +98,15 @@
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
+                <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
+                <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.16</version>
-            </dependency>
-            <!-- ====================Springframework+SpringMVC======================== -->
+             <!-- ====================Springframework+SpringMVC======================== -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>

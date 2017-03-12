@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 @Controller
 public abstract class BaseController {
 
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+//    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource(name = "messageHelpService")
     protected MessageHelpService messageHelper;

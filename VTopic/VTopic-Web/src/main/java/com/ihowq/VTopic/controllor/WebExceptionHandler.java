@@ -14,7 +14,7 @@ public class WebExceptionHandler extends BaseController {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView resolveException(HttpServletRequest request, Exception exception) {
-        logger.error(exception.getMessage(), exception);
+//        logger.error(exception.getMessage(), exception);
         return new ModelAndView("error/Error");
     }
 }
