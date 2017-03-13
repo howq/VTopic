@@ -22,12 +22,17 @@ public class LoginController extends WebExceptionHandler {
 
     @ResponseBody
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(Model model){
+    public String login(Model model) {
         String retVal = "user/index";
-        logger.debug("进入登陆界面");
-        User user = new User();
-        user.setUsername("wanghuw");
-        model.addAttribute("user", user);
+        logger.info("进入登陆界面");
+
+        try {
+            userService.selectUser("admin", "123456");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        logger.info("进入登陆界面结束");
         return retVal;
     }
 }

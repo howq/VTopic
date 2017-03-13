@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User selectUserInfo(String username, String pwd) throws Exception {
+    public User selectUser(String username, String pwd) throws Exception {
 
         User user = userMapper.selectByPrimaryKey(username);
         if(pwd.equals(user.getPassword())){

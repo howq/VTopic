@@ -90,7 +90,7 @@
         <!--<property name="filters" value="mergeSql,wall"/>-->
         <!--<property name="filters" value="stat"/>-->
         <!--<property name="filters" value="mergeSql"/>-->
-        <property name="filters" value="stat,wall,log4j"/>
+        <property name="filters" value="stat,wall"/>
     </bean>
     <!-- 使用阿里的druid配置数据源 end-->
 
