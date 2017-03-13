@@ -1,55 +1,180 @@
+/*
+Navicat MySQL Data Transfer
 
--- 需要 MySQL 5.6.5以上的版本
-CREATE DATABASE beauty_ssm;
-USE beauty_ssm;
+Source Server         : localhost
+Source Server Version : 50617
+Source Host           : localhost:3306
+Source Database       : vtopicdb
 
--- 用户表
-CREATE TABLE _user(
-`user_id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-`user_name` VARCHAR(50) NOT NULL COMMENT '用户名',
-`user_phone` BIGINT NOT NULL COMMENT '手机号',
-`score` INT NOT NULL COMMENT '积分',
-`create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-PRIMARY KEY (`user_id`),
-KEY `idx_user_phone`(`user_phone`)
-)ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='用户表';
+Target Server Type    : MYSQL
+Target Server Version : 50617
+File Encoding         : 65001
 
--- 商品表
-CREATE TABLE _goods(
-`goods_id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '商品ID',
-`title` VARCHAR(120) NOT NULL COMMENT '商品名称',
-`state` INT NOT NULL COMMENT '商品状态',
-`price` FLOAT NOT NULL COMMENT '商品价格',
-`number` INT NOT NULL COMMENT '商品数量',
-`create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-`update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-PRIMARY KEY (`goods_id`)
-)ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='商品表';
+Date: 2017-03-09 17:23:21
+*/
 
--- 订单表
-CREATE TABLE _order(
-`order_id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '订单ID',
-`user_id` BIGINT NOT NULL  COMMENT '用户ID',
-`goods_id` BIGINT NOT NULL  COMMENT '商品ID',
-`title` VARCHAR(120) NOT NULL COMMENT '订单名称',
-`create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-PRIMARY KEY (`order_id`),
-KEY `idx_user_id`(`user_id`),
-KEY `idx_goods_id`(`goods_id`)
-)ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='订单表';
+SET FOREIGN_KEY_CHECKS=0;
 
+-- ----------------------------
+-- Table structure for category
+-- ----------------------------
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `CATEGORYID` bigint(20) NOT NULL,
+  `CATEGORYNAME` char(20) DEFAULT NULL,
+  `CATEGORYINFO` varchar(100) DEFAULT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`CATEGORYID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 插入初始数据
-INSERT INTO 
-	_user(user_name, user_phone, score)
-VALUES
-	('阿坚', 18768128888, 0),
-	('小明', 18968129999, 0);
+-- ----------------------------
+-- Table structure for major
+-- ----------------------------
+DROP TABLE IF EXISTS `major`;
+CREATE TABLE `major` (
+  `MAJORID` bigint(20) NOT NULL,
+  `MAJORNAME` char(20) DEFAULT NULL,
+  `MAJORINFO` varchar(100) DEFAULT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`MAJORID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Table structure for record
+-- ----------------------------
+DROP TABLE IF EXISTS `record`;
+CREATE TABLE `record` (
+  `RECORDID` bigint(20) NOT NULL,
+  `TOPICID` bigint(20) NOT NULL,
+  `STUDENT` varchar(18) NOT NULL,
+  `TEACHER` varchar(18) NOT NULL,
+  ` OPERATER` varchar(18) NOT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`RECORDID`,`TOPICID`,`STUDENT`,`TEACHER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO 
-	_goods(title, state, price,number)
-VALUES
-	('iphone7', 1, 3999, 100),
-	('ipad3', 1, 1999, 2000);
-	
+-- ----------------------------
+-- Table structure for recordbook
+-- ----------------------------
+DROP TABLE IF EXISTS `recordbook`;
+CREATE TABLE `recordbook` (
+  `RECORDBOOKID` bigint(20) NOT NULL,
+  `YEAR` year(4) DEFAULT NULL,
+  `STARTTIME` date DEFAULT NULL,
+  `ENDTIME` date DEFAULT NULL,
+  `MANAGERID` varchar(18) NOT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`RECORDBOOKID`,`MANAGERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `ROLEID` tinyint(3) NOT NULL,
+  `ROLEAUTHORIY` char(1) NOT NULL,
+  `ROLENAME` varchar(100) NOT NULL,
+  `ROLECOMENT` varchar(200) NOT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`ROLEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for topic
+-- ----------------------------
+DROP TABLE IF EXISTS `topic`;
+CREATE TABLE `topic` (
+  `TOPICID` bigint(20) NOT NULL,
+  `TOPICNAME` varchar(100) DEFAULT NULL,
+  `TOPICCOMENT` varchar(200) DEFAULT NULL,
+  `CATEGORYID` int(10) DEFAULT NULL,
+  `MAJOEID` varchar(80) DEFAULT NULL,
+  `LIMITNUM` tinyint(3) DEFAULT NULL,
+  `TEACHER` varchar(18) DEFAULT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`TOPICID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `USERNAME` varchar(18) NOT NULL,
+  `ROLEID` tinyint(3) NOT NULL,
+  `PASSWORD` varchar(64) NOT NULL,
+  `LOGINDATETIMETIME` datetime DEFAULT NULL,
+  `LOGOUTDATETIMETIME` datetime DEFAULT NULL,
+  `USERSTATUS` char(1) DEFAULT NULL,
+  `SESSIONID` char(32) DEFAULT NULL,
+  `IPADD` char(15) DEFAULT NULL,
+  `BLOWSER` varchar(200) DEFAULT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`USERNAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for userinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `userinfo`;
+CREATE TABLE `userinfo` (
+  `USERID` varchar(18) NOT NULL,
+  `ROLEID` tinyint(3) DEFAULT NULL,
+  `MAJORID` char(10) DEFAULT NULL,
+  `USERNAME` varchar(30) DEFAULT NULL,
+  `SEXTYPE` char(1) DEFAULT NULL,
+  `USERTEL` varchar(20) DEFAULT NULL,
+  `USERMOBILE` varchar(11) DEFAULT NULL,
+  `USEREMAIL` varchar(30) DEFAULT NULL,
+  `CREATER` varchar(18) DEFAULT NULL,
+  `CREATDATETIME` datetime DEFAULT NULL,
+  `CHANGER` varchar(18) DEFAULT NULL,
+  `CHANGEDATETIME` datetime DEFAULT NULL,
+  `DELETEMAN` varchar(18) DEFAULT NULL,
+  `DELETEDATETIME` datetime DEFAULT NULL,
+  `DELETEFLG` char(1) NOT NULL,
+  PRIMARY KEY (`USERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
