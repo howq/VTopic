@@ -24,6 +24,7 @@ public class LoginController extends WebExceptionHandler {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Model model){
         String retVal = "user/index";
+        logger.debug("进入登陆界面");
         User user = new User();
         user.setUsername("wanghuw");
         model.addAttribute("user", user);
