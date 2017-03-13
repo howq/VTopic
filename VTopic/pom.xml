@@ -32,7 +32,7 @@
         <commons.lang.version>2.6</commons.lang.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <logback.version>1.1.7</logback.version>
-        <slf4j.version>1.7.6</slf4j.version>
+        <slf4j.version>1.7.21</slf4j.version>
         <jackson-mapper.version>1.9.12</jackson-mapper.version>
         <jackson-core.version>1.9.12</jackson-core.version>
         <fastjson.version>1.2.11</fastjson.version>
@@ -87,25 +87,30 @@
 
             <!-- ====================logback======================== -->
             <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>1.1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>1.1.2</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>integration</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.slf4j</groupId>-->
+                <!--<artifactId>slf4j-api</artifactId>-->
+                <!--<version>${slf4j.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.slf4j</groupId>-->
+                <!--<artifactId>slf4j-log4j12</artifactId>-->
+                <!--<version>${slf4j.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>log4j</groupId>-->
+                <!--<artifactId>log4j</artifactId>-->
+                <!--<version>1.2.17</version>-->
+            <!--</dependency>-->
              <!-- ====================Springframework+SpringMVC======================== -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -190,17 +195,6 @@
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis-ehcache</artifactId>
-                <version>${mybatis-ehcache.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
             <!-- ====================junit======================== -->
             <dependency>
                 <groupId>junit</groupId>
@@ -242,7 +236,7 @@
             <dependency>
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <!-- ====================sitemesh======================== -->
             <dependency>
@@ -296,7 +290,6 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>2.5</version>
-                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

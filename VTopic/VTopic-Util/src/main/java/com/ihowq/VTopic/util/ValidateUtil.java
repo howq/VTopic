@@ -77,11 +77,7 @@ public class ValidateUtil {
      * @return true：合法、false：非法
      */
     public static boolean chkItemLength(String strItem, int intLength) {
-        if (strItem.trim().length() == intLength) {
-            return true;
-        } else {
-            return false;
-        }
+        return strItem.trim().length() == intLength;
     }
 
     /**
@@ -93,11 +89,7 @@ public class ValidateUtil {
      * @return true：合法、false：非法
      */
     public static boolean chkMaxLength(String strItem, int intLength) {
-        if (strItem.trim().length() > intLength) {
-            return true;
-        } else {
-            return false;
-        }
+        return strItem.trim().length() > intLength;
     }
 
     /**
@@ -130,10 +122,7 @@ public class ValidateUtil {
         if (str.length() < str.getBytes().length) {
             return false;
         }
-        if (!str.matches("\\d+|\\w+")) {
-            return false;
-        }
-        return true;
+        return str.matches("\\d+|\\w+");
     }
 
     /**
@@ -144,11 +133,7 @@ public class ValidateUtil {
      * @return true：合法、false：非法
      */
     public static boolean chkNumeric(String str) {
-        if (str.matches("\\d+")) {
-            return true;
-        } else {
-            return false;
-        }
+        return str.matches("\\d+");
     }
 
     /**
@@ -302,11 +287,7 @@ public class ValidateUtil {
      * @return true：合法、false：非法
      */
     public static boolean chkItemLength(String strItem, int minLength, int maxLength) {
-        if (strItem.trim().length() >= minLength && strItem.trim().length() <= maxLength) {
-            return true;
-        } else {
-            return false;
-        }
+        return strItem.trim().length() >= minLength && strItem.trim().length() <= maxLength;
     }
 
 }

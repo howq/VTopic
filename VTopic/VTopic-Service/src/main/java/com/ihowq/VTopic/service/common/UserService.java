@@ -15,6 +15,6 @@ public interface UserService {
      * @return          用户信息
      * @throws Exception
      */
-    public User selectUserInfo(String username, String pwd)
+    User selectUserInfo(String username, String pwd)
             throws Exception;
 }

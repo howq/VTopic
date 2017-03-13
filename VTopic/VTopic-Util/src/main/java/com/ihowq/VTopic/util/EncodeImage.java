@@ -48,7 +48,7 @@ public class EncodeImage {
      */  
     @SuppressWarnings("unused")
     private void resizeByWidth(int w) throws IOException {  
-        int h = (int) (height * w / width);  
+        int h = height * w / width;
        // resize(this., h);  
     }  
     /** 
@@ -57,7 +57,7 @@ public class EncodeImage {
      */  
     @SuppressWarnings("unused")
     private void resizeByHeight(int h) throws IOException {  
-        int w = (int) (width * h / height);  
+        int w = width * h / height;
        // resize(w, h);  
     }  
     /** 

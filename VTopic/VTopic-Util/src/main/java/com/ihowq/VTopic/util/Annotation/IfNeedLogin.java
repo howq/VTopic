@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IfNeedLogin {
 
-	public boolean needLogin() default true;
+	boolean needLogin() default true;
 	
 }

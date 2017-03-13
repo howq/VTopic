@@ -1,6 +1,8 @@
 package com.ihowq.VTopic.controllor;
 
 import com.ihowq.VTopic.service.MessageHelpService;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,7 @@ import javax.annotation.Resource;
 @Controller
 public abstract class BaseController {
 
-//    protected final Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource(name = "messageHelpService")
     protected MessageHelpService messageHelper;
