@@ -83,11 +83,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static boolean isCompareTime(Date startTime, Date endTime) {
-		if (endTime.getTime() > startTime.getTime()) {
-			return true;
-		} else {
-			return false;
-		}
+        return endTime.getTime() > startTime.getTime();
 
 	}
 

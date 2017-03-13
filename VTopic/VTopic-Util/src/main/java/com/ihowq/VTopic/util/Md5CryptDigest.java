@@ -89,10 +89,7 @@ public class Md5CryptDigest {
 			digest = decodeMd5(strCrypted);
 			MessageDigest alga = MessageDigest.getInstance("MD5");
 			alga.update(strEncode.getBytes());
-			if (MessageDigest.isEqual(digest, alga.digest()))
-				bResult = true;
-			else
-				bResult = false;
+            bResult = MessageDigest.isEqual(digest, alga.digest());
 		} catch (Exception ex) {
 			bResult = false;
 			System.out.println("算法出错。");

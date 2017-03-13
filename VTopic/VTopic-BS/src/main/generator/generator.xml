@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
 <generatorConfiguration>  
-    <!-- Êý¾Ý¿âÇý¶¯°üÎ»ÖÃ -->  
+    <!-- ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ -->  
     <classPathEntry location="F:\bysj\VTopic\VTopic-BS\src\main\generator\mysql-connector-java-5.1.34.jar" />   
     <!-- <classPathEntry location="C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar" />-->  
     <context id="DB2Tables" targetRuntime="MyBatis3">  
         <commentGenerator>  
             <property name="suppressAllComments" value="true" />  
         </commentGenerator>  
-        <!-- Êý¾Ý¿âÁ´½ÓURL¡¢ÓÃ»§Ãû¡¢ÃÜÂë -->  
+        <!-- ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->  
          <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/vtopicdb?characterEncoding=utf8" userId="root" password="">   
         <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->  
         </jdbcConnection>  
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="false" />  
         </javaTypeResolver>  
-        <!-- Éú³ÉÄ£ÐÍµÄ°üÃûºÍÎ»ÖÃ -->  
+        <!-- ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ÍµÄ°ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ -->  
         <javaModelGenerator targetPackage="com.ihowq.VTopic.model" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
             <property name="enableSubPackages" value="true" />  
             <property name="trimStrings" value="true" />  
         </javaModelGenerator>  
-        <!-- Éú³ÉµÄÓ³ÉäÎÄ¼þ°üÃûºÍÎ»ÖÃ -->  
-        <sqlMapGenerator targetPackage="com.ihowq.VTopic.mapper" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
+        <!-- ï¿½ï¿½ï¿½Éµï¿½Ó³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ -->  
+        <sqlMapGenerator targetPackage="mapper" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">
             <property name="enableSubPackages" value="true" />  
         </sqlMapGenerator>  
-        <!-- Éú³ÉDAOµÄ°üÃûºÍÎ»ÖÃ -->  
+        <!-- ï¿½ï¿½ï¿½ï¿½DAOï¿½Ä°ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ -->  
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.ihowq.VTopic.dao" targetProject="F:\bysj\VTopic\VTopic-BS\src\main\java">  
             <property name="enableSubPackages" value="true" />  
         </javaClientGenerator>  
-        <!-- ÒªÉú³ÉÄÇÐ©±í(¸ü¸ÄtableNameºÍdomainObjectName¾Í¿ÉÒÔ) -->  
+        <!-- Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½tableNameï¿½ï¿½domainObjectNameï¿½Í¿ï¿½ï¿½ï¿½) -->  
         <table tableName="ROLE" domainObjectName="Role" enableCountByExample="FALSE" enableUpdateByExample="FALSE" enableDeleteByExample="FALSE" enableSelectByExample="FALSE" selectByExampleQueryId="FALSE" />  
         <table tableName="USER" domainObjectName="User" enableCountByExample="FALSE" enableUpdateByExample="FALSE" enableDeleteByExample="FALSE" enableSelectByExample="FALSE" selectByExampleQueryId="FALSE" />  
         <table tableName="USERINFO" domainObjectName="UserInfo" enableCountByExample="FALSE" enableUpdateByExample="FALSE" enableDeleteByExample="FALSE" enableSelectByExample="FALSE" selectByExampleQueryId="FALSE" />  
