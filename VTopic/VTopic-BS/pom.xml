@@ -19,11 +19,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.ihowq.VTopic.util</groupId>
-            <artifactId>VTopic-util</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>

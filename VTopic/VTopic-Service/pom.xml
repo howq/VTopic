@@ -19,6 +19,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.ihowq.VTopic.util</groupId>
+            <artifactId>VTopic-util</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.ihowq.VTopic.bs</groupId>
             <artifactId>VTopic-bs</artifactId>
         </dependency>
