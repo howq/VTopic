@@ -12,7 +12,7 @@ import redis.clients.jedis.ShardedJedisPool;
  * Created by howq on 2017/3/14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value={"classpath*:spring/applicationContext-redis-test.xml"})
+@ContextConfiguration(value={"classpath*:spring/applicationContext-redis.xml"})
 public class RedisTest {
 
     @Autowired
@@ -21,7 +21,7 @@ public class RedisTest {
     @Test
     public void testSet() {
         ShardedJedis jedis = shardedJedisPool.getResource();
-        jedis.set("name", "wwss");
+        jedis.set("name", "nnnn");
     }
 
     @Test
