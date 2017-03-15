@@ -1,7 +1,6 @@
 package com.ihowq.VTopic.controllor.common;
 
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
-import com.ihowq.VTopic.model.User;
 import com.ihowq.VTopic.service.common.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * Created by howq on 2017/3/11.
- */
+ * 登陆入口
+ *
+ * @author howq
+ * @create 2017/3/9 14:17
+ **/
 @Controller
 public class LoginController extends WebExceptionHandler {
 

@@ -74,6 +74,10 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
         <!-- ====================commons======================== -->
         <dependency>
             <groupId>commons-io</groupId>
