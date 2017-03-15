@@ -6,8 +6,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by howq on 2017/3/15.
- */
+ * Redis 缓存测试
+ *
+ * @author howq
+ * @create 2017-03-15 14:17
+ **/
 @Service("managerService")
 public class ManagerService {
     @Cacheable(value = "User", key = "'UserId_' + #id",condition = "#id<=110")

@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by howq on 2017/3/9.
- */
+ * 登陆拦截器
+ *
+ * @author howq
+ * @create 2017/3/9 14:17
+ **/
 public class LoginInterceptor implements HandlerInterceptor {
 
 

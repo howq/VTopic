@@ -2,9 +2,13 @@ package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.model.User;
 
+
 /**
- * Created by howq on 2017/3/11.
- */
+ * 用户操作Service
+ *
+ * @author howq
+ * @create 2017/3/11 13:17
+ **/
 public interface UserService {
 
     /**

@@ -1,8 +1,11 @@
 package com.ihowq.VTopic.util;
 
 /**
- * Created by howq on 2017/3/13.
- */
+ * SpringMVC JSON 返回数据
+ *
+ * @author howq
+ * @create 2017/3/10 14:17
+ **/
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;

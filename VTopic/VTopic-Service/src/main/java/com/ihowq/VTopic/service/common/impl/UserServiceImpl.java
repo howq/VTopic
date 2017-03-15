@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * Created by howq on 2017/3/11.
- */
+ * 用户操作
+ *
+ * @author howq
+ * @create 2017/3/11 14:17
+ **/
 @Service(value="userService")
 public class UserServiceImpl implements UserService {
 
