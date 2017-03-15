@@ -16,11 +16,6 @@
     <name>test Desc</name>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.ihowq.VTopic.bs</groupId>
-            <artifactId>VTopic-bs</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.ihowq.VTopic.service</groupId>
             <artifactId>VTopic-service</artifactId>

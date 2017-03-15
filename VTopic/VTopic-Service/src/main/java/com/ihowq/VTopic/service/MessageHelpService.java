@@ -9,9 +9,12 @@ import javax.annotation.Resource;
 import java.util.Locale;
 
 /**
- * Created by howq on 2017/3/11.
- */
-@Component(value = "messageHelpService")
+ * 公用信息提示
+ *
+ * @author howq
+ * @create 2017/3/11 14:17
+ **/
+@Component("messageHelpService")
 public class MessageHelpService implements MessageSource {
 
     @Resource(name = "messageSource")
