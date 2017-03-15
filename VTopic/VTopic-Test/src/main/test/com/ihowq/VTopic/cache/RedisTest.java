@@ -1,7 +1,9 @@
-package com.ihowq.VTopic.test;
+package com.ihowq.VTopic.cache;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,6 +16,8 @@ import redis.clients.jedis.ShardedJedisPool;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value={"classpath*:spring/applicationContext-redis.xml"})
 public class RedisTest {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private ShardedJedisPool shardedJedisPool;
@@ -28,7 +32,7 @@ public class RedisTest {
     public void testGet() {
         ShardedJedis jedis = shardedJedisPool.getResource();
         String name = jedis.get("name");
-        System.out.println(name);
+        logger.info(name);
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.Locale;
 /**
  * Created by howq on 2017/3/11.
  */
-@Component(value = "messageHelpService")
+@Component("messageHelpService")
 public class MessageHelpService implements MessageSource {
 
     @Resource(name = "messageSource")

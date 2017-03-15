@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+*.iml
+*/target
+VTopic-Web/META-INF/MANIFEST.MF
+out
+target
+
+# Eclipse
+.project
+.settings
+*/.classpath

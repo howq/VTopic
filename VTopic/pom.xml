@@ -41,7 +41,7 @@
         <druid.version>1.0.18</druid.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
 
-        <jedis.version>2.6.0</jedis.version>
+        <jedis.version>2.6.2</jedis.version>
     </properties>
 
     <dependencyManagement>
@@ -304,7 +304,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>1.4.2.RELEASE</version>
+                <version>1.4.1.RELEASE</version>
             </dependency>
 
         </dependencies>
