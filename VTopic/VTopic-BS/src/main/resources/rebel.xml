@@ -11,6 +11,8 @@
 		</dir>
 		<dir name="F:\bysj\VTopic\VTopic-Web\target\classes">
 		</dir>
+		<dir name="F:\bysj\VTopic\out\artifacts\VTopic_web_war_exploded\WEB-INF\classes">
+		</dir>
 	</classpath>
 
 	<web>

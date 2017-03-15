@@ -4,7 +4,7 @@ import com.ihowq.VTopic.model.User;
 import org.springframework.stereotype.Repository;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(String username);
+    int deleteByPrimaryKey(String userid);
 
     int insert(User record);
 

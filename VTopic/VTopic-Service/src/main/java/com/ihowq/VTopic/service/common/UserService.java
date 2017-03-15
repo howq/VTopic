@@ -1,6 +1,6 @@
 package com.ihowq.VTopic.service.common;
 
-import com.ihowq.VTopic.model.User;
+import com.ihowq.VTopic.model.UserInfo;
 
 
 /**
@@ -19,6 +19,6 @@ public interface UserService {
      * @return          用户信息
      * @throws Exception
      */
-    User selectUser(String username, String pwd)
+    public UserInfo checkPwd(String username, String pwd)
             throws Exception;
 }

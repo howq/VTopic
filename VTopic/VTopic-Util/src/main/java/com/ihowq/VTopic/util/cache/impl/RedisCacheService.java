@@ -13,6 +13,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -24,6 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @author howq
  * @create 2017-03-15 14:17
  **/
+@Component(value = "redisCacheService")
 public class RedisCacheService implements IRedisCacheService {
 
     private static final Logger logger = LoggerFactory.getLogger(RedisCacheService.class);
@@ -41,8 +43,8 @@ public class RedisCacheService implements IRedisCacheService {
         Result result = new Result();
 
         try {
-            String e = (String)this.valueOperations.get(key);
-            if(StringUtils.isBlank(e)) {
+            String e = (String) this.valueOperations.get(key);
+            if (StringUtils.isBlank(e)) {
                 this.valueOperations.set(key, value);
             } else {
                 result.doErrorHandle("添加失败【" + key + "】已存在");
@@ -59,8 +61,8 @@ public class RedisCacheService implements IRedisCacheService {
         Result result = new Result();
 
         try {
-            String e = (String)this.valueOperations.get(key);
-            if(StringUtils.isBlank(e)) {
+            String e = (String) this.valueOperations.get(key);
+            if (StringUtils.isBlank(e)) {
                 String objStr = JSONObject.toJSONString(value);
                 this.valueOperations.set(key, objStr);
             } else {
@@ -76,8 +78,8 @@ public class RedisCacheService implements IRedisCacheService {
 
     public Object getByClass(String key, Class<?> clazz) {
         try {
-            String e = (String)this.valueOperations.get(key);
-            return StringUtils.isEmpty(e)?null:JSONObject.parseObject(e, clazz);
+            String e = (String) this.valueOperations.get(key);
+            return StringUtils.isEmpty(e) ? null : JSONObject.parseObject(e, clazz);
         } catch (Exception var4) {
             logger.error("获取对象失败!");
             return null;
@@ -86,7 +88,7 @@ public class RedisCacheService implements IRedisCacheService {
 
     public void delByKey(String key) {
         try {
-            if(key != null) {
+            if (key != null) {
                 this.redisTemplate.delete(key);
             }
         } catch (Exception var3) {
@@ -96,7 +98,7 @@ public class RedisCacheService implements IRedisCacheService {
     }
 
     public void batchDeleteByCollection(Collection<String> collections) {
-        if(collections != null) {
+        if (collections != null) {
             this.redisTemplate.delete(collections);
         }
 
@@ -106,9 +108,9 @@ public class RedisCacheService implements IRedisCacheService {
         Result result = new Result();
 
         try {
-            if(key != null) {
-                String e = (String)this.valueOperations.get(key);
-                if(StringUtils.isNotBlank(e)) {
+            if (key != null) {
+                String e = (String) this.valueOperations.get(key);
+                if (StringUtils.isNotBlank(e)) {
                     result.setData(e);
                 } else {
                     result.doErrorHandle("查询结果为空");
@@ -126,8 +128,8 @@ public class RedisCacheService implements IRedisCacheService {
         Result result = new Result();
 
         try {
-            String e = (String)this.valueOperations.get(key);
-            if(StringUtils.isNotBlank(e)) {
+            String e = (String) this.valueOperations.get(key);
+            if (StringUtils.isNotBlank(e)) {
                 result.setData(e);
             } else {
                 result.doErrorHandle("查询结果为空");
@@ -158,7 +160,7 @@ public class RedisCacheService implements IRedisCacheService {
             logger.error("查询缓存列表失败", var4);
         }
 
-        return (Set)result;
+        return (Set) result;
     }
 
     public Long getIncrementQueueByKey(String key) {
@@ -172,7 +174,7 @@ public class RedisCacheService implements IRedisCacheService {
     }
 
     public void setExpireTime(String key, Long expireTime) {
-        if(expireTime != null) {
+        if (expireTime != null) {
             this.redisTemplate.expire(key, expireTime.longValue(), TimeUnit.SECONDS);
         }
 
@@ -180,7 +182,7 @@ public class RedisCacheService implements IRedisCacheService {
 
     public String getLock(String lockVarious, Long tryTime) {
         try {
-            if(tryTime == null) {
+            if (tryTime == null) {
                 tryTime = Long.valueOf(5L);
             }
 
@@ -188,8 +190,8 @@ public class RedisCacheService implements IRedisCacheService {
             long now = 0L;
             long endTime = now + tryTime.longValue();
 
-            while(now < endTime) {
-                if(this.valueOperations.setIfAbsent(lockVarious, e).booleanValue()) {
+            while (now < endTime) {
+                if (this.valueOperations.setIfAbsent(lockVarious, e).booleanValue()) {
                     this.redisTemplate.expire(lockVarious, 30L, TimeUnit.SECONDS);
                     return e;
                 }
@@ -205,11 +207,11 @@ public class RedisCacheService implements IRedisCacheService {
     }
 
     public Boolean releaseLock(String lockName, String identifier) {
-        if(lockName != null && identifier != null) {
+        if (lockName != null && identifier != null) {
             final byte[] rawKey = lockName.getBytes();
             Boolean result = Boolean.valueOf(false);
-            String lockIdentifier = (String)this.redisTemplate.boundValueOps(lockName).get();
-            if(StringUtils.isNotBlank(identifier) && identifier.equals(lockIdentifier)) {
+            String lockIdentifier = (String) this.redisTemplate.boundValueOps(lockName).get();
+            if (StringUtils.isNotBlank(identifier) && identifier.equals(lockIdentifier)) {
                 try {
                     this.redisTemplate.execute(new RedisCallback() {
                         public Object doInRedis(RedisConnection connection) throws DataAccessException {
@@ -237,7 +239,7 @@ public class RedisCacheService implements IRedisCacheService {
         Result result = new Result();
 
         try {
-            this.valueOperations.set(key, JSONObject.toJSONString(value), (long)expireTime, TimeUnit.SECONDS);
+            this.valueOperations.set(key, JSONObject.toJSONString(value), (long) expireTime, TimeUnit.SECONDS);
         } catch (Exception var6) {
             logger.error("redis 添加失败", var6);
             result.doErrorHandle("网络异常请稍后再试");
@@ -250,7 +252,7 @@ public class RedisCacheService implements IRedisCacheService {
         Result result = new Result();
 
         try {
-            this.valueOperations.set(key, JSONObject.toJSONString(value), (long)expireTime, timeUnit);
+            this.valueOperations.set(key, JSONObject.toJSONString(value), (long) expireTime, timeUnit);
         } catch (Exception var7) {
             logger.error("redis 添加失败", var7);
             result.doErrorHandle("网络异常请稍后再试");
@@ -263,12 +265,12 @@ public class RedisCacheService implements IRedisCacheService {
         RedisConnection connection = null;
 
         try {
-            if(key != null) {
+            if (key != null) {
                 connection = this.redisTemplate.getConnectionFactory().getConnection();
-                connection.setEx(key.getBytes(), (long)timeout, value.getBytes());
+                connection.setEx(key.getBytes(), (long) timeout, value.getBytes());
             }
         } finally {
-            if(connection != null) {
+            if (connection != null) {
                 connection.close();
             }
 
@@ -278,7 +280,7 @@ public class RedisCacheService implements IRedisCacheService {
 
     public boolean exists(String key) {
         RedisConnection connection = null;
-        if(key == null) {
+        if (key == null) {
             return false;
         } else {
             Boolean result;
@@ -286,7 +288,7 @@ public class RedisCacheService implements IRedisCacheService {
                 connection = this.redisTemplate.getConnectionFactory().getConnection();
                 result = connection.exists(key.getBytes());
             } finally {
-                if(connection != null) {
+                if (connection != null) {
                     connection.close();
                 }
 
@@ -298,7 +300,7 @@ public class RedisCacheService implements IRedisCacheService {
 
     public void rpush(String key, String val) {
         RedisConnection connection = null;
-        if(!StringUtils.isEmpty(key)) {
+        if (!StringUtils.isEmpty(key)) {
             try {
                 connection = this.redisTemplate.getConnectionFactory().getConnection();
                 RedisSerializer serializer = this.redisTemplate.getStringSerializer();
@@ -306,7 +308,7 @@ public class RedisCacheService implements IRedisCacheService {
                 byte[] name = serializer.serialize(val.toString());
                 connection.sAdd(keys, new byte[][]{name});
             } finally {
-                if(connection != null) {
+                if (connection != null) {
                     connection.close();
                 }
 
@@ -317,7 +319,7 @@ public class RedisCacheService implements IRedisCacheService {
 
     public int lrang(String key) {
         RedisConnection connection = null;
-        if(StringUtils.isEmpty(key)) {
+        if (StringUtils.isEmpty(key)) {
             return 0;
         } else {
             int var6;
@@ -326,13 +328,13 @@ public class RedisCacheService implements IRedisCacheService {
                 RedisSerializer serializer = this.redisTemplate.getStringSerializer();
                 byte[] keys = serializer.serialize(key.toString());
                 Set sMembers = connection.sMembers(keys);
-                if(null == sMembers) {
+                if (null == sMembers) {
                     return 0;
                 }
 
                 var6 = sMembers.size();
             } finally {
-                if(connection != null) {
+                if (connection != null) {
                     connection.close();
                 }
 
@@ -344,7 +346,7 @@ public class RedisCacheService implements IRedisCacheService {
 
     public void ltrim(String key) {
         RedisConnection connection = null;
-        if(!StringUtils.isEmpty(key)) {
+        if (!StringUtils.isEmpty(key)) {
             try {
                 connection = this.redisTemplate.getConnectionFactory().getConnection();
                 RedisSerializer serializer = this.redisTemplate.getStringSerializer();
@@ -352,12 +354,12 @@ public class RedisCacheService implements IRedisCacheService {
                 Set sMembers = connection.sMembers(keys);
                 Iterator i$ = sMembers.iterator();
 
-                while(i$.hasNext()) {
-                    byte[] ss = (byte[])i$.next();
+                while (i$.hasNext()) {
+                    byte[] ss = (byte[]) i$.next();
                     connection.sRem(keys, new byte[][]{ss});
                 }
             } finally {
-                if(connection != null) {
+                if (connection != null) {
                     connection.close();
                 }
 
