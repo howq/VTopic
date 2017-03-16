@@ -56,12 +56,12 @@ public class LoginController extends WebExceptionHandler {
             modelAndView.setViewName("index");
             return modelAndView;
         }
-        logger.info("=======================获取session开始=======================");
-        HttpSession session = request.getSession();
-        logger.info("=======================获取session结束=======================");
         try {
             UserInfo userInfo = userService.checkPwd(username, password);
             if (null != userInfo) {
+                logger.info("=======================获取session开始=======================");
+                HttpSession session = request.getSession();
+                logger.info("=======================获取session结束=======================");
                 String url = null;
                 String mvPath = null;
                 //用户角色判断
@@ -87,9 +87,13 @@ public class LoginController extends WebExceptionHandler {
                 sessionService.createOrUpdateLoginSession(request, response, loginSession, rememberMe);
                 logger.info("=======================创建用户session信息结束========================");
                 return modelAndView;
+            }else{
+                logger.info("登陆失败，密码或账号错误----->密码错误");
+                modelAndView.addObject("isLogin", 0);
             }
         } catch (Exception e) {
-            return null;
+            logger.info("登陆失败，密码或账号错误----->账号未注册");
+            modelAndView.addObject("isLogin", 0);
         }
         modelAndView.setViewName("index");
         return modelAndView;
