@@ -2,7 +2,6 @@ package com.ihowq.VTopic.interceptor;
 
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
-import com.ihowq.VTopic.util.common.VTopicConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;

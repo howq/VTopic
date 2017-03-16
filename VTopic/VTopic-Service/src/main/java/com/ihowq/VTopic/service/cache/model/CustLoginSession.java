@@ -42,6 +42,11 @@ public class CustLoginSession extends BaseSession {
     private AtomicInteger requestCount;
 
     /**
+     * 跳转路径
+     */
+    private String url;
+
+    /**
      * Getter for property 'serialVersionUID'.
      *
      * @return Value for property 'serialVersionUID'.
@@ -148,4 +153,23 @@ public class CustLoginSession extends BaseSession {
     public void setRequestCount(AtomicInteger requestCount) {
         this.requestCount = requestCount;
     }
+
+    /**
+     * Getter for property 'url'.
+     *
+     * @return Value for property 'url'.
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * Setter for property 'url'.
+     *
+     * @param url Value to set for property 'url'.
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 }

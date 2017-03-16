@@ -38,9 +38,13 @@ public class LoginController extends WebExceptionHandler {
     private SessionService sessionService;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index() {
+    public String index(HttpServletRequest request) throws java.lang.Exception {
         logger.info("进入登陆界面");
-        return new ModelAndView("/index");
+        CustLoginSession loginSession = sessionService.getSession(request);
+        if (null != loginSession) {
+            return "redirect:/" + loginSession.getUrl();
+        }
+        return "index";
     }
 
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
@@ -58,24 +62,26 @@ public class LoginController extends WebExceptionHandler {
         try {
             UserInfo userInfo = userService.checkPwd(username, password);
             if (null != userInfo) {
+                String url = null;
+                //用户角色判断
+                if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
+                    url = "/manager/manager";
+                } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
+                    url = "/teacher/teacher";
+                } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
+                    url = "/student/student";
+                }
+                modelAndView.setViewName(url);
+                CustLoginSession loginSession = new CustLoginSession();
+                loginSession.setUrl(url);
                 logger.info("用户:[" + userInfo.getUsername() + "] 请求的ip地址：[" + IPUtil.getIpAddr(request) + "] 使用的浏览器版本：[" + request.getHeader("USER-AGENT") + "]");
                 session.setAttribute("userInfo", userInfo);
-                CustLoginSession loginSession = new CustLoginSession();
                 // 保存用户信息到session中
                 loginSession.setUserInfo(userInfo);
                 loginSession.setSessionId(session.getId());
                 logger.info("=======================创建用户session信息========================");
                 sessionService.createOrUpdateLoginSession(request, response, loginSession, rememberMe);
                 logger.info("=======================创建用户session信息结束========================");
-
-                //用户角色判断
-                if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
-                    modelAndView.setViewName("/manager/manager");
-                } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
-                    modelAndView.setViewName("/teacher/teacher");
-                } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
-                    modelAndView.setViewName("/student/student");
-                }
                 return modelAndView;
             }
         } catch (Exception e) {
