@@ -3,7 +3,7 @@ package com.ihowq.VTopic.model;
 import java.util.Date;
 
 public class User {
-    private String username;
+    private String userid;
 
     private Byte roleid;
 
@@ -35,12 +35,12 @@ public class User {
 
     private String deleteflg;
 
-    public String getUsername() {
-        return username;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 
     public Byte getRoleid() {

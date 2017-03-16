@@ -17,17 +17,18 @@
 
     <mvc:annotation-driven />
 
-    <!--<mvc:interceptors>-->
-	    <!--&lt;!&ndash; 拦截器  &ndash;&gt;-->
-    	<!--<mvc:interceptor>-->
-    		<!--<mvc:mapping path="/**"/>-->
-    		<!--&lt;!&ndash;<mvc:exclude-mapping path="/error"/>&ndash;&gt;-->
-    		<!--&lt;!&ndash;<mvc:exclude-mapping path="/login/getToken"/>&ndash;&gt;-->
-    		<!--&lt;!&ndash;<mvc:exclude-mapping path="/common/download"/>&ndash;&gt;-->
-    		<!--<bean id="loginInterceptor" class="com.ihowq.VTopic.util.LoginInterceptor"></bean>-->
-    	<!--</mvc:interceptor>-->
+    <mvc:interceptors>
+	    <!-- 拦截器  -->
+    	<mvc:interceptor>
+            <mvc:mapping path="/manage/**"/>
+            <mvc:mapping path="/teacher/**"/>
+            <mvc:mapping path="/student/**"/>
+            <mvc:exclude-mapping path="/doLogin"/>
+    		<mvc:exclude-mapping path="/index"/>
+    		<bean class="com.ihowq.VTopic.interceptor.LoginInterceptor"></bean>
+    	</mvc:interceptor>
 
-    <!--</mvc:interceptors>-->
+    </mvc:interceptors>
 
     <!--静态资源映射-->
     <!--
@@ -36,30 +37,28 @@
     表示当浏览器有静态资源请求的时候，并且请求url路径中带有：/js/，则这个资源跑到webapp目录下的/WEB-INF/statics/js/去找
     比如我们在 JSP 中引入一个 js 文件：src="${webRoot}/js/jQuery-core/jquery-1.6.1.min.js
     -->
-    <mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/"/>
-    <mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/>
-    <mvc:resources mapping="/images/**" location="/WEB-INF/statics/image/"/>
+    <!--<mvc:resources location="/WEB-INF/statics/js/" mapping="/js/**"/>-->
+    <!--<mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/"/>-->
+    <!--<mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/>-->
+    <!--<mvc:resources mapping="/images/**" location="/WEB-INF/statics/image/"/>-->
+    <!--<mvc:resources mapping="/error/**" location="/WEB-INF/statics/error/"/>-->
 
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP-->
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/view/"/><!--设置JSP文件的目录位置-->
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+        <property name="prefix" value="/WEB-INF/jsp/"/><!--设置JSP文件的目录位置-->
         <property name="suffix" value=".jsp"/>
     </bean>
 
     <mvc:view-controller path="/" view-name="redirect:/index" />
 
     <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
-    <!--<bean id="multipartResolver"-->
-          <!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-        <!--<property name="defaultEncoding" value="UTF-8" />-->
-        <!--&lt;!&ndash; 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 &ndash;&gt;-->
-        <!--<property name="maxUploadSize" value="20000000" />-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash; 激活组件扫描功能,扫描aop的相关组件组件 &ndash;&gt;-->
-    <!--<context:component-scan base-package="com.ihowq.VTopic.aop"/>-->
-    <!-- 启动@AspectJ支持 -->
-    <!--<aop:aspectj-autoproxy proxy-target-class="true" />-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="20000000" />
+    </bean>
+    <bean id="beanDefineConfigue" class="com.ihowq.VTopic.jms.BeanDefineConfigue"></bean>
 </beans>
