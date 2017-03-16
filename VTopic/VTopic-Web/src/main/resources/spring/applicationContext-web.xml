@@ -20,10 +20,11 @@
     <mvc:interceptors>
 	    <!-- 拦截器  -->
     	<mvc:interceptor>
-    		<mvc:mapping path="/**"/>
-    		<!--<mvc:exclude-mapping path="/error"/>-->
-    		<!--<mvc:exclude-mapping path="/login/getToken"/>-->
-    		<!--<mvc:exclude-mapping path="/common/download"/>-->
+            <mvc:mapping path="/manager/**"/>
+            <mvc:mapping path="/teacher/**"/>
+            <mvc:mapping path="/student/**"/>
+            <mvc:exclude-mapping path="/doLogin"/>
+    		<mvc:exclude-mapping path="/index"/>
     		<bean class="com.ihowq.VTopic.interceptor.LoginInterceptor"></bean>
     	</mvc:interceptor>
 

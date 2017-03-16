@@ -8,8 +8,10 @@ import com.ihowq.VTopic.util.cache.impl.RedisCacheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 分布式缓存服务。
@@ -63,5 +65,30 @@ public class CacheServiceImpl implements CacheService {
 
             redisCacheService.delByKey(token);
         }
+    }
+
+    @Override
+    public boolean saveUserToken(String username, List<String> tokenList) {
+        if (!StringUtils.isEmpty(username)) {
+            logger.debug("Put username to cahce. username:" + username);
+
+            Result<String> result = redisCacheService.saveByObject(username, tokenList);
+            if (!result.isSuccess()) {
+                logger.warn("Failed to save username to cache.");
+                throw new RuntimeException("Failed to save username to cache.");
+            }
+            logger.debug("Put username to redis success");
+            return result.isSuccess();
+        }
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<String> getUserToken(String username) {
+        if (!StringUtils.isEmpty(username)) {
+            return (List<String>) redisCacheService.getByClass(username, List.class);
+        }
+        return null;
     }
 }

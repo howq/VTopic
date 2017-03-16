@@ -2,6 +2,8 @@ package com.ihowq.VTopic.service.cache;
 
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 
+import java.util.List;
+
 /**
  * 分布式缓存服务。
  *
@@ -31,4 +33,19 @@ public interface CacheService {
      * @param token
      */
     public void removeCustLoginSession(String token);
+
+    /**
+     * 保存用户 Token
+     * @param username
+     * @param tokenList
+     * @return
+     */
+    public boolean saveUserToken(String username, List<String> tokenList);
+
+    /**
+     * 获取用户 Token
+     * @param username
+     * @return
+     */
+    public List<String> getUserToken(String username);
 }
