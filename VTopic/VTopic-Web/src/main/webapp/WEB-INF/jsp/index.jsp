@@ -29,6 +29,21 @@
             </form>
             <%--<div id="note"><a href="#">Forgot your password?</a></div>--%>
         </div>
+        <%--<ul class="mg-t-lg error-nav">--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">&copy;--%>
+                    <%--<span id="year" class="mg-r-xs"></span>VTopic</a>--%>
+            <%--</li>--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">About</a>--%>
+            <%--</li>--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">Help</a>--%>
+            <%--</li>--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">Status</a>--%>
+            <%--</li>--%>
+        <%--</ul>--%>
     </div>
 </body>
 <script type="text/javascript">
