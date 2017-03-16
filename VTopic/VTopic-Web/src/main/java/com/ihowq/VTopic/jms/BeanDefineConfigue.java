@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
+ * 监听Spring容器初始化
+ *
  * @author howq
  * @create 2017-03-16 14:28
  **/

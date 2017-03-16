@@ -23,7 +23,7 @@
             <form action="<%=request.getContextPath()%>/doLogin" method="post">
                 <input type="text" name="username" id="username" placeholder="工号/学号" value="" required>
                 <input type="password" placeholder="密码" name="password" id="password" value="" required>
-                <input id='rememberMe' name='rememberMe' type='checkbox' style="width:16px;float: left;margin-left: 10%;margin-top: 3px">
+                <input id='rememberMe' name='rememberMe' type='checkbox' checked="checked" style="width:16px;float: left;margin-left: 10%;margin-top: 3px">
                 <label style="width: 80%">Remember me</label>
                 <button type="submit"><i class="fa fa-arrow-right"></i></button>
             </form>

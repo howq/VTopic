@@ -53,7 +53,7 @@ public class LoginController extends WebExceptionHandler {
         // 输入项目检查
         ModelAndView modelAndView = new ModelAndView();
         if (!chkInputInfo(username, password)) {
-            modelAndView.setViewName("/index");
+            modelAndView.setViewName("index");
             return modelAndView;
         }
         logger.info("=======================获取session开始=======================");
@@ -63,15 +63,19 @@ public class LoginController extends WebExceptionHandler {
             UserInfo userInfo = userService.checkPwd(username, password);
             if (null != userInfo) {
                 String url = null;
+                String mvPath = null;
                 //用户角色判断
                 if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
-                    url = "/manager/manager";
+                    url = "manage/index";
+                    mvPath = "manager/manager";
                 } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
-                    url = "/teacher/teacher";
+                    url = "teacher/index";
+                    mvPath = "teacher/teacher";
                 } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
-                    url = "/student/student";
+                    url = "student/index";
+                    mvPath = "student/student";
                 }
-                modelAndView.setViewName(url);
+                modelAndView.setViewName(mvPath);
                 CustLoginSession loginSession = new CustLoginSession();
                 loginSession.setUrl(url);
                 logger.info("用户:[" + userInfo.getUsername() + "] 请求的ip地址：[" + IPUtil.getIpAddr(request) + "] 使用的浏览器版本：[" + request.getHeader("USER-AGENT") + "]");
@@ -87,8 +91,25 @@ public class LoginController extends WebExceptionHandler {
         } catch (Exception e) {
             return null;
         }
-        modelAndView.setViewName("/index");
+        modelAndView.setViewName("index");
         return modelAndView;
+    }
+
+    /**
+     * 其它页面返回Login页面处理
+     *
+     * @return INPUT:成功
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            HttpSession session = request.getSession();
+            session.removeAttribute("userInfo");
+            sessionService.removeSession(request, response);
+        } catch (Exception e) {
+            logger.error("返回登录界面出错", e);
+        }
+        return "redirect:/index";
     }
 
     @ResponseBody

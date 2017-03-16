@@ -16,7 +16,7 @@ public class StudentController extends WebExceptionHandler{
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public ModelAndView index() {
-        logger.info("进入管理员界面");
+        logger.info("进入学生选题界面");
         return new ModelAndView("student/student");
     }
 }
