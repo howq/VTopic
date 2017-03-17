@@ -15,13 +15,13 @@ public class ErrorController extends WebExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @RequestMapping(value = "/404", method = RequestMethod.GET)
-    public Object notFund() throws Exception {
-        return "error/Error";
+    public String notFund() throws Exception {
+        return "error/404";
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @RequestMapping(value = "/500", method = RequestMethod.GET)
     public Object errorServer() throws Exception {
-        return "error/Error";
+        return "error/500";
     }
 }
