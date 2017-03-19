@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Created by howq on 2017/3/11.
+ * 失败页面控制器
+ *
  */
 @Controller
 @RequestMapping("/error")
