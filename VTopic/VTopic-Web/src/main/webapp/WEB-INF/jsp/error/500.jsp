@@ -58,22 +58,16 @@
         ;
         //]]>
     </script>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/animate.min.css">
 
 
-    <link rel="stylesheet" href="css/skins/palette.1.css" id="skin">
-    <link rel="stylesheet" href="css/fonts/style.1.css" id="font">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/skins/palette.1.css" id="skin">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/fonts/style.1.css" id="font">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/main.css">
 
-
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="vendor/modernizr.js"></script>
+    <script src="<%= request.getContextPath()%>/vendor/modernizr.js"></script>
     <script type="text/javascript">
         /* <![CDATA[ */
         var _gaq = _gaq || [];
