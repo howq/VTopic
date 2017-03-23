@@ -2,6 +2,7 @@
 .idea/
 *.iml
 */target
+*/META-INF
 VTopic-Web/META-INF/MANIFEST.MF
 out
 target

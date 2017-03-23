@@ -9,9 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>VTopic毕业设计选题系统</title>
+    <title>VTopic | 毕业设计选题系统</title>
     <%--<link rel="stylesheet" href="${webRoot}/css/index.css">--%>
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/index.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/login.css">
     <%--<script src="${staticFileRoot}/js/main.js"></script>--%>
 </head>
 <body>

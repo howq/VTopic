@@ -1,3 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: howq
+  Date: 2017/3/15
+  Time: 17:14
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html class="error-page no-js" lang="">
 
@@ -7,9 +16,7 @@
     <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
-    <title>Cameo | Responsive Admin Dashboard</title>
-
-
+    <title>VTopic | 毕业设计选题系统</title>
 
     <script type="text/javascript">
         //<![CDATA[

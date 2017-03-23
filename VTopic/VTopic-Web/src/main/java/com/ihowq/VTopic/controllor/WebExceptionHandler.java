@@ -3,6 +3,7 @@ package com.ihowq.VTopic.controllor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class WebExceptionHandler extends BaseController {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView resolveException(HttpServletRequest request, Exception exception) {
         logger.error(exception.getMessage(), exception);
         return new ModelAndView("error/404");
