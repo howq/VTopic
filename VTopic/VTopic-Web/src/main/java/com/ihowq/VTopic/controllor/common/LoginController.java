@@ -21,6 +21,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登陆入口
@@ -48,13 +50,16 @@ public class LoginController extends WebExceptionHandler {
     }
 
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "rememberMe", required = false) String rememberMe) {
+    @ResponseBody
+    public Result<Object> login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "rememberMe", required = false) String rememberMe) {
         logger.info("=======================进行登录操作=======================");
+        Result<Object> result = new Result<Object>();
         // 输入项目检查
-        ModelAndView modelAndView = new ModelAndView();
         if (!chkInputInfo(username, password)) {
-            modelAndView.setViewName("index");
-            return modelAndView;
+            result.setCode(Result.Code.ERROR);
+            result.setMessage("登陆失败");
+            logger.info("登录输入格式错误");
+            return result;
         }
         try {
             UserInfo userInfo = userService.checkPwd(username, password);
@@ -63,21 +68,18 @@ public class LoginController extends WebExceptionHandler {
                 HttpSession session = request.getSession();
                 logger.info("=======================获取session结束=======================");
                 String url = null;
-                String mvPath = null;
                 //用户角色判断
                 if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
                     url = "manage/index";
-                    mvPath = "manager/manager";
                 } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
                     url = "teacher/index";
-                    mvPath = "teacher/teacher";
                 } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
                     url = "student/index";
-                    mvPath = "student/student";
                 }
-                modelAndView.setViewName(mvPath);
                 CustLoginSession loginSession = new CustLoginSession();
+                Map<String, Object> resultMap = new HashMap<String, Object>();
                 loginSession.setUrl(url);
+                resultMap.put("url", url);
                 logger.info("用户:[" + userInfo.getUsername() + "] 请求的ip地址：[" + IPUtil.getIpAddr(request) + "] 使用的浏览器版本：[" + request.getHeader("USER-AGENT") + "]");
                 session.setAttribute("userInfo", userInfo);
                 // 保存用户信息到session中
@@ -85,18 +87,23 @@ public class LoginController extends WebExceptionHandler {
                 loginSession.setSessionId(session.getId());
                 logger.info("=======================创建用户session信息========================");
                 sessionService.createOrUpdateLoginSession(request, response, loginSession, rememberMe);
-                logger.info("=======================创建用户session信息结束========================");
-                return modelAndView;
+                logger.info("=========创建用户session信息结束========="+username + ":" +"登录成功");
+                result.setData(resultMap);
+                result.setCode(Result.Code.SUCCESS);
+                result.setMessage("登陆成功");
+                return result;
             }else{
                 logger.info("登陆失败，密码或账号错误----->密码错误");
-                modelAndView.addObject("isLogin", 0);
+                result.setCode(Result.Code.ERROR);
+                result.setMessage("登陆失败");
+                return result;
             }
         } catch (Exception e) {
-            logger.info("登陆失败，密码或账号错误----->账号未注册");
-            modelAndView.addObject("isLogin", 0);
+            logger.error("登陆失败，密码或账号错误----->账号未注册");
+            result.setCode(Result.Code.ERROR);
+            result.setMessage("登陆失败");
+            return result;
         }
-        modelAndView.setViewName("index");
-        return modelAndView;
     }
 
     /**

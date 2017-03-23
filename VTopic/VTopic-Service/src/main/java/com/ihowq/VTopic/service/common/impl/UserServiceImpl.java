@@ -5,6 +5,8 @@ import com.ihowq.VTopic.dao.UserMapper;
 import com.ihowq.VTopic.model.User;
 import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.common.UserService;
+import com.ihowq.VTopic.util.DataUtil;
+import com.ihowq.VTopic.util.Md5CryptDigest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,7 +29,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo checkPwd(String userid, String pwd) throws Exception {
         User user = userMapper.selectByPrimaryKey(userid);
-        if(pwd.equals(user.getPassword())){
+        String password = Md5CryptDigest.encodeMd5(user.getPassword());
+        if(pwd.equals(password)){
             return userInfoMapper.selectByPrimaryKey(userid);
         }
         return null;
