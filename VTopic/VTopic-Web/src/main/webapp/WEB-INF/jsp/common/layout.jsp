@@ -16,7 +16,7 @@
     <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
-    <title>Cameo | Responsive Admin Dashboard</title>
+    <title>VTopic | 毕业设计选题系统</title>
 
     <script type="text/javascript">
         //<![CDATA[
@@ -49,11 +49,13 @@
                         "ape": "86d42e0b8c0027bb178361fce707fc15"
                     }
                 });
-                ! function(a, b) {
+                !function (a, b) {
                     a = document.createElement("script"), b = document.getElementsByTagName("script")[0], a.async = !0, a.src = "//ajax.cloudflare.com/cdn-cgi/nexp/dok2v=919620257c/cloudflare.min.js", b.parentNode.insertBefore(a, b)
                 }()
             }
-        } catch (e) {};
+        } catch (e) {
+        }
+        ;
         //]]>
     </script>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/vendor/offline/theme.css">
@@ -85,7 +87,7 @@
         _gaq.push(['_setAccount', 'UA-50530436-1']);
         _gaq.push(['_trackPageview']);
 
-        (function() {
+        (function () {
             var ga = document.createElement('script');
             ga.type = 'text/javascript';
             ga.async = true;
@@ -94,18 +96,18 @@
             s.parentNode.insertBefore(ga, s);
         })();
 
-        (function(b) {
-            (function(a) {
+        (function (b) {
+            (function (a) {
                 "__CF" in b && "DJS" in b.__CF ? b.__CF.DJS.push(a) : "addEventListener" in b ? b.addEventListener("load", a, !1) : b.attachEvent("onload", a)
-            })(function() {
-                "FB" in b && "Event" in FB && "subscribe" in FB.Event && (FB.Event.subscribe("edge.create", function(a) {
+            })(function () {
+                "FB" in b && "Event" in FB && "subscribe" in FB.Event && (FB.Event.subscribe("edge.create", function (a) {
                     _gaq.push(["_trackSocial", "facebook", "like", a])
-                }), FB.Event.subscribe("edge.remove", function(a) {
+                }), FB.Event.subscribe("edge.remove", function (a) {
                     _gaq.push(["_trackSocial", "facebook", "unlike", a])
-                }), FB.Event.subscribe("message.send", function(a) {
+                }), FB.Event.subscribe("message.send", function (a) {
                     _gaq.push(["_trackSocial", "facebook", "send", a])
                 }));
-                "twttr" in b && "events" in twttr && "bind" in twttr.events && twttr.events.bind("tweet", function(a) {
+                "twttr" in b && "events" in twttr && "bind" in twttr.events && twttr.events.bind("tweet", function (a) {
                     if (a) {
                         var b;
                         if (a.target && a.target.nodeName == "IFRAME") a: {
@@ -167,7 +169,8 @@
                 <option value="app.html">App</option>
                 <option value="footer.html">With footer</option>
             </select>
-        </div><small class="ucase">This Panel is for demo purposes only</small>
+        </div>
+        <small class="ucase">This Panel is for demo purposes only</small>
     </div>
     <div class="ob_toggle bg-color"><span class="fa fa-cog"></span>
     </div>
@@ -180,8 +183,8 @@
             <a href="index.html" class="navbar-brand">
                 <i class="fa fa-stop mg-r-sm"></i>
                 <span class="heading-font">
-Cameo<b>ADMIN</b>
-</span>
+                    V<b>Topic</b>
+                </span>
             </a>
         </div>
         <form class="navbar-form navbar-left hidden-xs" role="search">
@@ -238,7 +241,9 @@ Cameo<b>ADMIN</b>
                                     <div class="m-body show pd-t-xs">
                                         <span>145 MB download in progress.</span>
                                         <div class="progress progress-xs mg-t-xs mg-b-xs">
-                                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <div class="progress-bar progress-bar-primary" role="progressbar"
+                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                                 style="width: 40%">
                                             </div>
                                         </div>
                                         <small>Started 23 mins ago</small>
@@ -278,7 +283,8 @@ Cameo<b>ADMIN</b>
                                 <small class="text-muted">4.2 MB of 51.25 GB used</small>
                             </div>
                             <div class="progress progress-xs no-radius no-margin mg-b-sm">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                 </div>
                             </div>
                         </a>
@@ -594,7 +600,7 @@ Cameo<b>ADMIN</b>
                         <p class="mg-t-xs">Mute notifications</p>
                     </div>
                     <div class="col-xs-4">
-                        <input type="checkbox" class="js-switch" checked />
+                        <input type="checkbox" class="js-switch" checked/>
                     </div>
                 </div>
                 <b class="center-block text-white pd-md">

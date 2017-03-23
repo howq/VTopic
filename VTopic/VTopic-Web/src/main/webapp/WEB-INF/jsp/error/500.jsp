@@ -49,11 +49,13 @@
                         "ape": "08bd2038029c19bed49d8f6ea0c0365a"
                     }
                 });
-                ! function(a, b) {
+                !function (a, b) {
                     a = document.createElement("script"), b = document.getElementsByTagName("script")[0], a.async = !0, a.src = "//ajax.cloudflare.com/cdn-cgi/nexp/dok2v=919620257c/cloudflare.min.js", b.parentNode.insertBefore(a, b)
                 }()
             }
-        } catch (e) {};
+        } catch (e) {
+        }
+        ;
         //]]>
     </script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -67,8 +69,8 @@
 
 
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <script src="vendor/modernizr.js"></script>
@@ -78,7 +80,7 @@
         _gaq.push(['_setAccount', 'UA-50530436-1']);
         _gaq.push(['_trackPageview']);
 
-        (function() {
+        (function () {
             var ga = document.createElement('script');
             ga.type = 'text/javascript';
             ga.async = true;
@@ -87,18 +89,18 @@
             s.parentNode.insertBefore(ga, s);
         })();
 
-        (function(b) {
-            (function(a) {
+        (function (b) {
+            (function (a) {
                 "__CF" in b && "DJS" in b.__CF ? b.__CF.DJS.push(a) : "addEventListener" in b ? b.addEventListener("load", a, !1) : b.attachEvent("onload", a)
-            })(function() {
-                "FB" in b && "Event" in FB && "subscribe" in FB.Event && (FB.Event.subscribe("edge.create", function(a) {
+            })(function () {
+                "FB" in b && "Event" in FB && "subscribe" in FB.Event && (FB.Event.subscribe("edge.create", function (a) {
                     _gaq.push(["_trackSocial", "facebook", "like", a])
-                }), FB.Event.subscribe("edge.remove", function(a) {
+                }), FB.Event.subscribe("edge.remove", function (a) {
                     _gaq.push(["_trackSocial", "facebook", "unlike", a])
-                }), FB.Event.subscribe("message.send", function(a) {
+                }), FB.Event.subscribe("message.send", function (a) {
                     _gaq.push(["_trackSocial", "facebook", "send", a])
                 }));
-                "twttr" in b && "events" in twttr && "bind" in twttr.events && twttr.events.bind("tweet", function(a) {
+                "twttr" in b && "events" in twttr && "bind" in twttr.events && twttr.events.bind("tweet", function (a) {
                     if (a) {
                         var b;
                         if (a.target && a.target.nodeName == "IFRAME") a: {
@@ -124,38 +126,38 @@
 
 <body class="bg-white center-wrapper">
 
-    <div class="center-content text-center">
-        <div class="error-number"><b>500</b>
-        </div>
-        <div class="mg-b-lg error-title">SERVER ERROR</div>
-        <p>We're experiencing an internal server problem.
-            <br>Please try again later or contact
-            <a href="mailto:mail@contact">mail@contact</a>
-            <br>
-            <a href="/index">Return Home</a>
-        </p>
-        <ul class="mg-t-lg error-nav">
-            <li>
-                <a href="javascript:;">&copy;
-<span id="year" class="mg-r-xs"></span>Cameo</a>
-            </li>
-            <li>
-                <a href="javascript:;">About</a>
-            </li>
-            <li>
-                <a href="javascript:;">Help</a>
-            </li>
-            <li>
-                <a href="javascript:;">Status</a>
-            </li>
-        </ul>
+<div class="center-content text-center">
+    <div class="error-number"><b>500</b>
     </div>
+    <div class="mg-b-lg error-title">SERVER ERROR</div>
+    <p>We're experiencing an internal server problem.
+        <br>Please try again later or contact
+        <a href="mailto:mail@contact">mail@contact</a>
+        <br>
+        <a href="/index">Return Home</a>
+    </p>
+    <ul class="mg-t-lg error-nav">
+        <li>
+            <a href="javascript:;">&copy;
+                <span id="year" class="mg-r-xs"></span>VTopic</a>
+        </li>
+        <li>
+            <a href="javascript:;">About</a>
+        </li>
+        <li>
+            <a href="javascript:;">Help</a>
+        </li>
+        <li>
+            <a href="javascript:;">Status</a>
+        </li>
+    </ul>
+</div>
 
-    <script type="text/javascript">
-        var el = document.getElementById("year"),
-            year = (new Date().getFullYear());
-        el.innerHTML = year;
-    </script>
+<script type="text/javascript">
+    var el = document.getElementById("year"),
+        year = (new Date().getFullYear());
+    el.innerHTML = year;
+</script>
 </body>
 
 </html>
