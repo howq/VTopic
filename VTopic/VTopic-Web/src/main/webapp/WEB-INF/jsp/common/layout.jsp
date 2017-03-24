@@ -123,7 +123,7 @@
                         <img src="<%= request.getContextPath()%>/img/about.png" alt="">
                     </a>
                     <span>
-                        <b>VTopic</b>&#32;专属于高校教务系统，致力于打造毕业生与指导老师方便适用的毕业设计选题系统
+                        <b>VTopic</b>&#32;专属于高校教务系统，致力于打造毕业生与指导老师之间无缝对接
                     </span>
                 </div>
                 <div class="footer-toolbar pull-left">
