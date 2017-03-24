@@ -3,9 +3,9 @@
 <mapper namespace="com.ihowq.VTopic.dao.RecordMapper" >
   <resultMap id="BaseResultMap" type="com.ihowq.VTopic.model.Record" >
     <id column="RECORDID" property="recordid" jdbcType="BIGINT" />
-    <id column="TOPICID" property="topicid" jdbcType="BIGINT" />
-    <id column="STUDENT" property="student" jdbcType="VARCHAR" />
-    <id column="TEACHER" property="teacher" jdbcType="VARCHAR" />
+    <result column="TOPICID" property="topicid" jdbcType="BIGINT" />
+    <result column="STUDENT" property="student" jdbcType="VARCHAR" />
+    <result column="TEACHER" property="teacher" jdbcType="VARCHAR" />
     <result column=" OPERATER" property="operater" jdbcType="VARCHAR" />
     <result column="CREATER" property="creater" jdbcType="VARCHAR" />
     <result column="CREATDATETIME" property="creatdatetime" jdbcType="TIMESTAMP" />
@@ -19,21 +19,15 @@
     RECORDID, TOPICID, STUDENT, TEACHER, " OPERATER", CREATER, CREATDATETIME, CHANGER, 
     CHANGEDATETIME, DELETEMAN, DELETEDATETIME, DELETEFLG
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ihowq.VTopic.model.RecordKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from record
     where RECORDID = #{recordid,jdbcType=BIGINT}
-      and TOPICID = #{topicid,jdbcType=BIGINT}
-      and STUDENT = #{student,jdbcType=VARCHAR}
-      and TEACHER = #{teacher,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.ihowq.VTopic.model.RecordKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from record
     where RECORDID = #{recordid,jdbcType=BIGINT}
-      and TOPICID = #{topicid,jdbcType=BIGINT}
-      and STUDENT = #{student,jdbcType=VARCHAR}
-      and TEACHER = #{teacher,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.ihowq.VTopic.model.Record" >
     insert into record (RECORDID, TOPICID, STUDENT, 
@@ -129,6 +123,15 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ihowq.VTopic.model.Record" >
     update record
     <set >
+      <if test="topicid != null" >
+        TOPICID = #{topicid,jdbcType=BIGINT},
+      </if>
+      <if test="student != null" >
+        STUDENT = #{student,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null" >
+        TEACHER = #{teacher,jdbcType=VARCHAR},
+      </if>
       <if test="operater != null" >
         " OPERATER" = #{operater,jdbcType=VARCHAR},
       </if>
@@ -155,13 +158,13 @@
       </if>
     </set>
     where RECORDID = #{recordid,jdbcType=BIGINT}
-      and TOPICID = #{topicid,jdbcType=BIGINT}
-      and STUDENT = #{student,jdbcType=VARCHAR}
-      and TEACHER = #{teacher,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ihowq.VTopic.model.Record" >
     update record
-    set " OPERATER" = #{operater,jdbcType=VARCHAR},
+    set TOPICID = #{topicid,jdbcType=BIGINT},
+      STUDENT = #{student,jdbcType=VARCHAR},
+      TEACHER = #{teacher,jdbcType=VARCHAR},
+      " OPERATER" = #{operater,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATDATETIME = #{creatdatetime,jdbcType=TIMESTAMP},
       CHANGER = #{changer,jdbcType=VARCHAR},
@@ -170,8 +173,5 @@
       DELETEDATETIME = #{deletedatetime,jdbcType=TIMESTAMP},
       DELETEFLG = #{deleteflg,jdbcType=CHAR}
     where RECORDID = #{recordid,jdbcType=BIGINT}
-      and TOPICID = #{topicid,jdbcType=BIGINT}
-      and STUDENT = #{student,jdbcType=VARCHAR}
-      and TEACHER = #{teacher,jdbcType=VARCHAR}
   </update>
 </mapper>

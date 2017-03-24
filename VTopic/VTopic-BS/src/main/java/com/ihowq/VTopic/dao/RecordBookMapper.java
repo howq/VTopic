@@ -1,17 +1,15 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.RecordBook;
-import com.ihowq.VTopic.model.RecordBookKey;
-import org.springframework.stereotype.Repository;
 
 public interface RecordBookMapper {
-    int deleteByPrimaryKey(RecordBookKey key);
+    int deleteByPrimaryKey(Long recordbookid);
 
     int insert(RecordBook record);
 
     int insertSelective(RecordBook record);
 
-    RecordBook selectByPrimaryKey(RecordBookKey key);
+    RecordBook selectByPrimaryKey(Long recordbookid);
 
     int updateByPrimaryKeySelective(RecordBook record);
 

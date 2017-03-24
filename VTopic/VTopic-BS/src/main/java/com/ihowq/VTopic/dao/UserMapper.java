@@ -1,7 +1,6 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.User;
-import org.springframework.stereotype.Repository;
 
 public interface UserMapper {
     int deleteByPrimaryKey(String userid);

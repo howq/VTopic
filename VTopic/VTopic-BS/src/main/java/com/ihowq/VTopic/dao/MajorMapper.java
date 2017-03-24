@@ -1,7 +1,6 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.Major;
-import org.springframework.stereotype.Repository;
 
 public interface MajorMapper {
     int deleteByPrimaryKey(Long majorid);

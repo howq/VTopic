@@ -1,7 +1,6 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.Category;
-import org.springframework.stereotype.Repository;
 
 public interface CategoryMapper {
     int deleteByPrimaryKey(Long categoryid);

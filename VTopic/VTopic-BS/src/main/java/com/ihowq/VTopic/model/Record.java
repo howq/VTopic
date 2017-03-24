@@ -2,7 +2,15 @@ package com.ihowq.VTopic.model;
 
 import java.util.Date;
 
-public class Record extends RecordKey {
+public class Record {
+    private Long recordid;
+
+    private Long topicid;
+
+    private String student;
+
+    private String teacher;
+
     private String operater;
 
     private String creater;
@@ -18,6 +26,38 @@ public class Record extends RecordKey {
     private Date deletedatetime;
 
     private String deleteflg;
+
+    public Long getRecordid() {
+        return recordid;
+    }
+
+    public void setRecordid(Long recordid) {
+        this.recordid = recordid;
+    }
+
+    public Long getTopicid() {
+        return topicid;
+    }
+
+    public void setTopicid(Long topicid) {
+        this.topicid = topicid;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+
+    public void setStudent(String student) {
+        this.student = student == null ? null : student.trim();
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher == null ? null : teacher.trim();
+    }
 
     public String getOperater() {
         return operater;

@@ -2,12 +2,16 @@ package com.ihowq.VTopic.model;
 
 import java.util.Date;
 
-public class RecordBook extends RecordBookKey {
-    private Date year;
+public class RecordBook {
+    private Long recordbookid;
+
+    private Date vyear;
 
     private Date starttime;
 
     private Date endtime;
+
+    private String managerid;
 
     private String creater;
 
@@ -23,12 +27,20 @@ public class RecordBook extends RecordBookKey {
 
     private String deleteflg;
 
-    public Date getYear() {
-        return year;
+    public Long getRecordbookid() {
+        return recordbookid;
     }
 
-    public void setYear(Date year) {
-        this.year = year;
+    public void setRecordbookid(Long recordbookid) {
+        this.recordbookid = recordbookid;
+    }
+
+    public Date getVyear() {
+        return vyear;
+    }
+
+    public void setVyear(Date vyear) {
+        this.vyear = vyear;
     }
 
     public Date getStarttime() {
@@ -45,6 +57,14 @@ public class RecordBook extends RecordBookKey {
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
+    }
+
+    public String getManagerid() {
+        return managerid;
+    }
+
+    public void setManagerid(String managerid) {
+        this.managerid = managerid == null ? null : managerid.trim();
     }
 
     public String getCreater() {
