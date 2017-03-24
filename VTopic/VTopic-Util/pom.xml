@@ -151,6 +151,11 @@
             <artifactId>spring-data-redis</artifactId>
         </dependency>
 
+        <!--=================Mybatis-Pagehelper=================-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
