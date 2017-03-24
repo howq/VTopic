@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.test;
+package com.ihowq.VTopic.redis;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;

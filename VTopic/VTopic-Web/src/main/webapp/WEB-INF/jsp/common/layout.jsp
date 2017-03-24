@@ -70,7 +70,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
                     <li>
-                        <a href="javascript:;">用户名</a>
+                        <a href="javascript:;"><c:out value="${userInfo.username}"></c:out></a>
                     </li>
                     <li>
                         <a href="javascript:;">Settings</a>
@@ -96,20 +96,45 @@
 
             <nav class="main-navigation">
                 <ul>
-                    <li class="active">
-                        <a href="index">
-                            <i class="fa fa-coffee"></i>
-                            <span>毕设开题</span>
-                        </a>
-                    </li>
-                    <li class="dropdown show-on-hover">
-                        <a href="javascript:;" data-toggle="dropdown">
-                            <i class="fa fa-file"></i>
-                            <span>提交选题</span>
-                        </a>
-                    </li>
-                    <li class="dropdown show-on-hover">
-                        <a href="javascript:;" data-toggle="dropdown">
+                    <c:if test="${userInfo.roleid == 0}">
+                        <c:choose>
+                            <c:when test="${curPage == 0}">
+                                <li class="active">
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                            </c:otherwise>
+                        </c:choose>
+                            <a href="<%= request.getContextPath()%>/manage/index">
+                                <i class="fa fa-coffee"></i>
+                                <span>毕设开题</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:if test="${userInfo.roleid == 1}">
+                        <c:choose>
+                            <c:when test="${curPage == 1}">
+                                <li class="active">
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                            </c:otherwise>
+                        </c:choose>
+                        <a href="<%= request.getContextPath()%>/teacher/index">
+                                <i class="fa fa-file"></i>
+                                <span>提交选题</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:choose>
+                        <c:when test="${curPage == 2}">
+                            <li class="active">
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                        </c:otherwise>
+                    </c:choose>
+                        <a href="<%= request.getContextPath()%>/student/index">
                             <i class="fa fa-tasks"></i>
                             <span>毕设选题</span>
                         </a>
@@ -139,28 +164,17 @@
         </aside>
         <section class="main-content">
             <div class="content-wrap">
-                <div class="row mg-b">
-                    <div class="col-xs-6">
-                        <h4 class="no-margin">Nestable Items</h4>
-                        <small>Drag and Drop</small>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <div id="nestable-menu" class="btn-group">
-                            <button class="btn btn-white btn-sm" type="button" data-action="expand-all">Expand All</button>
-                            <button class="btn btn-white btn-sm" type="button" data-action="collapse-all">Collapse All</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            <strong>Serialised Output (per list)</strong>
-                        </p>
-                        <pre id="nestable-output">[{"id":1},{"id":2,"children":[{"id":3,"children":[{"id":4}]},{"id":5}]},{"id":6}]</pre>
-                        <pre id="nestable2-output">[{"id":7},{"id":8},{"id":9,"children":[{"id":10},{"id":17},{"id":12}]}]</pre>
-                    </div>
-                </div>
+                <c:choose>
+                    <c:when test="${curPage == 0}">
+                        <%@ include file="../manager/manage.jsp" %>
+                    </c:when>
+                    <c:when test="${curPage == 1}">
+                        <%@ include file="../teacher/submit.jsp" %>
+                    </c:when>
+                    <c:when test="${curPage == 2}">
+                        <%@ include file="../student/select.jsp" %>
+                    </c:when>
+                </c:choose>
             </div>
         </section>
     </section>
