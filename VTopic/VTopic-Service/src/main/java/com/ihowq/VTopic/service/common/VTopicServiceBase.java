@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 @Transactional(
         propagation = Propagation.REQUIRED,
         isolation = Isolation.DEFAULT,
-        rollbackFor = { RuntimeException.class, Exception.class })
+        rollbackFor = {RuntimeException.class, Exception.class})
 public abstract class VTopicServiceBase {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());

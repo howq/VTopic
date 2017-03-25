@@ -2,6 +2,7 @@ package com.ihowq.VTopic.controllor.teacher;
 
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
 import com.ihowq.VTopic.service.common.MvRoleService;
+import com.ihowq.VTopic.service.topic.TopicService;
 import com.ihowq.VTopic.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,16 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RequestMapping(value = "/teacher")
 @Controller
-public class TeacherController extends WebExceptionHandler{
+public class TeacherController extends WebExceptionHandler {
 
     @Resource
     private MvRoleService mvRoleService;
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request){
+    @Resource
+    private TopicService topicService;
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView index(HttpServletRequest request) {
         logger.info("进入教师管理界面");
         ModelAndView modelAndView = new ModelAndView("common/layout");
         modelAndView = mvRoleService.MvInfoInit(request, modelAndView);
@@ -33,19 +37,19 @@ public class TeacherController extends WebExceptionHandler{
         return modelAndView;
     }
 
-    @RequestMapping(value = "/record", method = RequestMethod.GET)
+    @RequestMapping(value = "/topic", method = RequestMethod.GET)
     @ResponseBody
-    public Result<Object> record(@RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {
-        logger.info("=========获取选课记录==============");
+    public Result<Object> topic(HttpServletRequest request, @RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {
+        logger.info("=========获取课题列表==============");
         Result<Object> result = new Result<Object>();
         try {
-//            result.setData(manageService.getRecordBooks(startPage, pageSize));
-        }catch (Exception e){
-            logger.error("=========获取选课记录失败:"+e.getMessage()+"==============");
+            result.setData(topicService.getTopics(startPage, pageSize, request));
+        } catch (Exception e) {
+            logger.error("=========获取课题列表失败:" + e.getMessage() + "==============");
             result.setCode(Result.Code.ERROR);
             return result;
         }
-        logger.info("=========获取选课记录成功==============");
+        logger.info("=========获取课题列表成功==============");
         result.setCode(Result.Code.SUCCESS);
         return result;
     }

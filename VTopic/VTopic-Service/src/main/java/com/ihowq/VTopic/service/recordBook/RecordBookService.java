@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.manager;
+package com.ihowq.VTopic.service.recordBook;
 
 import com.ihowq.VTopic.dto.CommonRecordBook;
 import com.ihowq.VTopic.util.PageBean;
@@ -10,7 +10,7 @@ import org.springframework.dao.DataAccessException;
  * @author howq
  * @create 2017 -03-24 23:54
  */
-public interface ManageService {
+public interface RecordBookService {
 
     /**
      * Gets record books.

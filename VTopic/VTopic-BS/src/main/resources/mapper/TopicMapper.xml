@@ -22,12 +22,26 @@
     CREATDATETIME, CHANGER, CHANGEDATETIME, DELETEMAN, DELETEDATETIME, DELETEFLG
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from topic
     where TOPICID = #{topicid,jdbcType=BIGINT}
     AND DELETEFLG=${NOT_DELETE}
   </select>
+
+  <!--老师-->
+  <sql id="Common_Column_List" >
+    TOPICID, TOPICNAME, TOPICCOMENT, CATEGORYID, MAJOEID, LIMITNUM, TEACHER
+  </sql>
+  <select id="selectWithTeacher" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Common_Column_List" />
+    from topic
+    where TEACHER=#{teacher,jdbcType=VARCHAR}
+      AND DELETEFLG=${NOT_DELETE}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from topic
     where TOPICID = #{topicid,jdbcType=BIGINT}

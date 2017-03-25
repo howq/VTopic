@@ -3,7 +3,7 @@ package com.ihowq.VTopic.controllor.manager;
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.common.MvRoleService;
-import com.ihowq.VTopic.service.manager.ManageService;
+import com.ihowq.VTopic.service.recordBook.RecordBookService;
 import com.ihowq.VTopic.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
  * 管理员入口
@@ -34,7 +32,7 @@ public class ManageController extends WebExceptionHandler {
     private MvRoleService mvRoleService;
 
     @Resource
-    private ManageService manageService;
+    private RecordBookService recordBook;
 
 
     /**
@@ -65,9 +63,9 @@ public class ManageController extends WebExceptionHandler {
         logger.info("=========获取RecordBook记录==============");
         Result<Object> result = new Result<Object>();
         try {
-            result.setData(manageService.getRecordBooks(startPage, pageSize));
-        }catch (Exception e){
-            logger.error("=========获取RecordBook记录失败:"+e.getMessage()+"==============");
+            result.setData(recordBook.getRecordBooks(startPage, pageSize));
+        } catch (Exception e) {
+            logger.error("=========获取RecordBook记录失败:" + e.getMessage() + "==============");
             result.setCode(Result.Code.ERROR);
             return result;
         }
