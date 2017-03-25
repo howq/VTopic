@@ -26,6 +26,7 @@
     <include refid="Base_Column_List" />
     from topic
     where TOPICID = #{topicid,jdbcType=BIGINT}
+    AND DELETEFLG=${NOT_DELETE}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from topic

@@ -23,6 +23,7 @@
     <include refid="Base_Column_List" />
     from role
     where ROLEID = #{roleid,jdbcType=TINYINT}
+    AND DELETEFLG=${NOT_DELETE}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
     delete from role

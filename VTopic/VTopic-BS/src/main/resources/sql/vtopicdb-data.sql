@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-03-09 17:23:21
+Date: 2017-03-25 14:50:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,10 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of category
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for major
 -- ----------------------------
 DROP TABLE IF EXISTS `major`;
@@ -52,6 +56,10 @@ CREATE TABLE `major` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of major
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for record
 -- ----------------------------
 DROP TABLE IF EXISTS `record`;
@@ -68,8 +76,12 @@ CREATE TABLE `record` (
   `DELETEMAN` varchar(18) DEFAULT NULL,
   `DELETEDATETIME` datetime DEFAULT NULL,
   `DELETEFLG` char(1) NOT NULL,
-  PRIMARY KEY (`RECORDID`,`TOPICID`,`STUDENT`,`TEACHER`)
+  PRIMARY KEY (`RECORDID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of record
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for recordbook
@@ -77,7 +89,7 @@ CREATE TABLE `record` (
 DROP TABLE IF EXISTS `recordbook`;
 CREATE TABLE `recordbook` (
   `RECORDBOOKID` bigint(20) NOT NULL,
-  `YEAR` year(4) DEFAULT NULL,
+  `VYEAR` year(4) DEFAULT NULL,
   `STARTTIME` date DEFAULT NULL,
   `ENDTIME` date DEFAULT NULL,
   `MANAGERID` varchar(18) NOT NULL,
@@ -88,8 +100,28 @@ CREATE TABLE `recordbook` (
   `DELETEMAN` varchar(18) DEFAULT NULL,
   `DELETEDATETIME` datetime DEFAULT NULL,
   `DELETEFLG` char(1) NOT NULL,
-  PRIMARY KEY (`RECORDBOOKID`,`MANAGERID`)
+  PRIMARY KEY (`RECORDBOOKID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of recordbook
+-- ----------------------------
+INSERT INTO `recordbook` VALUES ('1', '2001', '2001-07-12', '2001-08-15', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('2', '2002', '2002-06-12', '2002-06-29', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('3', '2003', '2003-05-12', '2003-06-11', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('4', '2004', '2004-06-16', '2004-07-02', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('5', '2005', '2005-06-15', '2005-07-13', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('6', '2006', '2006-06-14', '2006-06-30', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('7', '2007', '2007-06-20', '2007-07-07', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('8', '2008', '2008-07-17', '2008-10-16', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('9', '2009', '2009-05-11', '2009-06-15', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('10', '2010', '2010-06-23', '2010-07-22', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('11', '2011', '2011-06-14', '2011-07-12', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('12', '2012', '2012-05-15', '2012-06-13', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('13', '2013', '2013-05-20', '2013-06-12', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('14', '2014', '2014-06-10', '2014-06-24', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('15', '2015', '2015-06-09', '2015-07-15', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('16', '2016', '2016-05-17', '2016-07-12', 'admin', 'admin', null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for role
@@ -109,6 +141,13 @@ CREATE TABLE `role` (
   `DELETEFLG` char(1) NOT NULL,
   PRIMARY KEY (`ROLEID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES ('0', '0', '管理员', '系统管理员', null, '2017-03-15 23:23:17', null, '2017-03-15 23:23:21', null, null, '0');
+INSERT INTO `role` VALUES ('1', '1', '教师', '老师', null, '2017-03-16 10:44:42', null, '2017-03-16 10:44:46', null, null, '0');
+INSERT INTO `role` VALUES ('2', '2', '学生', '学生', null, '2017-03-16 10:45:09', null, '2017-03-16 10:45:14', null, null, '0');
 
 -- ----------------------------
 -- Table structure for topic
@@ -133,11 +172,15 @@ CREATE TABLE `topic` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of topic
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `USERNAME` varchar(18) NOT NULL,
+  `USERID` varchar(18) NOT NULL,
   `ROLEID` tinyint(3) NOT NULL,
   `PASSWORD` varchar(64) NOT NULL,
   `LOGINDATETIMETIME` datetime DEFAULT NULL,
@@ -153,8 +196,15 @@ CREATE TABLE `user` (
   `DELETEMAN` varchar(18) DEFAULT NULL,
   `DELETEDATETIME` datetime DEFAULT NULL,
   `DELETEFLG` char(1) NOT NULL,
-  PRIMARY KEY (`USERNAME`)
+  PRIMARY KEY (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('admin', '0', '123456', '2017-03-13 17:04:58', '2017-03-13 17:05:03', null, null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `user` VALUES ('student1', '2', '123456', '2017-03-16 10:45:55', '2017-03-16 10:45:59', null, null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `user` VALUES ('teacher1', '1', '123456', '2017-03-16 10:43:40', '2017-03-16 10:43:43', null, null, null, null, null, null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for userinfo
@@ -178,3 +228,10 @@ CREATE TABLE `userinfo` (
   `DELETEFLG` char(1) NOT NULL,
   PRIMARY KEY (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of userinfo
+-- ----------------------------
+INSERT INTO `userinfo` VALUES ('admin', '0', 'jsj', '王主任', '1', '18380798765', '15647346788', 'howq@outlook.com', null, '2017-03-16 01:08:53', null, '2017-03-16 01:08:57', null, null, '0');
+INSERT INTO `userinfo` VALUES ('student1', '2', 'jsj', '学生1', '0', '13356773467', '15647346788', 'howq@outlook.com', null, '2017-03-16 10:46:59', null, '2017-03-16 10:47:02', null, null, '0');
+INSERT INTO `userinfo` VALUES ('teacher1', '1', 'jsj', '老师1', '1', '15647346788', '13356773467', 'howq@outlook.com', null, '2017-03-16 10:47:40', null, '2017-03-16 10:47:45', null, null, '0');
