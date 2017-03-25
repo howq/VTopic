@@ -18,7 +18,7 @@ public interface UserService {
      * @param username 用户名
      * @param pwd      密码
      * @return 用户信息
-     * @throws Exception
+     * @throws DataAccessException
      */
     public UserInfo checkPwd(String username, String pwd)
             throws DataAccessException;

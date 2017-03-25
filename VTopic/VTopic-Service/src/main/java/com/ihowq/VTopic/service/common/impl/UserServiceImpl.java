@@ -16,8 +16,8 @@ import javax.annotation.Resource;
  * 用户操作
  *
  * @author howq
- * @create 2017/3/11 14:17
- **/
+ * @create 2017 /3/11 14:17
+ */
 @Service(value = "userService")
 public class UserServiceImpl extends VTopicServiceBase implements UserService {
 

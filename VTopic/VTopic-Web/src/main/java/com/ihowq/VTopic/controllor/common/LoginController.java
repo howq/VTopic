@@ -28,8 +28,8 @@ import java.util.Map;
  * 登陆入口
  *
  * @author howq
- * @create 2017/3/9 14:17
- **/
+ * @create 2017 /3/9 14:17
+ */
 @Controller
 public class LoginController extends WebExceptionHandler {
 
@@ -39,6 +39,13 @@ public class LoginController extends WebExceptionHandler {
     @Resource(name = "sessionService")
     private SessionService sessionService;
 
+    /**
+     * Index string.
+     *
+     * @param request the request
+     * @return the string
+     * @throws Exception the exception
+     */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(HttpServletRequest request) throws java.lang.Exception {
         logger.info("进入登陆界面");
@@ -49,6 +56,16 @@ public class LoginController extends WebExceptionHandler {
         return "index";
     }
 
+    /**
+     * Login result.
+     *
+     * @param request    the request
+     * @param response   the response
+     * @param username   the username
+     * @param password   the password
+     * @param rememberMe the remember me
+     * @return the result
+     */
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
     @ResponseBody
     public Result<Object> login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "rememberMe", required = false) String rememberMe) {
@@ -109,7 +126,9 @@ public class LoginController extends WebExceptionHandler {
     /**
      * 其它页面返回Login页面处理
      *
-     * @return INPUT:成功
+     * @param request  the request
+     * @param response the response
+     * @return INPUT :成功
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -123,6 +142,15 @@ public class LoginController extends WebExceptionHandler {
         return "redirect:/index";
     }
 
+    /**
+     * Result result.
+     *
+     * @param request    the request
+     * @param username   the username
+     * @param password   the password
+     * @param rememberMe the remember me
+     * @return the result
+     */
     @ResponseBody
     @RequestMapping(value = "/result", method = RequestMethod.POST)
     public Result<Object> result(HttpServletRequest request, @RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "rememberMe", required = false) String rememberMe) {

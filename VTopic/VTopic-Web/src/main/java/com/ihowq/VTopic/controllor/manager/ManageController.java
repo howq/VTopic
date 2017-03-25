@@ -21,8 +21,8 @@ import java.util.Map;
  * 管理员入口
  *
  * @author howq
- * @create 2017-03-16 10:22
- **/
+ * @create 2017 -03-16 10:22
+ */
 @Controller
 @RequestMapping(value = "/manage")
 public class ManageController extends WebExceptionHandler {
@@ -36,6 +36,13 @@ public class ManageController extends WebExceptionHandler {
     @Resource
     private ManageService manageService;
 
+
+    /**
+     * Index model and view.
+     *
+     * @param request the request
+     * @return the model and view
+     */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request) {
         logger.info("进入管理员界面");
@@ -45,9 +52,16 @@ public class ManageController extends WebExceptionHandler {
         return modelAndView;
     }
 
+    /**
+     * Record book result.
+     *
+     * @param startPage the start page
+     * @param pageSize  the page size
+     * @return the result
+     */
     @RequestMapping(value = "/recordBook", method = RequestMethod.GET)
     @ResponseBody
-    public Result<Object> recordBook(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {
+    public Result<Object> recordBook(@RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {
         logger.info("=========获取RecordBook记录==============");
         Result<Object> result = new Result<Object>();
         try {
@@ -57,7 +71,7 @@ public class ManageController extends WebExceptionHandler {
             result.setCode(Result.Code.ERROR);
             return result;
         }
-        logger.error("=========获取RecordBook记录成功==============");
+        logger.info("=========获取RecordBook记录成功==============");
         result.setCode(Result.Code.SUCCESS);
         return result;
     }
