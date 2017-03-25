@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-03-25 14:50:36
+Date: 2017-03-25 16:15:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,7 +60,7 @@ CREATE TABLE `record` (
   `TOPICID` bigint(20) NOT NULL,
   `STUDENT` varchar(18) NOT NULL,
   `TEACHER` varchar(18) NOT NULL,
-  ` OPERATER` varchar(18) NOT NULL,
+  `OPERATER` varchar(18) NOT NULL,
   `CREATER` varchar(18) DEFAULT NULL,
   `CREATDATETIME` datetime DEFAULT NULL,
   `CHANGER` varchar(18) DEFAULT NULL,
