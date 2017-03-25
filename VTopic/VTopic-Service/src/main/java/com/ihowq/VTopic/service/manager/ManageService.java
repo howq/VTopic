@@ -1,7 +1,8 @@
 package com.ihowq.VTopic.service.manager;
 
-import com.ihowq.VTopic.model.RecordBook;
+import com.ihowq.VTopic.dto.CommonRecordBook;
 import com.ihowq.VTopic.util.PageBean;
+import org.springframework.dao.DataAccessException;
 
 /**
  * @author howq
@@ -9,6 +10,6 @@ import com.ihowq.VTopic.util.PageBean;
  **/
 public interface ManageService {
 
-    public PageBean<RecordBook> getRecordBookList(int startPage,int pageSize);
+    public PageBean<CommonRecordBook> getRecordBooks(int startPage, int pageSize) throws DataAccessException;
 
 }

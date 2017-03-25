@@ -3,6 +3,7 @@ package com.ihowq.VTopic.controllor.manager;
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.common.MvRoleService;
+import com.ihowq.VTopic.service.manager.ManageService;
 import com.ihowq.VTopic.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * 管理员入口
@@ -31,6 +33,9 @@ public class ManageController extends WebExceptionHandler {
     @Resource
     private MvRoleService mvRoleService;
 
+    @Resource
+    private ManageService manageService;
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request) {
         logger.info("进入管理员界面");
@@ -40,17 +45,20 @@ public class ManageController extends WebExceptionHandler {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/recordBook", method = RequestMethod.POST)
+    @RequestMapping(value = "/recordBook", method = RequestMethod.GET)
     @ResponseBody
-    public Result<Object> recordBook(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "rememberMe", required = false) String rememberMe) {
+    public Result<Object> recordBook(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {
         logger.info("=========获取RecordBook记录==============");
         Result<Object> result = new Result<Object>();
-
-
-
-        logger.error("登陆失败，密码或账号错误----->账号未注册");
-        result.setCode(Result.Code.ERROR);
-        result.setMessage("登陆失败");
+        try {
+            result.setData(manageService.getRecordBooks(startPage, pageSize));
+        }catch (Exception e){
+            logger.error("=========获取RecordBook记录失败:"+e.getMessage()+"==============");
+            result.setCode(Result.Code.ERROR);
+            return result;
+        }
+        logger.error("=========获取RecordBook记录成功==============");
+        result.setCode(Result.Code.SUCCESS);
         return result;
     }
 }

@@ -7,6 +7,7 @@ import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.common.UserService;
 import com.ihowq.VTopic.service.common.VTopicServiceBase;
 import com.ihowq.VTopic.util.Md5CryptDigest;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,9 +28,17 @@ public class UserServiceImpl extends VTopicServiceBase implements UserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public UserInfo checkPwd(String userid, String pwd) throws Exception {
+    public UserInfo checkPwd(String userid, String pwd) throws DataAccessException {
         User user = userMapper.selectByPrimaryKey(userid);
-        String password = Md5CryptDigest.encodeMd5(user.getPassword());
+        if(null == user){
+            return null;
+        }
+        String password = null;
+        try {
+            password = Md5CryptDigest.encodeMd5(user.getPassword());
+        }catch (Exception e){
+            logger.error("用户密码M5加密失败！" + e.getMessage());
+        }
         if (pwd.equals(password)) {
             logger.info("校验用户密码成功！");
             return userInfoMapper.selectByPrimaryKey(userid);

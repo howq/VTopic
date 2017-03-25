@@ -1,6 +1,7 @@
 package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.model.UserInfo;
+import org.springframework.dao.DataAccessException;
 
 
 /**
@@ -20,5 +21,5 @@ public interface UserService {
      * @throws Exception
      */
     public UserInfo checkPwd(String username, String pwd)
-            throws Exception;
+            throws DataAccessException;
 }

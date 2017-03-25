@@ -15,15 +15,30 @@
     <result column="DELETEDATETIME" property="deletedatetime" jdbcType="TIMESTAMP" />
     <result column="DELETEFLG" property="deleteflg" jdbcType="CHAR" />
   </resultMap>
+  <resultMap id="CommonResultMap" type="com.ihowq.VTopic.model.RecordBook" >
+    <id column="RECORDBOOKID" property="recordbookid" jdbcType="BIGINT" />
+    <result column="VYEAR" property="vyear" jdbcType="DATE" />
+    <result column="STARTTIME" property="starttime" jdbcType="DATE" />
+    <result column="ENDTIME" property="endtime" jdbcType="DATE" />
+    <result column="MANAGERID" property="managerid" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     RECORDBOOKID, VYEAR, STARTTIME, ENDTIME, MANAGERID, CREATER, CREATDATETIME, CHANGER, 
     CHANGEDATETIME, DELETEMAN, DELETEDATETIME, DELETEFLG
+  </sql>
+  <sql id="Common_Column_List" >
+    RECORDBOOKID, VYEAR, STARTTIME, ENDTIME, MANAGERID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from recordbook
     where RECORDBOOKID = #{recordbookid,jdbcType=BIGINT}
+  </select>
+  <select id="selectRecordBook" resultMap="CommonResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Common_Column_List" />
+    from recordbook
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from recordbook

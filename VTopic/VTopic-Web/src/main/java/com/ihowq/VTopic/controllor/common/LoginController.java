@@ -99,7 +99,7 @@ public class LoginController extends WebExceptionHandler {
                 return result;
             }
         } catch (Exception e) {
-            logger.error("登陆失败，密码或账号错误----->账号未注册");
+            logger.error("登陆失败，密码或账号错误----->账号未注册" + e.getMessage());
             result.setCode(Result.Code.ERROR);
             result.setMessage("登陆失败");
             return result;
@@ -118,7 +118,7 @@ public class LoginController extends WebExceptionHandler {
             session.removeAttribute("userInfo");
             sessionService.removeSession(request, response);
         } catch (Exception e) {
-            logger.error("返回登录界面出错", e);
+            logger.error("返回登录界面出错", e.getMessage());
         }
         return "redirect:/index";
     }
