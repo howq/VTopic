@@ -395,11 +395,11 @@
     </build>
 
     <modules>
-        <module>VTopic-bs</module>
-        <module>VTopic-util</module>
-        <module>VTopic-service</module>
-        <module>VTopic-web</module>
-        <module>VTopic-test</module>
+        <module>VTopic-BS</module>
+        <module>VTopic-Util</module>
+        <module>VTopic-Service</module>
+        <module>VTopic-Web</module>
+        <module>VTopic-Test</module>
     </modules>
 
 </project>

@@ -14,7 +14,7 @@
 	<context:annotation-config/>
 	<!--<cache:annotation-driven cache-manager="redisCacheManager"/>-->
 	<!-- 引入redis配置 -->
-	<context:property-placeholder location="classpath*:config/redis.properties"/>
+	<!--<context:property-placeholder location="classpath*:config/redis.properties"/>-->
 
     <!-- 配置JedisPoolConfig实例 -->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
