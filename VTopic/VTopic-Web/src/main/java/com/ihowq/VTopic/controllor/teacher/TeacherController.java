@@ -15,9 +15,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * The type Teacher controller.
+ *
  * @author howq
- * @create 2017-03-16 11:08
- **/
+ * @create 2017 -03-16 11:08
+ */
 @RequestMapping(value = "/teacher")
 @Controller
 public class TeacherController extends WebExceptionHandler {
@@ -28,6 +30,12 @@ public class TeacherController extends WebExceptionHandler {
     @Resource
     private TopicService topicService;
 
+    /**
+     * Index model and view.
+     *
+     * @param request the request
+     * @return the model and view
+     */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request) {
         logger.info("进入教师管理界面");
@@ -37,6 +45,14 @@ public class TeacherController extends WebExceptionHandler {
         return modelAndView;
     }
 
+    /**
+     * Topic result.
+     *
+     * @param request   the request
+     * @param startPage the start page
+     * @param pageSize  the page size
+     * @return the result
+     */
     @RequestMapping(value = "/topic", method = RequestMethod.GET)
     @ResponseBody
     public Result<Object> topic(HttpServletRequest request, @RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {

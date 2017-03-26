@@ -32,7 +32,7 @@ public class ManageController extends WebExceptionHandler {
     private MvRoleService mvRoleService;
 
     @Resource
-    private RecordBookService recordBook;
+    private RecordBookService recordBookService;
 
 
     /**
@@ -63,7 +63,7 @@ public class ManageController extends WebExceptionHandler {
         logger.info("=========获取RecordBook记录==============");
         Result<Object> result = new Result<Object>();
         try {
-            result.setData(recordBook.getRecordBooks(startPage, pageSize));
+            result.setData(recordBookService.getRecordBooks(startPage, pageSize));
         } catch (Exception e) {
             logger.error("=========获取RecordBook记录失败:" + e.getMessage() + "==============");
             result.setCode(Result.Code.ERROR);
