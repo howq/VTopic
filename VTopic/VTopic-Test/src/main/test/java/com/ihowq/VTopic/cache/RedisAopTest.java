@@ -1,6 +1,6 @@
 package com.ihowq.VTopic.cache;
 
-import com.ihowq.VTopic.service.test.ManagerService;
+import com.ihowq.VTopic.test.redis.ManagerService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,7 +13,7 @@ public class RedisAopTest {
 
     @Test
     public void test() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:spring-test/applicationContext-redis.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-test/applicationContext-redis-test.xml");
         ManagerService managerService = (ManagerService) context.getBean("managerService");
         System.out.println("第一次执行查询：" + managerService.queryFullNameById(110L));
         System.out.println("----------------------------------");

@@ -14,7 +14,7 @@ import redis.clients.jedis.ShardedJedisPool;
  * Created by howq on 2017/3/14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value={"classpath*:spring/applicationContext-redis.xml"})
+@ContextConfiguration(value={"classpath:spring/applicationContext-redis-test.xml"})
 public class RedisTest {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
