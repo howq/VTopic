@@ -24,6 +24,13 @@
     IPADD, BLOWSER, CREATER, CREATDATETIME, CHANGER, CHANGEDATETIME, DELETEMAN, DELETEDATETIME, 
     DELETEFLG
   </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where USERID = #{userid,jdbcType=VARCHAR}
+        AND DELETEFLG=${NOT_DELETE}
+    </select>
     <select id="selectByPrimaryKeyFrontend" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>

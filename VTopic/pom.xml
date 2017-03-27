@@ -63,8 +63,8 @@
                 <version>${ihowq.self.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ihowq.VTopic.test</groupId>
-                <artifactId>VTopic-test</artifactId>
+                <groupId>com.ihowq.VTopic.login</groupId>
+                <artifactId>VTopic-login</artifactId>
                 <version>${ihowq.self.version}</version>
             </dependency>
             <dependency>
@@ -77,7 +77,11 @@
                 <artifactId>VTopic-backend</artifactId>
                 <version>${ihowq.self.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.ihowq.VTopic.test</groupId>
+                <artifactId>VTopic-test</artifactId>
+                <version>${ihowq.self.version}</version>
+            </dependency>
             <!-- Normal dependency -->
             <dependency>
                 <groupId>org.codehaus.jackson</groupId>
@@ -403,6 +407,7 @@
         <module>VTopic-BS</module>
         <module>VTopic-Util</module>
         <module>VTopic-Service</module>
+        <module>VTopic-login</module>
         <module>VTopic-Web</module>
         <module>VTopic-Backend</module>
         <module>VTopic-Test</module>

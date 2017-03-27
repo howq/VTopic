@@ -28,6 +28,19 @@ public class UserServiceImpl extends VTopicServiceBase implements UserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
+    public UserInfo checkPwd(String userid, String pwd) throws Exception {
+        User user = userMapper.selectByPrimaryKey(userid);
+        String password = Md5CryptDigest.encodeMd5(user.getPassword());
+        if (pwd.equals(password)) {
+            if (pwd.equals(password)) {
+                logger.info("校验用户密码成功！");
+                return userInfoMapper.selectByPrimaryKey(userid);
+            }
+        }
+        return null;
+    }
+
+    @Override
     public UserInfo checkPwdFrontend(String userid, String pwd) throws DataAccessException {
         User user = userMapper.selectByPrimaryKeyFrontend(userid);
         if(null == user){

@@ -30,6 +30,15 @@ public interface UserMapper {
      */
     int insertSelective(User record);
 
+
+    /**
+     * Select by primary key user.
+     *
+     * @param userid the userid
+     * @return the user
+     */
+    User selectByPrimaryKey(String userid);
+
     /**
      * Select by primary key user. 前台
      *

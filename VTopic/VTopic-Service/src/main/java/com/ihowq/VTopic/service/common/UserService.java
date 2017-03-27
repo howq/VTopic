@@ -13,6 +13,20 @@ import org.springframework.dao.DataAccessException;
 public interface UserService {
 
     /**
+     * 查询用户
+     *
+     * @param username  用户名
+     * @param pwd       密码
+     * @return          用户信息
+     * @param username 用户名
+     * @param pwd      密码
+     * @return 用户信息
+     * @throws Exception
+     */
+    public UserInfo checkPwd(String username, String pwd)
+            throws Exception;
+
+    /**
      * 查询用户 前台
      *
      * @param username 用户名
