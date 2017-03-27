@@ -72,6 +72,11 @@
                 <artifactId>VTopic-web</artifactId>
                 <version>${ihowq.self.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.ihowq.VTopic.backend</groupId>
+                <artifactId>VTopic-backend</artifactId>
+                <version>${ihowq.self.version}</version>
+            </dependency>
 
             <!-- Normal dependency -->
             <dependency>
@@ -399,6 +404,7 @@
         <module>VTopic-Util</module>
         <module>VTopic-Service</module>
         <module>VTopic-Web</module>
+        <module>VTopic-Backend</module>
         <module>VTopic-Test</module>
     </modules>
 

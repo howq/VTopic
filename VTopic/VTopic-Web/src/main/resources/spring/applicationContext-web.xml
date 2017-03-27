@@ -20,7 +20,7 @@
     <mvc:interceptors>
 	    <!-- 拦截器  -->
     	<mvc:interceptor>
-            <mvc:mapping path="/manage/**"/>
+            <!--<mvc:mapping path="/manage/**"/>-->
             <mvc:mapping path="/teacher/**"/>
             <mvc:mapping path="/student/**"/>
             <mvc:exclude-mapping path="/doLogin"/>

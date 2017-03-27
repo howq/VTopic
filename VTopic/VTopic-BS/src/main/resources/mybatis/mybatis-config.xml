@@ -4,6 +4,9 @@
     <properties>
         <property name="NOT_DELETE" value="0"/>
         <property name="IS_DELETE" value="1"/>
+        <property name="ROLE_MANAGER" value="0"/>
+        <property name="ROLE_TEACHER" value="1"/>
+        <property name="ROLE_STUDENT" value="2"/>
     </properties>
 
     <settings>

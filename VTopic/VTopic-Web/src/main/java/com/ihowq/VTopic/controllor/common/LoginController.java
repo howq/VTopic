@@ -79,16 +79,14 @@ public class LoginController extends WebExceptionHandler {
             return result;
         }
         try {
-            UserInfo userInfo = userService.checkPwd(username, password);
+            UserInfo userInfo = userService.checkPwdFrontend(username, password);
             if (null != userInfo) {
                 logger.info("=======================获取session开始=======================");
                 HttpSession session = request.getSession();
                 logger.info("=======================获取session结束=======================");
                 String url = null;
                 //用户角色判断
-                if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
-                    url = "manage/index";
-                } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
+                if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
                     url = "teacher/index";
                 } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
                     url = "student/index";

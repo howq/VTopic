@@ -31,12 +31,20 @@ public interface UserMapper {
     int insertSelective(User record);
 
     /**
-     * Select by primary key user.
+     * Select by primary key user. 前台
      *
      * @param userid the userid
      * @return the user
      */
-    User selectByPrimaryKey(String userid);
+    User selectByPrimaryKeyFrontend(String userid);
+
+    /**
+     * 后台管理
+     *
+     * @param userid
+     * @return
+     */
+    User selectByPrimaryKeyBackend(String userid);
 
     /**
      * Update by primary key selective int.
