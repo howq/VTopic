@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:cache="http://www.springframework.org/schema/cache"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
-	<!-- 缓存的层级-->
-	<context:component-scan base-package="com.ihowq.VTopic.util.cache" />
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 缓存的层级-->
+    <context:component-scan base-package="com.ihowq.VTopic.util.cache"/>
     <!--<context:component-scan base-package="com.ihowq.VTopic.service.test"/>-->
 
-	<context:annotation-config/>
-	<!--<cache:annotation-driven cache-manager="redisCacheManager"/>-->
-	<!-- 引入redis配置 -->
-	<context:property-placeholder location="classpath*:config/env.properties"/>
+    <context:annotation-config/>
+    <!--<cache:annotation-driven cache-manager="redisCacheManager"/>-->
+    <!-- 引入redis配置 -->
+    <context:property-placeholder location="classpath*:config/env.properties"/>
 
     <!-- 配置JedisPoolConfig实例 -->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
@@ -37,7 +35,7 @@
     </bean>
     <!-- 配置RedisCacheManager -->
     <!--<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">-->
-        <!--<constructor-arg name="redisOperations" ref="redisTemplate"/>-->
-        <!--<property name="defaultExpiration" value="${redis.expiration}"/>-->
+    <!--<constructor-arg name="redisOperations" ref="redisTemplate"/>-->
+    <!--<property name="defaultExpiration" value="${redis.expiration}"/>-->
     <!--</bean>-->
 </beans>

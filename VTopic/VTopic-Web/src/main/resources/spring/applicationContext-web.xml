@@ -12,21 +12,21 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 自动扫描(需要自动注入的类，对于那些类上有注解：@Repository、@Service、@Controller、@Component都进行注入) -->
-    <context:component-scan base-package="com.ihowq.VTopic.util"/>
+    <!--<context:component-scan base-package="com.ihowq.VTopic.util"/>-->
     <context:component-scan base-package="com.ihowq.VTopic.controllor"/>
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <mvc:interceptors>
-	    <!-- 拦截器  -->
-    	<mvc:interceptor>
+        <!-- 拦截器  -->
+        <mvc:interceptor>
             <!--<mvc:mapping path="/manage/**"/>-->
             <mvc:mapping path="/teacher/**"/>
             <mvc:mapping path="/student/**"/>
             <mvc:exclude-mapping path="/doLogin"/>
-    		<mvc:exclude-mapping path="/index"/>
-    		<bean class="com.ihowq.VTopic.interceptor.LoginInterceptor"></bean>
-    	</mvc:interceptor>
+            <mvc:exclude-mapping path="/index"/>
+            <bean class="com.ihowq.VTopic.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
 
     </mvc:interceptors>
 
@@ -51,14 +51,14 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <mvc:view-controller path="/" view-name="redirect:/index" />
+    <mvc:view-controller path="/" view-name="redirect:/index"/>
 
     <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UTF-8" />
+        <property name="defaultEncoding" value="UTF-8"/>
         <!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
-        <property name="maxUploadSize" value="20000000" />
+        <property name="maxUploadSize" value="20000000"/>
     </bean>
     <bean id="beanDefineConfigue" class="com.ihowq.VTopic.jms.BeanDefineConfigue"></bean>
 </beans>
