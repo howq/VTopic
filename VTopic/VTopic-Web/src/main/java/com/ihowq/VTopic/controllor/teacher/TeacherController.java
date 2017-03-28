@@ -1,6 +1,7 @@
 package com.ihowq.VTopic.controllor.teacher;
 
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
+import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.common.MvRoleService;
 import com.ihowq.VTopic.service.topic.TopicService;
 import com.ihowq.VTopic.util.Result;
@@ -30,6 +31,9 @@ public class TeacherController extends WebExceptionHandler {
     @Resource
     private TopicService topicService;
 
+    @Resource
+    private VTConfig vtConfig;
+
     /**
      * Index model and view.
      *
@@ -42,6 +46,7 @@ public class TeacherController extends WebExceptionHandler {
         ModelAndView modelAndView = new ModelAndView("common/layout");
         modelAndView = mvRoleService.MvInfoInit(request, modelAndView);
         modelAndView.addObject("curPage", 1);
+        modelAndView.addObject("logout", "http://"+vtConfig.getLoginHost()+":"+vtConfig.getLoginPort()+"/"+vtConfig.getLoginProjectName()+"/logout");
         return modelAndView;
     }
 

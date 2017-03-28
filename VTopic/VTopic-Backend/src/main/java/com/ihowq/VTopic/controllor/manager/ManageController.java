@@ -1,6 +1,7 @@
 package com.ihowq.VTopic.controllor.manager;
 
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
+import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.common.MvRoleService;
 import com.ihowq.VTopic.service.recordBook.RecordBookService;
@@ -34,6 +35,8 @@ public class ManageController extends WebExceptionHandler {
     @Resource
     private RecordBookService recordBookService;
 
+    @Resource
+    private VTConfig vtConfig;
 
     /**
      * Index model and view.
@@ -47,6 +50,7 @@ public class ManageController extends WebExceptionHandler {
         ModelAndView modelAndView = new ModelAndView("common/layout");
         modelAndView = mvRoleService.MvInfoInit(request, modelAndView);
         modelAndView.addObject("curPage", 0);
+        modelAndView.addObject("logout", "http://"+vtConfig.getLoginHost()+":"+vtConfig.getLoginPort()+"/"+vtConfig.getLoginProjectName()+"/logout");
         return modelAndView;
     }
 

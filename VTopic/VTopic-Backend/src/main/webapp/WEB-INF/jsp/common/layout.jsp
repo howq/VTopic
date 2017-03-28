@@ -1,3 +1,4 @@
+<%@ page import="com.ihowq.VTopic.service.VTConfig" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -83,7 +84,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="<%= request.getContextPath()%>/logout">Logout</a>
+                        <a href="${logout}">Logout</a>
                     </li>
                 </ul>
             </li>

@@ -2,6 +2,7 @@ package com.ihowq.VTopic.controllor.common;
 
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
 import com.ihowq.VTopic.model.UserInfo;
+import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.UserService;
@@ -39,6 +40,8 @@ public class LoginController extends WebExceptionHandler {
     @Resource(name = "sessionService")
     private SessionService sessionService;
 
+    @Resource
+    private VTConfig vtConfig;
     /**
      * Index string.
      *
@@ -84,19 +87,28 @@ public class LoginController extends WebExceptionHandler {
                 logger.info("=======================获取session开始=======================");
                 HttpSession session = request.getSession();
                 logger.info("=======================获取session结束=======================");
-                String url = null;
+                StringBuilder url = new StringBuilder();
                 //用户角色判断
                 if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
-                    url = "manage/index";
+                    url = url.append("http://").append(vtConfig.getBackendHost()).append(":")
+                            .append(vtConfig.getBackendPort()).append("/")
+                            .append(vtConfig.getBackendProjectName())
+                            .append("/manage/index");
                 } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
-                    url = "teacher/index";
+                    url = url.append("http://").append(vtConfig.getFrontendHost()).append(":")
+                            .append(vtConfig.getFrontendPort()).append("/")
+                            .append(vtConfig.getFrontendProjectName())
+                            .append("/teacher/index");
                 } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
-                    url = "student/index";
+                    url = url.append("http://").append(vtConfig.getFrontendHost()).append(":")
+                            .append(vtConfig.getFrontendPort()).append("/")
+                            .append(vtConfig.getFrontendProjectName())
+                            .append("/student/index");
                 }
                 CustLoginSession loginSession = new CustLoginSession();
                 Map<String, Object> resultMap = new HashMap<String, Object>();
-                loginSession.setUrl(url);
-                resultMap.put("url", url);
+                loginSession.setUrl(url.toString());
+                resultMap.put("url", url.toString());
                 logger.info("用户:[" + userInfo.getUsername() + "] 请求的ip地址：[" + IPUtil.getIpAddr(request) + "] 使用的浏览器版本：[" + request.getHeader("USER-AGENT") + "]");
                 session.setAttribute("userInfo", userInfo);
                 // 保存用户信息到session中

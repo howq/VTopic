@@ -2,18 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-http://www.springframework.org/schema/context  
+http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.1.xsd">
-
-
-    <!--
-    引入属性文件也可以用这种写法
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:config.properties" />
-    </bean>
-    -->
 
     <!-- 自动扫描(需要自动注入的类，对于那些类上有注解：@Repository、@Service、@Controller、@Component都进行注入) -->
     <context:component-scan base-package="com.ihowq.VTopic.service"/>

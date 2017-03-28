@@ -56,7 +56,7 @@
             dataType: "json",
             success: function (resp) {
                 if (resp.code == 'SUCCESS') {
-                    window.location.href = "<%= request.getContextPath()%>/"+resp.data.url;
+                    window.location.href = resp.data.url;
                 }
                 else {
                     $("#isLogin").show();
