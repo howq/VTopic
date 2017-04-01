@@ -51,7 +51,7 @@ public class ManageController extends WebExceptionHandler {
         ModelAndView modelAndView = new ModelAndView("common/layout");
         modelAndView = mvRoleService.MvInfoInit(request, modelAndView);
         modelAndView.addObject("curPage", 0);
-        modelAndView.addObject("logout", "http://"+vtConfig.getLoginHost()+":"+vtConfig.getLoginPort()+"/"+vtConfig.getLoginProjectName()+"/logout");
+        modelAndView.addObject("logout", "http://" + vtConfig.getLoginHost() + ":" + vtConfig.getLoginPort() + "/" + vtConfig.getLoginProjectName() + "/logout");
         return modelAndView;
     }
 
@@ -86,13 +86,13 @@ public class ManageController extends WebExceptionHandler {
      * @param bookId the book id
      * @return the result
      */
-    @RequestMapping(value = "/delRecordBook", method = RequestMethod.GET)
+    @RequestMapping(value = "/delRecordBook", method = RequestMethod.POST)
     @ResponseBody
-    public Result<Object> delRecordBook(@RequestParam(value = "bookId", required = true) Long bookId) {
+    public Result<Object> delRecordBook(@RequestParam(value = "bookId", required = true) Long bookId, HttpServletRequest request) {
         logger.info("=========删除RecordBook记录==============");
         Result<Object> result = new Result<Object>();
         try {
-            recordBookService.delRecodBook(bookId);
+            recordBookService.delRecodBook(bookId, request);
         } catch (Exception e) {
             logger.error("=========删除RecordBook记录失败:" + e.getMessage() + "==============");
             result.setCode(Result.Code.ERROR);
@@ -103,9 +103,9 @@ public class ManageController extends WebExceptionHandler {
         return result;
     }
 
-    @RequestMapping(value = "/changeRecordBook", method = RequestMethod.GET)
+    @RequestMapping(value = "/changeRecordBook", method = RequestMethod.POST)
     @ResponseBody
-    public Result<Object> changeRecordBook(RecordBook recordBook,@RequestParam(value = "isUpdate", required = true) boolean isUpdate, HttpServletRequest request) {
+    public Result<Object> changeRecordBook(RecordBook recordBook, @RequestParam(value = "isUpdate", required = true) boolean isUpdate, HttpServletRequest request) {
         logger.info("=========更改或新增RecordBook记录==============");
         Result<Object> result = new Result<Object>();
         try {

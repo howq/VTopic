@@ -21,9 +21,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * The type Record book service.
+ *
  * @author howq
- * @create 2017-03-24 23:56
- **/
+ * @create 2017 -03-24 23:56
+ */
 @Service
 public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBookService {
 
@@ -39,10 +41,17 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
     }
 
     @Override
-    public void delRecodBook(Long bookId) throws DataAccessException {
+    public void delRecodBook(Long bookId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException {
         RecordBook recordBook = new RecordBook();
         recordBook.setRecordbookid(bookId);
         recordBook.setDeleteflg("1");
+        recordBook.setDeletedatetime(DateUtil.getTimeStamp());
+        CustLoginSession loginSession = sessionService.getSession(request);
+        UserInfo userInfo = loginSession.getUserInfo();
+        recordBook.setChanger(userInfo.getUserid());
+        recordBook.setChangedatetime(DateUtil.getTimeStamp());
+        recordBook.setDeleteman(userInfo.getUserid());
+        recordBook.setDeletedatetime(DateUtil.getTimeStamp());
         recordBookMapper.updateByPrimaryKeySelective(recordBook);
         logger.info("删除开题记录成功");
     }
@@ -64,8 +73,10 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
             recordBook.setCreatdatetime(DateUtil.getTimeStamp());
             recordBook.setDeleteflg("0");
             recordBookMapper.insert(recordBook);
+            logger.info("新增开题记录成功");
         } else {
             recordBookMapper.updateByPrimaryKeySelective(recordBook);
+            logger.info("更新开题记录成功");
         }
     }
 }

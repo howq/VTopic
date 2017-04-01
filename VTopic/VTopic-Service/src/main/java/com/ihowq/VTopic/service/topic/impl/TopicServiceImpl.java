@@ -3,21 +3,29 @@ package com.ihowq.VTopic.service.topic.impl;
 import com.github.pagehelper.PageHelper;
 import com.ihowq.VTopic.dao.TopicMapper;
 import com.ihowq.VTopic.dto.CommonTopic;
+import com.ihowq.VTopic.model.Topic;
+import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.VTopicServiceBase;
 import com.ihowq.VTopic.service.topic.TopicService;
+import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.security.DigestException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 
 /**
+ * The type Topic service.
+ *
  * @author howq
- * @create 2017-03-25 15:51
- **/
+ * @create 2017 -03-25 15:51
+ */
 @Service
 public class TopicServiceImpl extends VTopicServiceBase implements TopicService {
 
@@ -36,5 +44,39 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         List<CommonTopic> list = topicMapper.selectWithTeacher(loginSession.getUserid());
         logger.info("获取课题题目列表成功");
         return new PageBean<CommonTopic>(list);
+    }
+
+    @Override
+    public void delTopic(Long topicId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException {
+        CustLoginSession loginSession = sessionService.getSession(request);
+        UserInfo userInfo = loginSession.getUserInfo();
+        Topic topic = new Topic();
+        topic.setTopicid(topicId);
+        topic.setDeletedatetime(DateUtil.getTimeStamp());
+        topic.setDeleteman(userInfo.getUserid());
+        topic.setChangedatetime(DateUtil.getTimeStamp());
+        topic.setChanger(userInfo.getUserid());
+        topicMapper.updateByPrimaryKeySelective(topic);
+        logger.info("删除教师题目成功");
+    }
+
+    @Override
+    public void saveOrUpdateTopic(Topic topic, boolean isUpdate, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException {
+        CustLoginSession loginSession = sessionService.getSession(request);
+        UserInfo userInfo = loginSession.getUserInfo();
+
+        Date date = DateUtil.getTimeStamp();
+        topic.setChanger(userInfo.getUserid());
+        topic.setChangedatetime(date);
+        if (!isUpdate) {
+            topic.setCreater(userInfo.getUserid());
+            topic.setCreatdatetime(DateUtil.getTimeStamp());
+            topic.setDeleteflg("0");
+            topicMapper.insert(topic);
+            logger.info("新增题目成功");
+        } else {
+            topicMapper.updateByPrimaryKeySelective(topic);
+            logger.info("修改题目成功");
+        }
     }
 }
