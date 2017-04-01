@@ -5,7 +5,7 @@ import java.util.Date;
 public class RecordBook {
     private Long recordbookid;
 
-    private Date vyear;
+    private String vyear;
 
     private Date starttime;
 
@@ -35,11 +35,11 @@ public class RecordBook {
         this.recordbookid = recordbookid;
     }
 
-    public Date getVyear() {
+    public String getVyear() {
         return vyear;
     }
 
-    public void setVyear(Date vyear) {
+    public void setVyear(String vyear) {
         this.vyear = vyear;
     }
 

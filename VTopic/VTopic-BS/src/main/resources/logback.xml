@@ -4,7 +4,7 @@
 <!-- <configuration scan="true" scanPeriod="300 seconds" > -->
 <configuration>
     <include resource="logbackConfig.xml" />
-    <property name="log.base.default" value="D:/" />
+    <property name="log.base.default" value="/home/h/logs" />
 
     <!-- app.home should be defined in logbackConfig.xml -->
     <property name="log.base" value="${app.home:-${log.base.default}}" />

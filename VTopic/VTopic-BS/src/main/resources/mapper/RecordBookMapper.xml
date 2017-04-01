@@ -3,7 +3,7 @@
 <mapper namespace="com.ihowq.VTopic.dao.RecordBookMapper" >
   <resultMap id="BaseResultMap" type="com.ihowq.VTopic.model.RecordBook" >
     <id column="RECORDBOOKID" property="recordbookid" jdbcType="BIGINT" />
-    <result column="VYEAR" property="vyear" jdbcType="DATE" />
+    <result column="VYEAR" property="vyear" jdbcType="CHAR" />
     <result column="STARTTIME" property="starttime" jdbcType="DATE" />
     <result column="ENDTIME" property="endtime" jdbcType="DATE" />
     <result column="MANAGERID" property="managerid" jdbcType="VARCHAR" />
@@ -46,7 +46,7 @@
       CREATDATETIME, CHANGER, CHANGEDATETIME, 
       DELETEMAN, DELETEDATETIME, DELETEFLG
       )
-    values (#{recordbookid,jdbcType=BIGINT}, #{vyear,jdbcType=DATE}, #{starttime,jdbcType=DATE}, 
+    values (#{recordbookid,jdbcType=BIGINT}, #{vyear,jdbcType=CHAR}, #{starttime,jdbcType=DATE},
       #{endtime,jdbcType=DATE}, #{managerid,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
       #{creatdatetime,jdbcType=TIMESTAMP}, #{changer,jdbcType=VARCHAR}, #{changedatetime,jdbcType=TIMESTAMP}, 
       #{deleteman,jdbcType=VARCHAR}, #{deletedatetime,jdbcType=TIMESTAMP}, #{deleteflg,jdbcType=CHAR}
@@ -97,7 +97,7 @@
         #{recordbookid,jdbcType=BIGINT},
       </if>
       <if test="vyear != null" >
-        #{vyear,jdbcType=DATE},
+        #{vyear,jdbcType=CHAR},
       </if>
       <if test="starttime != null" >
         #{starttime,jdbcType=DATE},
@@ -135,7 +135,7 @@
     update recordbook
     <set >
       <if test="vyear != null" >
-        VYEAR = #{vyear,jdbcType=DATE},
+        VYEAR = #{vyear,jdbcType=CHAR},
       </if>
       <if test="starttime != null" >
         STARTTIME = #{starttime,jdbcType=DATE},
@@ -172,7 +172,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ihowq.VTopic.model.RecordBook" >
     update recordbook
-    set VYEAR = #{vyear,jdbcType=DATE},
+    set VYEAR = #{vyear,jdbcType=CHAR},
       STARTTIME = #{starttime,jdbcType=DATE},
       ENDTIME = #{endtime,jdbcType=DATE},
       MANAGERID = #{managerid,jdbcType=VARCHAR},

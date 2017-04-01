@@ -35,7 +35,7 @@
 </div>
 <%@ include file="common/footer.jsp" %>
 
-<script src="<%= request.getContextPath()%>/vendor/jquery-1.11.1.min.js"></script>
+<script src="<%= request.getContextPath()%>/js/jquery-1.11.1.min.js"></script>
 <script src="<%= request.getContextPath()%>/js/md5.js"></script>
 
 <script type="text/javascript">

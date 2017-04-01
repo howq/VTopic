@@ -1,6 +1,7 @@
 package com.ihowq.VTopic.controllor.manager;
 
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
+import com.ihowq.VTopic.model.RecordBook;
 import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.common.MvRoleService;
@@ -74,6 +75,47 @@ public class ManageController extends WebExceptionHandler {
             return result;
         }
         logger.info("=========获取RecordBook记录成功==============");
+        result.setCode(Result.Code.SUCCESS);
+        return result;
+    }
+
+
+    /**
+     * Del record book result.
+     *
+     * @param bookId the book id
+     * @return the result
+     */
+    @RequestMapping(value = "/delRecordBook", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<Object> delRecordBook(@RequestParam(value = "bookId", required = true) Long bookId) {
+        logger.info("=========删除RecordBook记录==============");
+        Result<Object> result = new Result<Object>();
+        try {
+            recordBookService.delRecodBook(bookId);
+        } catch (Exception e) {
+            logger.error("=========删除RecordBook记录失败:" + e.getMessage() + "==============");
+            result.setCode(Result.Code.ERROR);
+            return result;
+        }
+        logger.info("=========删除RecordBook记录成功==============");
+        result.setCode(Result.Code.SUCCESS);
+        return result;
+    }
+
+    @RequestMapping(value = "/changeRecordBook", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<Object> changeRecordBook(RecordBook recordBook,@RequestParam(value = "isUpdate", required = true) boolean isUpdate, HttpServletRequest request) {
+        logger.info("=========更改或新增RecordBook记录==============");
+        Result<Object> result = new Result<Object>();
+        try {
+            recordBookService.saveOrUpdateRecodBook(recordBook, isUpdate, request);
+        } catch (Exception e) {
+            logger.error("=========更改或新增RecordBook记录失败:" + e.getMessage() + "==============");
+            result.setCode(Result.Code.ERROR);
+            return result;
+        }
+        logger.info("=========更改或新增RecordBook记录成功==============");
         result.setCode(Result.Code.SUCCESS);
         return result;
     }
