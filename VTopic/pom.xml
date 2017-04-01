@@ -407,7 +407,7 @@
         <module>VTopic-BS</module>
         <module>VTopic-Util</module>
         <module>VTopic-Service</module>
-        <module>VTopic-login</module>
+        <module>VTopic-Login</module>
         <module>VTopic-Web</module>
         <module>VTopic-Backend</module>
         <module>VTopic-Test</module>
