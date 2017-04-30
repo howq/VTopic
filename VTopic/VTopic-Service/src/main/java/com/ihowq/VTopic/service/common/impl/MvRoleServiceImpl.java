@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author howq
  * @create 2017-03-24 10:24
  **/
-@Service
+@Service(value = "mvRoleService")
 public class MvRoleServiceImpl extends VTopicServiceBase implements MvRoleService {
 
     @Override

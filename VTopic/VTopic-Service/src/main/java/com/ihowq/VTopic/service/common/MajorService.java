@@ -1,8 +1,9 @@
 package com.ihowq.VTopic.service.common;
 
-import com.ihowq.VTopic.dto.CommonRecord;
-import com.ihowq.VTopic.model.Record;
+import com.ihowq.VTopic.dto.CommonMajor;
+import com.ihowq.VTopic.model.Major;
 import com.ihowq.VTopic.util.PageBean;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,45 +11,48 @@ import java.security.DigestException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * The interface RecordService service.
+ * The interface Major service.
  *
  * @author howq
- * @create 2017 -04-01 15:51
+ * @create 2017 -04-30 上午11:16
  */
-public interface RecordService {
+public interface MajorService {
+
 
     /**
-     * Gets records.
+     * Gets majors.
      *
      * @param startPage the start page
      * @param pageSize  the page size
      * @param request   the request
-     * @return the records
+     * @return the majors
      * @throws DataAccessException the data access exception
      */
-    public PageBean<CommonRecord> getRecords(int startPage, int pageSize, HttpServletRequest request) throws DataAccessException;
+    public PageBean<CommonMajor> getMajors(int startPage, @Param("pageSize") int pageSize, HttpServletRequest request) throws DataAccessException;
+
 
     /**
-     * Del record.
+     * Del major.
      *
-     * @param recordId the record id
-     * @param request  the request
+     * @param majorId the major id
+     * @param request the request
      * @throws DataAccessException      the data access exception
      * @throws DigestException          the digest exception
      * @throws NoSuchAlgorithmException the no such algorithm exception
      */
-    public void delRecord(Long recordId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
+    public void delMajor(Long majorId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
+
 
     /**
-     * Save or update record.
+     * Save or update major.
      *
-     * @param record   the record
+     * @param major    the major
      * @param isUpdate the is update
      * @param request  the request
      * @throws DataAccessException      the data access exception
      * @throws DigestException          the digest exception
      * @throws NoSuchAlgorithmException the no such algorithm exception
      */
-    public void saveOrUpdateRecord(Record record, boolean isUpdate, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
+    public void saveOrUpdateMajor(Major major, boolean isUpdate, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
 
 }

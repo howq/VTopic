@@ -27,7 +27,7 @@ import java.util.List;
  * @author howq
  * @create 2017 -03-25 15:51
  */
-@Service
+@Service(value = "topicService")
 public class TopicServiceImpl extends VTopicServiceBase implements TopicService {
 
     @Resource(name = "topicMapper")
