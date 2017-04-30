@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.recordBook.impl;
+package com.ihowq.VTopic.service.common.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.ihowq.VTopic.dao.RecordBookMapper;
@@ -6,8 +6,8 @@ import com.ihowq.VTopic.dto.CommonRecordBook;
 import com.ihowq.VTopic.model.RecordBook;
 import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
-import com.ihowq.VTopic.service.common.VTopicServiceBase;
-import com.ihowq.VTopic.service.recordBook.RecordBookService;
+import com.ihowq.VTopic.service.VTopicServiceBase;
+import com.ihowq.VTopic.service.common.RecordBookService;
 import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
 import org.springframework.dao.DataAccessException;
@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The type Record book service.
+ * The type RecordService book service.
  *
  * @author howq
  * @create 2017 -03-24 23:56

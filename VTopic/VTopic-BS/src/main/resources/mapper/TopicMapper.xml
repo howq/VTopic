@@ -41,6 +41,22 @@
       AND DELETEFLG=${NOT_DELETE}
   </select>
 
+  <!--管理员-->
+  <select id="selectWithManager" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Common_Column_List" />
+    from topic
+    where DELETEFLG=${NOT_DELETE}
+  </select>
+
+  <!--学生-->
+  <select id="selectWithStudent" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Common_Column_List" />
+    from topic
+    where DELETEFLG=${NOT_DELETE}
+  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from topic

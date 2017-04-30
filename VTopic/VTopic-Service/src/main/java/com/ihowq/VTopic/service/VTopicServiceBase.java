@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.common;
+package com.ihowq.VTopic.service;
 
 import com.ihowq.VTopic.service.cache.SessionService;
 import org.slf4j.Logger;

@@ -42,12 +42,29 @@ public interface TopicMapper {
     Topic selectByPrimaryKey(Long topicid);
 
     /**
+     * Select with manager list.
+     *
+     * @param userId the user id
+     * @return the list
+     */
+    List<CommonTopic> selectWithManager(String userId);
+
+    /**
      * Select with teacher list.
      *
      * @param userId the user id
      * @return the list
      */
-    public List<CommonTopic> selectWithTeacher(String userId);
+    List<CommonTopic> selectWithTeacher(String userId);
+
+
+    /**
+     * Select with student list.
+     *
+     * @param userId the user id
+     * @return the list
+     */
+    List<CommonTopic> selectWithStudent(String userId);
 
     /**
      * Update by primary key selective int.

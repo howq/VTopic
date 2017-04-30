@@ -5,7 +5,7 @@ import com.ihowq.VTopic.model.RecordBook;
 import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.cache.SessionService;
 import com.ihowq.VTopic.service.common.MvRoleService;
-import com.ihowq.VTopic.service.recordBook.RecordBookService;
+import com.ihowq.VTopic.service.common.RecordBookService;
 import com.ihowq.VTopic.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +56,7 @@ public class ManageController extends WebExceptionHandler {
     }
 
     /**
-     * Record book result.
+     * RecordService book result.
      *
      * @param startPage the start page
      * @param pageSize  the page size

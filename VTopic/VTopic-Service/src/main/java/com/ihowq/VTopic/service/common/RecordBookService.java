@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.recordBook;
+package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.dto.CommonRecordBook;
 import com.ihowq.VTopic.model.RecordBook;

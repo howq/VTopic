@@ -4,7 +4,7 @@ import com.ihowq.VTopic.controllor.WebExceptionHandler;
 import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.common.MvRoleService;
-import com.ihowq.VTopic.service.topic.TopicService;
+import com.ihowq.VTopic.service.common.TopicService;
 import com.ihowq.VTopic.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

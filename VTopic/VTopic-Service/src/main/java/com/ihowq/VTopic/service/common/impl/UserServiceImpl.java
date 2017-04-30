@@ -5,7 +5,7 @@ import com.ihowq.VTopic.dao.UserMapper;
 import com.ihowq.VTopic.model.User;
 import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.common.UserService;
-import com.ihowq.VTopic.service.common.VTopicServiceBase;
+import com.ihowq.VTopic.service.VTopicServiceBase;
 import com.ihowq.VTopic.util.Md5CryptDigest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;

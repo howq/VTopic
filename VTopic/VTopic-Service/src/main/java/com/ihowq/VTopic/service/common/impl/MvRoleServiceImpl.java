@@ -3,7 +3,7 @@ package com.ihowq.VTopic.service.common.impl;
 import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.MvRoleService;
-import com.ihowq.VTopic.service.common.VTopicServiceBase;
+import com.ihowq.VTopic.service.VTopicServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 

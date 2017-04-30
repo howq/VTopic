@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.topic.impl;
+package com.ihowq.VTopic.service.common.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.ihowq.VTopic.dao.TopicMapper;
@@ -6,10 +6,11 @@ import com.ihowq.VTopic.dto.CommonTopic;
 import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
-import com.ihowq.VTopic.service.common.VTopicServiceBase;
-import com.ihowq.VTopic.service.topic.TopicService;
+import com.ihowq.VTopic.service.VTopicServiceBase;
+import com.ihowq.VTopic.service.common.TopicService;
 import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
+import com.ihowq.VTopic.util.common.VTopicConst;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,15 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
             logger.error("获取Session失败" + e.getMessage());
             return new PageBean<CommonTopic>(null);
         }
-        List<CommonTopic> list = topicMapper.selectWithTeacher(loginSession.getUserid());
+        List<CommonTopic> list = null;
+        UserInfo userInfo = loginSession.getUserInfo();
+        if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
+
+        }else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
+            topicMapper.selectWithTeacher(loginSession.getUserid());
+        } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
+
+        }
         logger.info("获取课题题目列表成功");
         return new PageBean<CommonTopic>(list);
     }

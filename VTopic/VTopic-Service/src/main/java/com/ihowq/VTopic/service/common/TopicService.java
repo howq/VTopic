@@ -1,4 +1,4 @@
-package com.ihowq.VTopic.service.topic;
+package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.dto.CommonTopic;
 import com.ihowq.VTopic.model.Topic;
