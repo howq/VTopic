@@ -47,7 +47,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
 
         }else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
-            topicMapper.selectWithTeacher(loginSession.getUserid());
+            list = topicMapper.selectWithTeacher(userInfo.getUserid());
         } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
 
         }

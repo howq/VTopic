@@ -4,6 +4,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Locale;
@@ -14,7 +15,7 @@ import java.util.Locale;
  * @author howq
  * @create 2017/3/11 14:17
  **/
-@Component("messageHelpService")
+@Service(value = "messageHelpService")
 public class MessageHelpService implements MessageSource {
 
     @Resource(name = "messageSource")

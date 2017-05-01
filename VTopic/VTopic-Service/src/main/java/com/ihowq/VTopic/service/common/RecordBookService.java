@@ -31,11 +31,13 @@ public interface RecordBookService {
     /**
      * Del recod book.
      *
-     * @param bookId  the book id
-     * @param request the request
-     * @throws DataAccessException the data access exception
+     * @param recordBookId the record book id
+     * @param request      the request
+     * @throws DataAccessException      the data access exception
+     * @throws DigestException          the digest exception
+     * @throws NoSuchAlgorithmException the no such algorithm exception
      */
-    public void delRecodBook(Long bookId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
+    public void delRecodBook(Long recordBookId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
 
 
     /**

@@ -30,10 +30,19 @@
   </select>
 
   <!--老师-->
+  <resultMap id="CommonResultMap" type="com.ihowq.VTopic.model.Topic" >
+    <id column="TOPICID" property="topicid" jdbcType="BIGINT" />
+    <result column="TOPICNAME" property="topicname" jdbcType="VARCHAR" />
+    <result column="TOPICCOMENT" property="topiccoment" jdbcType="VARCHAR" />
+    <result column="CATEGORYID" property="categoryid" jdbcType="INTEGER" />
+    <result column="MAJOEID" property="majoeid" jdbcType="VARCHAR" />
+    <result column="LIMITNUM" property="limitnum" jdbcType="TINYINT" />
+    <result column="TEACHER" property="teacher" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Common_Column_List" >
     TOPICID, TOPICNAME, TOPICCOMENT, CATEGORYID, MAJOEID, LIMITNUM, TEACHER
   </sql>
-  <select id="selectWithTeacher" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectWithTeacher" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="java.lang.String">
     select
     <include refid="Common_Column_List" />
     from topic
@@ -42,7 +51,7 @@
   </select>
 
   <!--管理员-->
-  <select id="selectWithManager" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectWithManager" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="java.lang.String">
     select
     <include refid="Common_Column_List" />
     from topic
@@ -50,7 +59,7 @@
   </select>
 
   <!--学生-->
-  <select id="selectWithStudent" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectWithStudent" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="java.lang.String">
     select
     <include refid="Common_Column_List" />
     from topic

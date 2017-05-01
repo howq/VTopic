@@ -83,16 +83,17 @@ public class ManageController extends WebExceptionHandler {
     /**
      * Del record book result.
      *
-     * @param bookId the book id
+     * @param recordBookId the record book id
+     * @param request      the request
      * @return the result
      */
     @RequestMapping(value = "/delRecordBook", method = RequestMethod.POST)
     @ResponseBody
-    public Result<Object> delRecordBook(@RequestParam(value = "bookId", required = true) Long bookId, HttpServletRequest request) {
+    public Result<Object> delRecordBook(@RequestParam(value = "recordBookId", required = true) Long recordBookId, HttpServletRequest request) {
         logger.info("=========删除RecordBook记录==============");
         Result<Object> result = new Result<Object>();
         try {
-            recordBookService.delRecodBook(bookId, request);
+            recordBookService.delRecodBook(recordBookId, request);
         } catch (Exception e) {
             logger.error("=========删除RecordBook记录失败:" + e.getMessage() + "==============");
             result.setCode(Result.Code.ERROR);
@@ -103,6 +104,14 @@ public class ManageController extends WebExceptionHandler {
         return result;
     }
 
+    /**
+     * Change record book result.
+     *
+     * @param recordBook the record book
+     * @param isUpdate   the is update
+     * @param request    the request
+     * @return the result
+     */
     @RequestMapping(value = "/changeRecordBook", method = RequestMethod.POST)
     @ResponseBody
     public Result<Object> changeRecordBook(RecordBook recordBook, @RequestParam(value = "isUpdate", required = true) boolean isUpdate, HttpServletRequest request) {
