@@ -1,11 +1,17 @@
 package com.ihowq.VTopic.dao;
 
+import com.ihowq.VTopic.dto.CommonCategory;
 import com.ihowq.VTopic.model.Category;
+
+import java.util.List;
 
 /**
  * The interface Category mapper.
  */
 public interface CategoryMapper {
+
+    List<CommonCategory> selectCategory();
+
     /**
      * Delete by primary key int.
      *

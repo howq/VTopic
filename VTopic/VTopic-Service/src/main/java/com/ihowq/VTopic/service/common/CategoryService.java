@@ -1,6 +1,7 @@
 package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.dto.CommonCategory;
+import com.ihowq.VTopic.model.Category;
 import com.ihowq.VTopic.util.PageBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
@@ -44,13 +45,13 @@ public interface CategoryService {
     /**
      * Save or update category.
      *
-     * @param commonCategory the common category
+     * @param category the common category
      * @param isUpdate       the is update
      * @param request        the request
      * @throws DataAccessException      the data access exception
      * @throws DigestException          the digest exception
      * @throws NoSuchAlgorithmException the no such algorithm exception
      */
-    public void saveOrUpdateCategory(CommonCategory commonCategory, boolean isUpdate, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
+    public void saveOrUpdateCategory(Category category, boolean isUpdate, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException;
 
 }

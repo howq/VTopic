@@ -52,7 +52,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
 
         }
         logger.info("获取课题题目列表成功");
-        return new PageBean<CommonTopic>(list);
+        return new PageBean<>(list);
     }
 
     @Override
@@ -61,6 +61,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         UserInfo userInfo = loginSession.getUserInfo();
         Topic topic = new Topic();
         topic.setTopicid(topicId);
+        topic.setDeleteflg("1");
         topic.setDeletedatetime(DateUtil.getTimeStamp());
         topic.setDeleteman(userInfo.getUserid());
         topic.setChangedatetime(DateUtil.getTimeStamp());

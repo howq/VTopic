@@ -46,7 +46,7 @@ public interface RecordBookMapper {
      *
      * @return the list
      */
-    public List<CommonRecordBook> selectRecordBook();
+    List<CommonRecordBook> selectRecordBook();
 
     /**
      * Update by primary key selective int.

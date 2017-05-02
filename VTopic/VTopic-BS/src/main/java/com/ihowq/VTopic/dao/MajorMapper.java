@@ -1,11 +1,17 @@
 package com.ihowq.VTopic.dao;
 
+import com.ihowq.VTopic.dto.CommonMajor;
 import com.ihowq.VTopic.model.Major;
+
+import java.util.List;
 
 /**
  * The interface Major mapper.
  */
 public interface MajorMapper {
+
+    List<CommonMajor> selectMajor();
+
     /**
      * Delete by primary key int.
      *

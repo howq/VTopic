@@ -17,12 +17,21 @@
     CATEGORYID, CATEGORYNAME, CATEGORYINFO, CREATER, CREATDATETIME, CHANGER, CHANGEDATETIME, 
     DELETEMAN, DELETEDATETIME, DELETEFLG
   </sql>
+  <sql id="Common_Column_List" >
+    CATEGORYID, CATEGORYNAME, CATEGORYINFO
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from category
     where CATEGORYID = #{categoryid,jdbcType=BIGINT}
     AND DELETEFLG=${NOT_DELETE}
+  </select>
+  <select id="selectCategory" resultType="com.ihowq.VTopic.dto.CommonCategory">
+    select
+    <include refid="Common_Column_List" />
+    from category
+    WHERE DELETEFLG=${NOT_DELETE}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from category
