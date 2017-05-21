@@ -29,6 +29,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/fonts/style.1.css" id="font">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/main.css">
 
+    <link rel="stylesheet" type="text/css" media="all" href="<%= request.getContextPath()%>/bootstrap/css/daterangepicker-bs3.css">
+    <script src="<%= request.getContextPath()%>/vendor/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath()%>/bootstrap/js/moment.js"> </script>
+    <script type="text/javascript" src="<%= request.getContextPath()%>/bootstrap/js/daterangepicker.js"></script>
+
     <script src="<%= request.getContextPath()%>/vendor/modernizr.js"></script>
 </head>
 
@@ -169,19 +174,13 @@
                     <c:when test="${curPage == 0}">
                         <%@ include file="../manager/manage.jsp" %>
                     </c:when>
-                    <c:when test="${curPage == 1}">
-                        <%@ include file="../teacher/submit.jsp" %>
-                    </c:when>
-                    <c:when test="${curPage == 2}">
-                        <%@ include file="../student/select.jsp" %>
-                    </c:when>
                 </c:choose>
             </div>
         </section>
     </section>
 </div>
 
-<script src="<%= request.getContextPath()%>/vendor/jquery-1.11.1.min.js"></script>
+
 <script src="<%= request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath()%>/vendor/jquery.easing.min.js"></script>
 <script src="<%= request.getContextPath()%>/vendor/jquery.placeholder.js"></script>

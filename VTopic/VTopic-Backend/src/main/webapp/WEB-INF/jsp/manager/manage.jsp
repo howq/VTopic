@@ -9,7 +9,7 @@
 <div class="row mg-b">
     <div class="col-xs-6">
         <h4 class="no-margin">开题页面</h4>
-        <small>Drag and Drop</small>
+        <%--<small>Drag and Drop</small>--%>
     </div>
     <div class="col-xs-6 text-right">
         <div id="nestable-menu" class="btn-group">
@@ -21,10 +21,38 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <p>
-            <strong>Serialised Output (per list)</strong>
-        </p>
-        <pre id="nestable-output">[{"id":1},{"id":2,"children":[{"id":3,"children":[{"id":4}]},{"id":5}]},{"id":6}]</pre>
-        <pre id="nestable2-output">[{"id":7},{"id":8},{"id":9,"children":[{"id":10},{"id":17},{"id":12}]}]</pre>
+        <div class="container">
+            <div class="span12">
+
+                <hr />
+
+                <h4>Basic Date Range Picker</h4>
+                <div class="well">
+
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                        <input type="text" readonly style="width: 200px" name="reservation" id="reservation" class="form-control" value="2014-5-21 - 2014-6-21" />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#reservation').daterangepicker(null, function(start, end, label) {
+                                console.log(start.toISOString(), end.toISOString(), label);
+                            });
+                        });
+                    </script>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
