@@ -6,34 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="row mg-b">
-    <div class="col-xs-6">
-        <h4 class="no-margin">开题页面</h4>
-        <%--<small>Drag and Drop</small>--%>
-    </div>
-    <div class="col-xs-6 text-right">
-        <div id="nestable-menu" class="btn-group">
-            <button class="btn btn-white btn-sm" type="button" data-action="expand-all">Expand All</button>
-            <button class="btn btn-white btn-sm" type="button" data-action="collapse-all">Collapse All</button>
-        </div>
-    </div>
-</div>
-
-<div class="row">
+     <h3>开题页面</h3>
+<div class="row" style="margin-top: 0px">
     <div class="col-lg-12">
         <div class="container">
             <div class="span12">
-
                 <hr />
-
-                <h4>Basic Date Range Picker</h4>
                 <div class="well">
-
                     <form class="form-horizontal">
                         <fieldset>
                             <div class="control-group">
-                                <%--<span>毕业年级</span>--%>
-
                                 <div class="controls">
                                     <div class="input-prepend input-group ">
                                         <div class="dropdown">
@@ -46,9 +28,7 @@
                                         <input type="text" name="recordbookid" id="recordbookid" class="hidden" value="" />
 
                                         <button type="button" onclick="saveData()" class="btn btn-primary btn-sm" style="margin-left: 2px;position: absolute;top: 2px;left: 390px;">
-                                            <i class="fa fa-check"></i>Submit</button>
-                                        <%--<button type="button" class="btn btn-success btn-sm" style="position: absolute;top: 2px;left: 470px;">--%>
-                                            <%--<i class="fa fa-refresh fa-spin mg-r-xs"></i>Mixing</button>--%>
+                                            <i class="fa fa-check"></i>保存</button>
                                     </div>
                                 </div>
                             </div>
@@ -83,16 +63,13 @@
 
                         function resetDate() {
                             var arr = $("#reservation").val().split(' - ');
-//                            $('#daterange').data('daterangepicker').setStartDate('2014-03-01');
-//                            $('#daterange').data('daterangepicker').setEndDate('2014-03-31');
                             $('#reservation').daterangepicker(null, function(start, end, label) {
                                 console.log(start.toISOString(), end.toISOString(), label);
                             });
                         }
 
                         function saveData() {
-//                            alert($("#reservation").val());
-//                            $("#reservation").val();
+
                             var arr = $("#reservation").val().split(' - ');
 
                             $.ajax({
@@ -119,7 +96,6 @@
                             });
                         }
                     </script>
-
                 </div>
 
 
@@ -140,16 +116,14 @@
                         </tr>
                     </table>
 
-                    <!--url:'admin.php?r=manage/news',-->
-
                     <table id="grid-news" title="文章编辑" class="easyui-datagrid" style="width: 530px" data-options="
-               url:'/VTopic-backend/manage/recordBook',
-               method:'get',
-               singleSelect:true,
-               collapsible:true,
-               iconCls:'icon-edit',
-			   pagination:true,
-			   pageSize:10">
+                       url:'/VTopic-backend/manage/recordBook',
+                       method:'get',
+                       singleSelect:true,
+                       collapsible:true,
+                       iconCls:'icon-edit',
+                       pagination:true,
+                       pageSize:10">
                         <thead>
                         <tr>
                             <th data-options="field:'ck',checkbox:true"></th>
@@ -157,12 +131,9 @@
                             <th data-options="field:'vyear',width:100,align:'center'">开题年份</th>
                             <th data-options="field:'starttime',width:200,align:'center'">开始时间</th>
                             <th data-options="field:'endtime',width:200,align:'center '">截至时间</th>
-                            <%--<th data-options="field:'managerid',width:100">编辑</th>--%>
                         </tr>
                         </thead>
                     </table>
-
-
                 </div>
             </div>
         </div>
@@ -170,9 +141,6 @@
 </div>
 
 <script type="text/javascript">
-//    function addNews(){
-//        window.open("<?=Url::toRoute(['manage/addnews'])?>");
-//    }
     function editNews(){
         var data = $("#grid-news").datagrid('getSelected');
         $("#recordbookid").val(data.recordbookid);
@@ -185,7 +153,6 @@
         var data = $("#grid-news").datagrid('getSelected');
         var index=$('#grid-news').datagrid('getRowIndex',data);
         $.ajax({
-//            url:"<?//=Url::toRoute(['manage/remove_news'])?>//",
             url:"/VTopic-backend/manage/delRecordBook",
             type:'POST',
             data:{
@@ -206,24 +173,6 @@
             }
         });
     }
-    var check = {
-        editId:null,
-        isOkAlter:function(){
-            if(1==$('#mode').val()){
-                alert('修改仅限于单篇文章，请重新选择模式!');
-                return false;
-            }
-            var row = $('#grid-news').datagrid('getSelected');
-            if(null==row){
-                alert('请选择修改文章!');
-                return false;
-            }
-            else {
-                this.editId = row.news_id;
-                return true;
-            }
-        }
-    };
 </script>
 <script type="text/javascript">
     (function($){
