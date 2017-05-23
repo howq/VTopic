@@ -1,42 +1,18 @@
-package com.ihowq.VTopic.dto;
-
-import java.util.Date;
+package com.ihowq.VTopic.vo;
 
 /**
- * RecordBook View表现层
+ * The type Record book vo.
  *
  * @author howq
- * @create 2017-03-25 13:16
- **/
-public class CommonRecordBook {
-
-    private Long recordbookid;
+ * @create 2017 -05-23 8:33
+ */
+public class RecordBookVo {
 
     private String vyear;
 
     private String starttime;
 
     private String endtime;
-
-    private String managerid;
-
-    /**
-     * Getter for property 'recordbookid'.
-     *
-     * @return Value for property 'recordbookid'.
-     */
-    public Long getRecordbookid() {
-        return recordbookid;
-    }
-
-    /**
-     * Setter for property 'recordbookid'.
-     *
-     * @param recordbookid Value to set for property 'recordbookid'.
-     */
-    public void setRecordbookid(Long recordbookid) {
-        this.recordbookid = recordbookid;
-    }
 
     /**
      * Getter for property 'vyear'.
@@ -90,23 +66,5 @@ public class CommonRecordBook {
      */
     public void setEndtime(String endtime) {
         this.endtime = endtime;
-    }
-
-    /**
-     * Getter for property 'managerid'.
-     *
-     * @return Value for property 'managerid'.
-     */
-    public String getManagerid() {
-        return managerid;
-    }
-
-    /**
-     * Setter for property 'managerid'.
-     *
-     * @param managerid Value to set for property 'managerid'.
-     */
-    public void setManagerid(String managerid) {
-        this.managerid = managerid;
     }
 }

@@ -115,6 +115,13 @@
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
         <property name="plugins">
             <array>
+                <!--<bean class="com.github.pagehelper.PageHelper">-->
+                    <!--<property name="properties">-->
+                        <!--<value>-->
+                            <!--dialect=mysql-->
+                        <!--</value>-->
+                    <!--</property>-->
+                <!--</bean>-->
                 <bean class="com.github.pagehelper.PageInterceptor">
                     <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
                     <property name="properties">

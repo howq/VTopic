@@ -35,6 +35,7 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
     @Override
     public PageBean<CommonRecordBook> getRecordBooks(int startPage, int pageSize) throws DataAccessException {
         PageHelper.startPage(startPage, pageSize);
+
         List<CommonRecordBook> list = recordBookMapper.selectRecordBook();
         logger.info("获取每年开题记录成功");
         return new PageBean<CommonRecordBook>(list);
@@ -62,13 +63,13 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
         UserInfo userInfo = loginSession.getUserInfo();
 
         Date date = DateUtil.getTimeStamp();
-        int year = DateUtil.getYear(date);
+//        int year = DateUtil.getYear(date);
         recordBook.setChanger(userInfo.getUserid());
         recordBook.setChangedatetime(date);
         recordBook.setManagerid(userInfo.getUserid());
 
         if (!isUpdate) {
-            recordBook.setVyear(String.valueOf(year));
+//            recordBook.setVyear(String.valueOf(year));
             recordBook.setCreater(userInfo.getUserid());
             recordBook.setCreatdatetime(DateUtil.getTimeStamp());
             recordBook.setDeleteflg("0");

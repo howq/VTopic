@@ -34,7 +34,99 @@
     <script type="text/javascript" src="<%= request.getContextPath()%>/bootstrap/js/moment.js"> </script>
     <script type="text/javascript" src="<%= request.getContextPath()%>/bootstrap/js/daterangepicker.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/jquery-easyui-1.4.4/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/jquery-easyui-1.4.4/themes/icon.css">
+    <script src="<%= request.getContextPath()%>/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+
     <script src="<%= request.getContextPath()%>/vendor/modernizr.js"></script>
+
+    <style>
+        .dropdown {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            height: 34px;
+            width: 150px;
+            background: #f2f2f2;
+            border: 1px solid;
+            border-color: white #f7f7f7 whitesmoke;
+            border-radius: 3px;
+            background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+            background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+            background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+            background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.06));
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+        }
+        .dropdown:before, .dropdown:after {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            top: 9px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 4px dashed;
+            border-color: #888888 transparent;
+            pointer-events: none;
+        }
+        .dropdown:before {
+            border-bottom-style: solid;
+            border-top: none;
+        }
+        .dropdown:after {
+            margin-top: 7px;
+            border-top-style: solid;
+            border-bottom: none;
+        }
+
+        .dropdown-select {
+            position: relative;
+            width: 130%;
+            margin: 0;
+            padding: 6px 8px 6px 10px;
+            height: 28px;
+            line-height: 14px;
+            font-size: 12px;
+            color: #62717a;
+            text-shadow: 0 1px white;
+            /* Fallback for IE 8 */
+            background: #f2f2f2;
+            /* "transparent" doesn't work with Opera */
+            background: rgba(0, 0, 0, 0) !important;
+            border: 0;
+            border-radius: 0;
+            -webkit-appearance: none;
+        }
+        .dropdown-select:focus {
+            z-index: 3;
+            width: 100%;
+            color: #394349;
+            outline: 2px solid #49aff2;
+            outline: 2px solid -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+        .dropdown-select > option {
+            margin: 3px;
+            padding: 6px 8px;
+            text-shadow: none;
+            background: #f2f2f2;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Fix for IE 8 putting the arrows behind the select element. */
+        .lt-ie9 .dropdown {
+            z-index: 1;
+        }
+        .lt-ie9 .dropdown-select {
+            z-index: -1;
+        }
+        .lt-ie9 .dropdown-select:focus {
+            z-index: 3;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -64,11 +156,11 @@
                     欢迎来到<b>VTopic</b>毕业设计选课系统
                 </a>
             </li>
-            <li class="notifications dropdown hidden-xs">
-                <a href="javascript:;" data-toggle="dropdown">
-                    <i class="fa fa-bell"></i>
-                </a>
-            </li>
+            <%--<li class="notifications dropdown hidden-xs">--%>
+                <%--<a href="javascript:;" data-toggle="dropdown">--%>
+                    <%--<i class="fa fa-bell"></i>--%>
+                <%--</a>--%>
+            <%--</li>--%>
             <li class="quickmenu">
                 <a href="javascript:;" data-toggle="dropdown">
                     <img src="<%= request.getContextPath()%>/img/avatar.jpg" class="avatar pull-left img-circle" alt="user" title="user">
