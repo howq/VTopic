@@ -40,14 +40,27 @@
     <result column="TEACHER" property="teacher" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Common_Column_List" >
-    TOPICID, TOPICNAME, TOPICCOMENT, CATEGORYID, MAJOEID, LIMITNUM, TEACHER
+    TOPICID, TOPICNAME, TOPICCOMENT, topic.CATEGORYID,category.CATEGORYNAME, MAJOEID, LIMITNUM, TEACHER
   </sql>
-  <select id="selectWithTeacher" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="java.lang.String">
+  <select id="selectWithTeacher" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="com.ihowq.VTopic.dto.CommonTopic">
     select
     <include refid="Common_Column_List" />
     from topic
-    where TEACHER=#{teacher,jdbcType=VARCHAR}
-      AND DELETEFLG=${NOT_DELETE}
+    LEFT JOIN category ON category.CATEGORYID=topic.CATEGORYID
+    where topic.TEACHER=#{teacher,jdbcType=VARCHAR}
+      AND topic.DELETEFLG=${NOT_DELETE}
+
+      <if test=" null != categoryid">
+        AND topic.CATEGORYID =#{categoryid,jdbcType=INTEGER}
+      </if>
+      <if test=" null != topicname and '' != topicname">
+        AND topic.TOPICNAME like CONCAT('%',#{topicname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test=" null != topiccoment and '' != topiccoment">
+        AND topic.TOPICCOMENT like CONCAT('%',#{topiccoment,jdbcType=VARCHAR},'%')
+      </if>
+
+    ORDER BY TOPICID DESC
   </select>
 
   <!--管理员-->

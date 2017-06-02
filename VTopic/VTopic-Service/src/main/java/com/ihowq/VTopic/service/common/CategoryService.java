@@ -2,13 +2,13 @@ package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.dto.CommonCategory;
 import com.ihowq.VTopic.model.Category;
-import com.ihowq.VTopic.util.PageBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.DigestException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
  * The interface Category service.
@@ -21,13 +21,10 @@ public interface CategoryService {
     /**
      * Gets categories.
      *
-     * @param startPage the start page
-     * @param pageSize  the page size
-     * @param request   the request
      * @return the categories
      * @throws DataAccessException the data access exception
      */
-    public PageBean<CommonCategory> getCategories(int startPage, @Param("pageSize") int pageSize, HttpServletRequest request) throws DataAccessException;
+    public List<CommonCategory> getCategories() throws DataAccessException;
 
 
     /**
@@ -46,8 +43,8 @@ public interface CategoryService {
      * Save or update category.
      *
      * @param category the common category
-     * @param isUpdate       the is update
-     * @param request        the request
+     * @param isUpdate the is update
+     * @param request  the request
      * @throws DataAccessException      the data access exception
      * @throws DigestException          the digest exception
      * @throws NoSuchAlgorithmException the no such algorithm exception

@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50617
+Source Server Version : 50714
 Source Host           : localhost:3306
 Source Database       : vtopicdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-03-28 08:58:22
+Date: 2017-05-23 15:43:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,6 +36,18 @@ CREATE TABLE `category` (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+INSERT INTO `category` VALUES ('1', '类别1', '类别1描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('2', '类别2', '类别2描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('3', '类别3', '类别3描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('4', '类别4', '类别4描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('5', '类别5', '类别5描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('6', '类别6', '类别6描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('7', '类别7', '类别7描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('8', '类别8', '类别8描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('9', '类别9', '类别9描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('10', '类别10', '类别10描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('11', '类别11', '类别11描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
+INSERT INTO `category` VALUES ('12', '类别12', '类别12描述', '', '2017-05-23 15:36:18', null, '2017-05-23 15:36:21', null, null, '0');
 
 -- ----------------------------
 -- Table structure for major
@@ -58,6 +70,22 @@ CREATE TABLE `major` (
 -- ----------------------------
 -- Records of major
 -- ----------------------------
+INSERT INTO `major` VALUES ('1', '专业1', '专业1描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('2', '专业2', '专业3描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('3', '专业3', '专业3描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('4', '专业4', '专业4描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('5', '专业5', '专业5描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('6', '专业6', '专业6描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('7', '专业7', '专业7描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('8', '专业8', '专业8描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('9', '专业9', '专业9描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('10', '专业10', '专业10描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('11', '专业11', '专业11描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('12', '专业12', '专业12描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('13', '专业13', '专业13描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('14', '专业14', '专业14描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('15', '专业15', '专业15描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
+INSERT INTO `major` VALUES ('16', '专业16', '专业16描述', null, '2017-05-23 15:38:50', null, '2017-05-23 15:38:52', null, null, '0');
 
 -- ----------------------------
 -- Table structure for record
@@ -88,8 +116,8 @@ CREATE TABLE `record` (
 -- ----------------------------
 DROP TABLE IF EXISTS `recordbook`;
 CREATE TABLE `recordbook` (
-  `RECORDBOOKID` bigint(20) NOT NULL,
-  `VYEAR` year(4) DEFAULT NULL,
+  `RECORDBOOKID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `VYEAR` char(4) DEFAULT NULL,
   `STARTTIME` date DEFAULT NULL,
   `ENDTIME` date DEFAULT NULL,
   `MANAGERID` varchar(18) NOT NULL,
@@ -101,7 +129,7 @@ CREATE TABLE `recordbook` (
   `DELETEDATETIME` datetime DEFAULT NULL,
   `DELETEFLG` char(1) NOT NULL,
   PRIMARY KEY (`RECORDBOOKID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of recordbook
@@ -114,14 +142,23 @@ INSERT INTO `recordbook` VALUES ('5', '2005', '2005-06-15', '2005-07-13', 'admin
 INSERT INTO `recordbook` VALUES ('6', '2006', '2006-06-14', '2006-06-30', 'admin', 'admin', null, null, null, null, null, '0');
 INSERT INTO `recordbook` VALUES ('7', '2007', '2007-06-20', '2007-07-07', 'admin', 'admin', null, null, null, null, null, '0');
 INSERT INTO `recordbook` VALUES ('8', '2008', '2008-07-17', '2008-10-16', 'admin', 'admin', null, null, null, null, null, '0');
-INSERT INTO `recordbook` VALUES ('9', '2009', '2009-05-11', '2009-06-15', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('9', '2009', '2017-02-06', '2017-06-22', 'admin', 'admin', null, 'admin', '2017-05-23 11:18:23', null, null, '0');
 INSERT INTO `recordbook` VALUES ('10', '2010', '2010-06-23', '2010-07-22', 'admin', 'admin', null, null, null, null, null, '0');
 INSERT INTO `recordbook` VALUES ('11', '2011', '2011-06-14', '2011-07-12', 'admin', 'admin', null, null, null, null, null, '0');
 INSERT INTO `recordbook` VALUES ('12', '2012', '2012-05-15', '2012-06-13', 'admin', 'admin', null, null, null, null, null, '0');
-INSERT INTO `recordbook` VALUES ('13', '2013', '2013-05-20', '2013-06-12', 'admin', 'admin', null, null, null, null, null, '0');
-INSERT INTO `recordbook` VALUES ('14', '2014', '2014-06-10', '2014-06-24', 'admin', 'admin', null, null, null, null, null, '0');
-INSERT INTO `recordbook` VALUES ('15', '2015', '2015-06-09', '2015-07-15', 'admin', 'admin', null, null, null, null, null, '0');
-INSERT INTO `recordbook` VALUES ('16', '2016', '2016-05-17', '2016-07-12', 'admin', 'admin', null, null, null, null, null, '0');
+INSERT INTO `recordbook` VALUES ('13', '2013', '2013-05-20', '2013-06-12', 'admin', 'admin', null, 'admin', '2017-05-23 10:43:55', 'admin', '2017-05-23 10:43:55', '1');
+INSERT INTO `recordbook` VALUES ('14', '2014', '2014-06-10', '2014-06-24', 'admin', 'admin', null, 'admin', '2017-05-23 10:36:29', 'admin', '2017-05-23 10:36:29', '1');
+INSERT INTO `recordbook` VALUES ('15', '2015', '2015-06-09', '2015-07-15', 'admin', 'admin', null, 'admin', '2017-05-23 10:35:50', 'admin', '2017-05-23 10:35:50', '1');
+INSERT INTO `recordbook` VALUES ('16', '2016', '2016-05-17', '2016-07-12', 'admin', 'admin', null, 'admin', '2017-05-23 10:36:14', 'admin', '2017-05-23 10:36:14', '1');
+INSERT INTO `recordbook` VALUES ('17', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-21 17:10:13', 'admin', '2017-05-23 10:33:39', 'admin', '2017-05-23 10:33:39', '1');
+INSERT INTO `recordbook` VALUES ('18', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-22 11:19:05', 'admin', '2017-05-23 10:34:39', 'admin', '2017-05-23 10:34:39', '1');
+INSERT INTO `recordbook` VALUES ('19', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-22 11:25:06', 'admin', '2017-05-23 10:33:20', 'admin', '2017-05-23 10:33:20', '1');
+INSERT INTO `recordbook` VALUES ('20', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-22 19:21:53', 'admin', '2017-05-23 10:35:23', 'admin', '2017-05-23 10:35:23', '1');
+INSERT INTO `recordbook` VALUES ('21', '2017', '2014-02-03', '2014-09-18', 'admin', 'admin', '2017-05-23 11:05:35', 'admin', '2017-05-23 11:07:11', 'admin', '2017-05-23 11:07:11', '1');
+INSERT INTO `recordbook` VALUES ('22', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-23 11:05:52', 'admin', '2017-05-23 11:07:22', 'admin', '2017-05-23 11:07:22', '1');
+INSERT INTO `recordbook` VALUES ('23', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-23 11:06:07', 'admin', '2017-05-23 11:07:19', 'admin', '2017-05-23 11:07:19', '1');
+INSERT INTO `recordbook` VALUES ('24', '2017', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-23 11:06:38', 'admin', '2017-05-23 11:07:16', 'admin', '2017-05-23 11:07:16', '1');
+INSERT INTO `recordbook` VALUES ('25', '2014', '2014-02-21', '2014-06-21', 'admin', 'admin', '2017-05-23 11:07:53', 'admin', '2017-05-23 11:16:26', null, null, '0');
 
 -- ----------------------------
 -- Table structure for role
@@ -174,6 +211,19 @@ CREATE TABLE `topic` (
 -- ----------------------------
 -- Records of topic
 -- ----------------------------
+INSERT INTO `topic` VALUES ('2', '选题2', '选题描述2', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('3', '选题2', '选题描述3', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('4', '选题4', '选题描述4', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('5', '选题5', '选题描述5', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('6', '选题6', '选题描述6', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('7', '选题7', '选题描述7', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('8', '选题8', '选题描述8', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('9', '选题9', '选题描述9', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('10', '选题10', '选题描述10', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('11', '选题11', '选题描述11', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('12', '选题12', '选题描述12', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('13', '选题13', '选题描述13', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
+INSERT INTO `topic` VALUES ('14', '选题14', '选题描述14', '1', '1,2,3', '3', 'teacher1', 'teacher1', '2017-04-25 15:23:01', 'teacher1', '2017-05-09 15:23:13', null, null, '0');
 
 -- ----------------------------
 -- Table structure for user

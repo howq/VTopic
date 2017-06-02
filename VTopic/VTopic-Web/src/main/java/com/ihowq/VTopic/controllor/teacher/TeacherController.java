@@ -1,20 +1,22 @@
 package com.ihowq.VTopic.controllor.teacher;
 
+import com.alibaba.fastjson.JSON;
 import com.ihowq.VTopic.controllor.WebExceptionHandler;
+import com.ihowq.VTopic.dto.CommonRecordBook;
+import com.ihowq.VTopic.dto.CommonTopic;
 import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.common.MvRoleService;
 import com.ihowq.VTopic.service.common.TopicService;
+import com.ihowq.VTopic.util.PageBean;
 import com.ihowq.VTopic.util.Result;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 /**
  * The type Teacher controller.
@@ -61,19 +63,25 @@ public class TeacherController extends WebExceptionHandler {
      */
     @RequestMapping(value = "/topic", method = RequestMethod.GET)
     @ResponseBody
-    public Result<Object> topic(HttpServletRequest request, @RequestParam(value = "startPage", required = true) int startPage, @RequestParam(value = "pageSize", required = true) int pageSize) {
+    public String topic(HttpServletRequest request,
+            CommonTopic commonTopic,
+            @RequestParam(value = "page", required = true) int startPage,
+            @RequestParam(value = "rows", required = true) int pageSize) {
         logger.info("=========获取课题列表==============");
         Result<Object> result = new Result<Object>();
+        HashMap hashMap = new HashMap();
         try {
-            result.setData(topicService.getTopics(startPage, pageSize, request));
+            PageBean<CommonTopic> data = topicService.getTopics(commonTopic,startPage, pageSize, request);
+            hashMap.put("total", data.getTotal());
+            hashMap.put("rows", data.getList());
         } catch (Exception e) {
             logger.error("=========获取课题列表失败:" + e.getMessage() + "==============");
             result.setCode(Result.Code.ERROR);
-            return result;
+            return JSON.toJSONString(hashMap);
         }
         logger.info("=========获取课题列表成功==============");
         result.setCode(Result.Code.SUCCESS);
-        return result;
+        return JSON.toJSONString(hashMap);
     }
 
     /**

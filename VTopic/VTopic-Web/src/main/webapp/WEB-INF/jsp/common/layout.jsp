@@ -28,10 +28,72 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/fonts/style.1.css" id="font">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/main.css">
 
+    <link rel="stylesheet" type="text/css" media="all"
+          href="<%= request.getContextPath()%>/bootstrap/css/daterangepicker-bs3.css">
+    <script src="<%= request.getContextPath()%>/vendor/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath()%>/bootstrap/js/moment.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath()%>/bootstrap/js/daterangepicker.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+          href="<%= request.getContextPath()%>/jquery-easyui-1.4.4/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/jquery-easyui-1.4.4/themes/icon.css">
+    <script src="<%= request.getContextPath()%>/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+
     <script src="<%= request.getContextPath()%>/vendor/modernizr.js"></script>
 </head>
 
 <body>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    搜索课题
+                </h4>
+            </div>
+            <div class="modal-body">
+                <i class="search-top"></i>
+                <div class="input-prepend input-group ">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label">课题名称</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="topicname_s" maxlength="40"
+                                   placeholder="课题名称">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label">课题描述</label>
+                        <div class="col-md-9">
+                                                <textarea class="form-control" id="topiccoment_s" placeholder="课题描述"
+                                                          maxlength="80"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label">类别</label>
+                        <select id="categoryid_s" class="easyui-combobox"
+                                data-options="url:'<%= request.getContextPath()%>/common/category',method:'get',required:false,textField:'categoryname',valueField:'categoryid'">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" onclick="refrush();">
+                    搜索
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <div class="app" data-sidebar="locked">
 
     <header class="header header-fixed navbar">
@@ -65,7 +127,8 @@
             </li>
             <li class="quickmenu">
                 <a href="javascript:;" data-toggle="dropdown">
-                    <img src="<%= request.getContextPath()%>/img/avatar.jpg" class="avatar pull-left img-circle" alt="user" title="user">
+                    <img src="<%= request.getContextPath()%>/img/avatar.jpg" class="avatar pull-left img-circle"
+                         alt="user" title="user">
                     <i class="caret mg-l-xs hidden-xs no-margin"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
@@ -105,10 +168,10 @@
                                 <li>
                             </c:otherwise>
                         </c:choose>
-                            <a href="<%= request.getContextPath()%>/manage/index">
-                                <i class="fa fa-coffee"></i>
-                                <span>毕设开题</span>
-                            </a>
+                        <a href="<%= request.getContextPath()%>/manage/index">
+                            <i class="fa fa-coffee"></i>
+                            <span>毕设开题</span>
+                        </a>
                         </li>
                     </c:if>
                     <c:if test="${userInfo.roleid == 1}">
@@ -121,19 +184,19 @@
                             </c:otherwise>
                         </c:choose>
                         <a href="<%= request.getContextPath()%>/teacher/index">
-                                <i class="fa fa-file"></i>
-                                <span>提交选题</span>
-                            </a>
+                            <i class="fa fa-file"></i>
+                            <span>提交选题</span>
+                        </a>
                         </li>
                     </c:if>
                     <c:choose>
-                        <c:when test="${curPage == 2}">
-                            <li class="active">
+                    <c:when test="${curPage == 2}">
+                    <li class="active">
                         </c:when>
                         <c:otherwise>
-                            <li>
+                    <li>
                         </c:otherwise>
-                    </c:choose>
+                        </c:choose>
                         <a href="<%= request.getContextPath()%>/student/index">
                             <i class="fa fa-tasks"></i>
                             <span>毕设选题</span>
@@ -165,9 +228,6 @@
         <section class="main-content">
             <div class="content-wrap">
                 <c:choose>
-                    <c:when test="${curPage == 0}">
-                        <%@ include file="../manager/manage.jsp" %>
-                    </c:when>
                     <c:when test="${curPage == 1}">
                         <%@ include file="../teacher/submit.jsp" %>
                     </c:when>
@@ -180,7 +240,6 @@
     </section>
 </div>
 
-<script src="<%= request.getContextPath()%>/vendor/jquery-1.11.1.min.js"></script>
 <script src="<%= request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath()%>/vendor/jquery.easing.min.js"></script>
 <script src="<%= request.getContextPath()%>/vendor/jquery.placeholder.js"></script>
@@ -191,6 +250,17 @@
 <script src="<%= request.getContextPath()%>/js/off-canvas.js"></script>
 <script src="<%= request.getContextPath()%>/js/main.js"></script>
 
+<script src="<%= request.getContextPath()%>/bootstrap/js/bootstrap-modal.js"></script>
+
+<script>
+    function refrush() {
+        var catogery_id = $('#categoryid_s').combobox('getValue');
+        $('#grid-news').datagrid('load', { topicname: $("#topicname_s").val(),categoryid: catogery_id,topiccoment: $("#topiccoment_s").val()});
+        $('#myModal').modal('hide');
+//        $('#news').datagrid('reload');
+    }
+
+</script>
 </body>
 
 </html>

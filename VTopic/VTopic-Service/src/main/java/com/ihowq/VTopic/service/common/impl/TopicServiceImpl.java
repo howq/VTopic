@@ -34,7 +34,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
     @Resource(name = "topicMapper")
     private TopicMapper topicMapper;
 
-    public PageBean<CommonTopic> getTopics(int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
+    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic,int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
         PageHelper.startPage(startPage, pageSize);
         CustLoginSession loginSession = null;
         try {
@@ -45,10 +45,12 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         }
         List<CommonTopic> list = null;
         UserInfo userInfo = loginSession.getUserInfo();
+
         if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
 
         }else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
-            list = topicMapper.selectWithTeacher(userInfo.getUserid());
+            commonTopic.setTeacher(userInfo.getUserid());
+            list = topicMapper.selectWithTeacher(commonTopic);
         } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
 
         }
@@ -81,6 +83,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         topic.setChangedatetime(date);
         if (!isUpdate) {
             topic.setCreater(userInfo.getUserid());
+            topic.setTeacher(userInfo.getUserid());
             topic.setCreatdatetime(DateUtil.getTimeStamp());
             topic.setDeleteflg("0");
             topicMapper.insert(topic);

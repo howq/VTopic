@@ -30,7 +30,9 @@
         <setting name="useGeneratedKeys" value="true"/>
 
         <!--日志-->
-        <setting name="logImpl" value="LOG4J"/>
+        <!--<setting name="logImpl" value="LOG4J"/>-->
+
+        <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
 
     <!--<plugins>-->

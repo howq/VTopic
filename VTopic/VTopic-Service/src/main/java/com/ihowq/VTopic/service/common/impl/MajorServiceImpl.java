@@ -33,11 +33,10 @@ public class MajorServiceImpl extends VTopicServiceBase implements MajorService{
     private MajorMapper majorMapper;
 
     @Override
-    public PageBean<CommonMajor> getMajors(int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
-        PageHelper.startPage(startPage, pageSize);
+    public List<CommonMajor> getMajors() throws DataAccessException {
         List<CommonMajor> list = majorMapper.selectMajor();
         logger.info("获取每年开题记录成功");
-        return new PageBean<>(list);
+        return list;
     }
 
     @Override

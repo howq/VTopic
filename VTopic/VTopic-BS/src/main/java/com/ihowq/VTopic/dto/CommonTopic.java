@@ -14,6 +14,8 @@ public class CommonTopic {
 
     private Integer categoryid;
 
+    private String categoryname;
+
     private String majoeid;
 
     private Byte limitnum;
@@ -36,6 +38,24 @@ public class CommonTopic {
      */
     public void setTopicid(Long topicid) {
         this.topicid = topicid;
+    }
+
+    /**
+     * Getter for property 'categoryname'.
+     *
+     * @return Value for property 'categoryname'.
+     */
+    public String getCategoryname() {
+        return categoryname;
+    }
+
+    /**
+     * Setter for property 'categoryname'.
+     *
+     * @param categoryname Value to set for property 'categoryname'.
+     */
+    public void setCategoryname(String categoryname) {
+        this.categoryname = categoryname;
     }
 
     /**

@@ -2,13 +2,12 @@ package com.ihowq.VTopic.service.common;
 
 import com.ihowq.VTopic.dto.CommonMajor;
 import com.ihowq.VTopic.model.Major;
-import com.ihowq.VTopic.util.PageBean;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.DigestException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
  * The interface Major service.
@@ -28,7 +27,7 @@ public interface MajorService {
      * @return the majors
      * @throws DataAccessException the data access exception
      */
-    public PageBean<CommonMajor> getMajors(int startPage, @Param("pageSize") int pageSize, HttpServletRequest request) throws DataAccessException;
+    public List<CommonMajor> getMajors() throws DataAccessException;
 
 
     /**

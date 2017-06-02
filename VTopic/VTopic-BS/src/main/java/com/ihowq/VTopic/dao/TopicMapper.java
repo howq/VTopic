@@ -52,10 +52,10 @@ public interface TopicMapper {
     /**
      * Select with teacher list.
      *
-     * @param userId the user id
+     * @param commonTopic the common topic
      * @return the list
      */
-    List<CommonTopic> selectWithTeacher(String userId);
+    List<CommonTopic> selectWithTeacher(CommonTopic commonTopic);
 
 
     /**

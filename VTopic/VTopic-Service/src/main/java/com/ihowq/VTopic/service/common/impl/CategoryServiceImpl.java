@@ -31,11 +31,10 @@ public class CategoryServiceImpl extends VTopicServiceBase implements CategorySe
     private CategoryMapper categoryMapper;
 
     @Override
-    public PageBean<CommonCategory> getCategories(int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
-        PageHelper.startPage(startPage, pageSize);
+    public List<CommonCategory> getCategories() throws DataAccessException {
         List<CommonCategory> list = categoryMapper.selectCategory();
         logger.info("获取目录列表成功");
-        return new PageBean<>(list);
+        return list;
     }
 
     @Override
