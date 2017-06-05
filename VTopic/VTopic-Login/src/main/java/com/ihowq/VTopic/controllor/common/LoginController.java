@@ -54,7 +54,7 @@ public class LoginController extends WebExceptionHandler {
         logger.info("进入登陆界面");
         CustLoginSession loginSession = sessionService.getSession(request);
         if (null != loginSession) {
-            return "redirect:/" + loginSession.getUrl();
+            return "redirect:" + loginSession.getUrl();
         }
         return "index";
     }
