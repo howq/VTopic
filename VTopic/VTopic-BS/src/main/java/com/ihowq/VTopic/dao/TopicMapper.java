@@ -44,10 +44,10 @@ public interface TopicMapper {
     /**
      * Select with manager list.
      *
-     * @param userId the user id
+     * @param commonTopic the common topic
      * @return the list
      */
-    List<CommonTopic> selectWithManager(String userId);
+    List<CommonTopic> selectWithManager(CommonTopic commonTopic);
 
     /**
      * Select with teacher list.
@@ -61,10 +61,10 @@ public interface TopicMapper {
     /**
      * Select with student list.
      *
-     * @param userId the user id
+     * @param commonTopic the common topic
      * @return the list
      */
-    List<CommonTopic> selectWithStudent(String userId);
+    List<CommonTopic> selectWithStudent(CommonTopic commonTopic);
 
     /**
      * Update by primary key selective int.

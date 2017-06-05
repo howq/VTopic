@@ -1,6 +1,9 @@
 package com.ihowq.VTopic.dao;
 
 import com.ihowq.VTopic.model.User;
+import com.ihowq.VTopic.model.UserInfo;
+
+import java.util.List;
 
 /**
  * The interface User mapper.
@@ -32,6 +35,13 @@ public interface UserMapper {
 
 
     /**
+     * Select student list.
+     *
+     * @return the list
+     */
+    List<UserInfo> selectStudent();
+
+    /**
      * Select by primary key user.
      *
      * @param userid the userid
@@ -50,8 +60,8 @@ public interface UserMapper {
     /**
      * 后台管理
      *
-     * @param userid
-     * @return
+     * @param userid the userid
+     * @return user
      */
     User selectByPrimaryKeyBackend(String userid);
 

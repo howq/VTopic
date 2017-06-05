@@ -1,6 +1,5 @@
 package com.ihowq.VTopic.service.common.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.ihowq.VTopic.dao.CategoryMapper;
 import com.ihowq.VTopic.dto.CommonCategory;
 import com.ihowq.VTopic.model.Category;
@@ -9,7 +8,6 @@ import com.ihowq.VTopic.service.VTopicServiceBase;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.CategoryService;
 import com.ihowq.VTopic.util.DateUtil;
-import com.ihowq.VTopic.util.PageBean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 

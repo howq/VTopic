@@ -122,7 +122,7 @@
                         </tr>
                     </table>
 
-                    <table id="grid-news" title="文章编辑" class="easyui-datagrid" style="width: 530px" data-options="
+                    <table id="grid-news" title="开题列表" class="easyui-datagrid" style="width: 530px" data-options="
                        url:'<%= request.getContextPath()%>/manage/recordBook',
                        method:'get',
                        singleSelect:true,

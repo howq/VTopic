@@ -53,36 +53,6 @@ public class TeacherController extends WebExceptionHandler {
         return modelAndView;
     }
 
-    /**
-     * Topic result.
-     *
-     * @param request   the request
-     * @param startPage the start page
-     * @param pageSize  the page size
-     * @return the result
-     */
-    @RequestMapping(value = "/topic", method = RequestMethod.GET)
-    @ResponseBody
-    public String topic(HttpServletRequest request,
-            CommonTopic commonTopic,
-            @RequestParam(value = "page", required = true) int startPage,
-            @RequestParam(value = "rows", required = true) int pageSize) {
-        logger.info("=========获取课题列表==============");
-        Result<Object> result = new Result<Object>();
-        HashMap hashMap = new HashMap();
-        try {
-            PageBean<CommonTopic> data = topicService.getTopics(commonTopic,startPage, pageSize, request);
-            hashMap.put("total", data.getTotal());
-            hashMap.put("rows", data.getList());
-        } catch (Exception e) {
-            logger.error("=========获取课题列表失败:" + e.getMessage() + "==============");
-            result.setCode(Result.Code.ERROR);
-            return JSON.toJSONString(hashMap);
-        }
-        logger.info("=========获取课题列表成功==============");
-        result.setCode(Result.Code.SUCCESS);
-        return JSON.toJSONString(hashMap);
-    }
 
     /**
      * Del topic result.

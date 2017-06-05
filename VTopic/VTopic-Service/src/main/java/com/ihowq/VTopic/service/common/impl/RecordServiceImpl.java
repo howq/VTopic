@@ -2,8 +2,10 @@ package com.ihowq.VTopic.service.common.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.ihowq.VTopic.dao.RecordMapper;
+import com.ihowq.VTopic.dao.TopicMapper;
 import com.ihowq.VTopic.dto.CommonRecord;
 import com.ihowq.VTopic.model.Record;
+import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.model.UserInfo;
 import com.ihowq.VTopic.service.VTopicServiceBase;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
@@ -33,6 +35,9 @@ public class RecordServiceImpl extends VTopicServiceBase implements RecordServic
     @Resource(name = "recordMapper")
     private RecordMapper recordMapper;
 
+    @Resource(name="topicMapper")
+    private TopicMapper topicMapper;
+
     @Override
     public PageBean<CommonRecord> getRecords(int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
         PageHelper.startPage(startPage, pageSize);
@@ -47,7 +52,7 @@ public class RecordServiceImpl extends VTopicServiceBase implements RecordServic
         UserInfo userInfo = loginSession.getUserInfo();
         if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
 
-        }else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
+        } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
 //            list = recordMapper.selectWithTeacher(userInfo.getUserid());
         } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
 
@@ -78,6 +83,17 @@ public class RecordServiceImpl extends VTopicServiceBase implements RecordServic
         UserInfo userInfo = loginSession.getUserInfo();
 
         Date date = DateUtil.getTimeStamp();
+
+        if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
+            Topic topic = topicMapper.selectByPrimaryKey(record.getTopicid());
+            record.setTeacher(topic.getTeacher());
+        } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
+            record.setTeacher(userInfo.getUserid());
+        } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
+            record.setStudent(userInfo.getUserid());
+        }
+
+        record.setOperater(userInfo.getUserid());
         record.setChanger(userInfo.getUserid());
         record.setChangedatetime(date);
         if (!isUpdate) {

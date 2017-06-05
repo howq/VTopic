@@ -232,7 +232,7 @@
                             <li>
                         </c:otherwise>
                     </c:choose>
-                        <a href="<%= request.getContextPath()%>/student/index">
+                        <a href="http://localhost:8080/VTopic/student/index">
                             <i class="fa fa-tasks"></i>
                             <span>毕设选题</span>
                         </a>

@@ -24,6 +24,16 @@
     IPADD, BLOWSER, CREATER, CREATDATETIME, CHANGER, CHANGEDATETIME, DELETEMAN, DELETEDATETIME, 
     DELETEFLG
   </sql>
+    <sql id="Common_Column_List">
+        USERID, USERNAME
+    </sql>
+    <select id="selectStudent" resultType="com.ihowq.VTopic.model.UserInfo">
+        select
+        <include refid="Common_Column_List"/>
+        from userinfo
+        WHERE DELETEFLG=${NOT_DELETE}
+        AND ROLEID=2
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>

@@ -49,7 +49,7 @@
     LEFT JOIN category ON category.CATEGORYID=topic.CATEGORYID
     where topic.TEACHER=#{teacher,jdbcType=VARCHAR}
       AND topic.DELETEFLG=${NOT_DELETE}
-
+      AND category.DELETEFLG=${NOT_DELETE}
       <if test=" null != categoryid">
         AND topic.CATEGORYID =#{categoryid,jdbcType=INTEGER}
       </if>
@@ -64,19 +64,48 @@
   </select>
 
   <!--管理员-->
-  <select id="selectWithManager" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="java.lang.String">
+  <select id="selectWithManager" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="com.ihowq.VTopic.dto.CommonTopic">
     select
     <include refid="Common_Column_List" />
     from topic
-    where DELETEFLG=${NOT_DELETE}
+      LEFT JOIN category ON category.CATEGORYID=topic.CATEGORYID
+    where topic.DELETEFLG=${NOT_DELETE}
+      AND category.DELETEFLG=${NOT_DELETE}
+      <if test=" null != categoryid">
+          AND topic.CATEGORYID =#{categoryid,jdbcType=INTEGER}
+      </if>
+      <if test=" null != topicname and '' != topicname">
+          AND topic.TOPICNAME like CONCAT('%',#{topicname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test=" null != topiccoment and '' != topiccoment">
+          AND topic.TOPICCOMENT like CONCAT('%',#{topiccoment,jdbcType=VARCHAR},'%')
+      </if>
+
+      ORDER BY TOPICID DESC
   </select>
 
   <!--学生-->
-  <select id="selectWithStudent" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="java.lang.String">
-    select
-    <include refid="Common_Column_List" />
-    from topic
-    where DELETEFLG=${NOT_DELETE}
+  <select id="selectWithStudent" resultType="com.ihowq.VTopic.dto.CommonTopic" parameterType="com.ihowq.VTopic.dto.CommonTopic">
+      select
+      <include refid="Common_Column_List" />
+      from topic
+      LEFT JOIN category ON category.CATEGORYID=topic.CATEGORYID
+      LEFT JOIN userinfo ON FIND_IN_SET(userinfo.MAJORID,topic.MAJOEID)
+      where userinfo.USERID=#{teacher,jdbcType=VARCHAR}
+      AND topic.DELETEFLG=${NOT_DELETE}
+      AND category.DELETEFLG=${NOT_DELETE}
+      AND userinfo.DELETEFLG=${NOT_DELETE}
+      <if test=" null != categoryid">
+          AND topic.CATEGORYID =#{categoryid,jdbcType=INTEGER}
+      </if>
+      <if test=" null != topicname and '' != topicname">
+          AND topic.TOPICNAME like CONCAT('%',#{topicname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test=" null != topiccoment and '' != topiccoment">
+          AND topic.TOPICCOMENT like CONCAT('%',#{topiccoment,jdbcType=VARCHAR},'%')
+      </if>
+
+      ORDER BY TOPICID DESC
   </select>
 
 

@@ -5,8 +5,8 @@ import com.ihowq.VTopic.dao.TopicMapper;
 import com.ihowq.VTopic.dto.CommonTopic;
 import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.model.UserInfo;
-import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.VTopicServiceBase;
+import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.TopicService;
 import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.DigestException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
     @Resource(name = "topicMapper")
     private TopicMapper topicMapper;
 
-    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic,int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
+    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic, int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
         PageHelper.startPage(startPage, pageSize);
         CustLoginSession loginSession = null;
         try {
@@ -47,12 +46,13 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         UserInfo userInfo = loginSession.getUserInfo();
 
         if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
-
-        }else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
+            list = topicMapper.selectWithManager(commonTopic);
+        } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
             commonTopic.setTeacher(userInfo.getUserid());
             list = topicMapper.selectWithTeacher(commonTopic);
         } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
-
+            commonTopic.setTeacher(userInfo.getUserid());
+            list = topicMapper.selectWithStudent(commonTopic);
         }
         logger.info("获取课题题目列表成功");
         return new PageBean<>(list);

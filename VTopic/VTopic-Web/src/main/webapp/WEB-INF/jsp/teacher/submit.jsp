@@ -102,8 +102,8 @@
                             </td>
                         </tr>
                     </table>
-                    <table id="grid-news" title="文章编辑" class="easyui-datagrid" style="width: 530px" data-options="
-                       url:'<%= request.getContextPath()%>/teacher/topic',
+                    <table id="grid-news" title="课题列表" class="easyui-datagrid" style="width: 530px" data-options="
+                       url:'<%= request.getContextPath()%>/common/topic',
                        method:'get',
                        singleSelect:true,
                        collapsible:true,
@@ -279,7 +279,7 @@
     })(jQuery);
     function getData() {
         $.ajax({
-            url: "<%= request.getContextPath()%>/teacher/topic",
+            url: "<%= request.getContextPath()%>/common/topic",
             data: {},
             dataType: "json",
             type: "post",

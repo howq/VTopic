@@ -4,13 +4,14 @@ import com.ihowq.VTopic.dao.UserInfoMapper;
 import com.ihowq.VTopic.dao.UserMapper;
 import com.ihowq.VTopic.model.User;
 import com.ihowq.VTopic.model.UserInfo;
-import com.ihowq.VTopic.service.common.UserService;
 import com.ihowq.VTopic.service.VTopicServiceBase;
+import com.ihowq.VTopic.service.common.UserService;
 import com.ihowq.VTopic.util.Md5CryptDigest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户操作
@@ -43,13 +44,13 @@ public class UserServiceImpl extends VTopicServiceBase implements UserService {
     @Override
     public UserInfo checkPwdFrontend(String userid, String pwd) throws DataAccessException {
         User user = userMapper.selectByPrimaryKeyFrontend(userid);
-        if(null == user){
+        if (null == user) {
             return null;
         }
         String password = null;
         try {
             password = Md5CryptDigest.encodeMd5(user.getPassword());
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("用户密码M5加密失败！" + e.getMessage());
         }
         if (pwd.equals(password)) {
@@ -62,13 +63,13 @@ public class UserServiceImpl extends VTopicServiceBase implements UserService {
     @Override
     public UserInfo checkPwdBackend(String userid, String pwd) throws DataAccessException {
         User user = userMapper.selectByPrimaryKeyBackend(userid);
-        if(null == user){
+        if (null == user) {
             return null;
         }
         String password = null;
         try {
             password = Md5CryptDigest.encodeMd5(user.getPassword());
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("用户密码M5加密失败！" + e.getMessage());
         }
         if (pwd.equals(password)) {
@@ -76,5 +77,12 @@ public class UserServiceImpl extends VTopicServiceBase implements UserService {
             return userInfoMapper.selectByPrimaryKey(userid);
         }
         return null;
+    }
+
+    @Override
+    public List<UserInfo> getStudent() throws DataAccessException {
+        List<UserInfo> list = userMapper.selectStudent();
+        logger.info("获取学生列表成功");
+        return list;
     }
 }
