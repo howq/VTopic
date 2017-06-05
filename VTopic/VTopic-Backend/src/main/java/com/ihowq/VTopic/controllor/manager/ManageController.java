@@ -11,6 +11,7 @@ import com.ihowq.VTopic.service.common.RecordBookService;
 import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
 import com.ihowq.VTopic.util.Result;
+import com.ihowq.VTopic.util.common.VTopicConst;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 管理员入口
@@ -55,6 +57,15 @@ public class ManageController extends WebExceptionHandler {
     public ModelAndView index(HttpServletRequest request) {
         logger.info("进入管理员界面");
         ModelAndView modelAndView = new ModelAndView("common/layout");
+        try {
+            if (recordBookService.isOpenSelect()){
+                modelAndView.addObject("openstatus", VTopicConst.OPEN_STATUS_1);
+            }else {
+                modelAndView.addObject("openstatus", VTopicConst.OPEN_STATUS_0);
+            }
+        } catch (Exception e) {
+            logger.error("=========获取RecordBook记录失败:" + e.getMessage() + "==============");
+        }
         modelAndView = mvRoleService.MvInfoInit(request, modelAndView);
         modelAndView.addObject("curPage", 0);
         modelAndView.addObject("logout", "http://" + vtConfig.getLoginHost() + ":" + vtConfig.getLoginPort() + "/" + vtConfig.getLoginProjectName() + "/logout");

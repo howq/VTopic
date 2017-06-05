@@ -8,6 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <h3>提交选题页面</h3>
 <div class="row" style="margin-top: 0px">
+    <c:choose>
+        <c:when test="${openstatus == 0}">
+            <div class="col-lg-12">
+                <div class="container">
+                    <div class="span12">
+                        <hr/>
+                        <div class="well">
+                            <div style="color: red"><span>尚未进入开题阶段，请等候通知</span>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:when>
+    </c:choose>
     <div class="col-lg-12">
         <div class="container">
             <div class="span12">
@@ -24,7 +41,8 @@
                                             <div class="col-md-9">
                                                 <input type="text" name="topicid" id="topicid" class="hidden"
                                                        value=""/>
-                                                <input type="text" class="form-control" id="topicname" maxlength="40"
+                                                <input type="text" class="form-control" id="topicname"
+                                                       maxlength="40"
                                                        placeholder="课题名称">
                                             </div>
                                         </div>
@@ -53,16 +71,29 @@
                                         <div class="form-group col-md-12">
                                             <label class="col-md-2 control-label">限选人数</label>
                                             <div class="col-md-1">
-                                                <input type="text" class="form-control" id="limitnum" maxlength="40">
+                                                <input type="text" class="form-control" id="limitnum"
+                                                       maxlength="40">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-12" style="">
-                                            <button type="button" onclick="saveData()" class="btn btn-primary btn-sm"
+                                            <button type="button" onclick="saveData()"
+                                                    <c:choose>
+                                                        <c:when test="${openstatus == 0}">
+                                                            disabled="disabled"
+                                                        </c:when>
+                                                    </c:choose>
+                                                    class="btn btn-primary btn-sm"
                                                     style="margin-left: 2px;position: absolute;top: 2px;left: 330px;">
                                                 <i class="fa fa-check"></i>保存
                                             </button>
-                                            <button type="button" onclick="reset()" class="btn btn-primary btn-sm"
+                                            <button type="button" onclick="reset()"
+                                                    <c:choose>
+                                                        <c:when test="${openstatus == 0}">
+                                                            disabled="disabled"
+                                                        </c:when>
+                                                    </c:choose>
+                                                    class="btn btn-primary btn-sm"
                                                     style="margin-left: 2px;position: absolute;top: 2px;left: 390px;">
                                                 <i class="fa fa-refresh fa-spin mg-r-xs"></i>重置
                                             </button>
@@ -76,33 +107,30 @@
 
                 </div>
 
-                <div class="well">
+                <c:choose>
+                    <c:when test="${openstatus == 1}">
+                        <div class="well">
+                            <table class="toolbar" id="actions" style="width:700px; margin-bottom: 10px">
+                                <tr>
+                                    <td style="width:100%;">
+                                            <%--<p><a data-toggle="modal" href="#example" class="btn btn-primary btn-large">ADD</a></p>--%>
+                                        <a class="easyui-linkbutton" onclick="editNews()"
+                                           data-options="iconCls:'icon-edit'">修改</a>
+                                        <a class="easyui-linkbutton" onclick="removeNews()"
+                                           data-options="iconCls:'icon-remove'">删除</a>
+                                        <a class="easyui-linkbutton" data-toggle="modal" data-target="#myModal"
+                                           data-options="iconCls:'icon-add'">搜索</a>
 
-                    <%--<!-- 按钮触发模态框 -->--%>
-                    <%--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">--%>
-                    <%--开始演示模态框--%>
-                    <%--</button>--%>
-
-                    <table class="toolbar" id="actions" style="width:700px; margin-bottom: 10px">
-                        <tr>
-                            <td style="width:100%;">
-                                <%--<p><a data-toggle="modal" href="#example" class="btn btn-primary btn-large">ADD</a></p>--%>
-                                <a class="easyui-linkbutton" onclick="editNews()"
-                                   data-options="iconCls:'icon-edit'">修改</a>
-                                <a class="easyui-linkbutton" onclick="removeNews()"
-                                   data-options="iconCls:'icon-remove'">删除</a>
-                                <a class="easyui-linkbutton" data-toggle="modal" data-target="#myModal"
-                                   data-options="iconCls:'icon-add'">搜索</a>
-
-                                <%--<span style="margin-left: 20px;font-weight: bold">选择模式</span>--%>
-                                <%--<select onchange="$('#grid-news').datagrid({singleSelect:(this.value==0)})" id="mode">--%>
-                                <%--<option value="0">单选</option>--%>
-                                <%--<option value="1">多选</option>--%>
-                                <%--</select>--%>
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="grid-news" title="课题列表" class="easyui-datagrid" style="width: 530px" data-options="
+                                            <%--<span style="margin-left: 20px;font-weight: bold">选择模式</span>--%>
+                                            <%--<select onchange="$('#grid-news').datagrid({singleSelect:(this.value==0)})" id="mode">--%>
+                                            <%--<option value="0">单选</option>--%>
+                                            <%--<option value="1">多选</option>--%>
+                                            <%--</select>--%>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="grid-news" title="课题列表" class="easyui-datagrid" style="width: 530px"
+                                   data-options="
                        url:'<%= request.getContextPath()%>/common/topic',
                        method:'get',
                        singleSelect:true,
@@ -110,21 +138,25 @@
                        iconCls:'icon-edit',
                        pagination:true,
                        pageSize:10">
-                        <thead>
-                        <tr>
-                            <th data-options="field:'ck',checkbox:true"></th>
-                            <th data-options="field:'topicid',hidden:true"></th>
-                            <th data-options="field:'limitnum',hidden:true"></th>
-                            <th data-options="field:'majoeid',hidden:true"></th>
-                            <th data-options="field:'topicname',width:100,align:'center'">课题名称</th>
-                            <th data-options="field:'topiccoment',width:200,align:'center'">课题描述</th>
-                            <th data-options="field:'categoryid',width:200,align:'center ',hidden:true">类别id</th>
-                            <th data-options="field:'categoryname',width:200,align:'center '">类别</th>
-                        </tr>
-                        </thead>
-                    </table>
+                                <thead>
+                                <tr>
+                                    <th data-options="field:'ck',checkbox:true"></th>
+                                    <th data-options="field:'topicid',hidden:true"></th>
+                                    <th data-options="field:'limitnum',hidden:true"></th>
+                                    <th data-options="field:'majoeid',hidden:true"></th>
+                                    <th data-options="field:'topicname',width:100,align:'center'">课题名称</th>
+                                    <th data-options="field:'topiccoment',width:200,align:'center'">课题描述</th>
+                                    <th data-options="field:'categoryid',width:200,align:'center ',hidden:true">类别id
+                                    </th>
+                                    <th data-options="field:'categoryname',width:200,align:'center '">类别</th>
+                                </tr>
+                                </thead>
+                            </table>
 
-                </div>
+                        </div>
+                    </c:when>
+                </c:choose>
+
             </div>
         </div>
     </div>
@@ -294,7 +326,7 @@
     $(function () {
         $('#grid-news').datagrid().datagrid('clientPaging');
     });
-        $('#grid-news').datagrid({singleSelect: 1});
+    $('#grid-news').datagrid({singleSelect: 1});
 
 </script>
 <script type="text/javascript">
@@ -311,7 +343,7 @@
             data: {
                 topicid: $("#topicid").val(),
                 topicname: $("#topicname").val(),
-                topiccoment:$("#topiccoment").val(),
+                topiccoment: $("#topiccoment").val(),
                 limitnum: $("#limitnum").val(),
                 categoryid: $('#categoryid').combobox('getValue'),
                 majoeid: major,

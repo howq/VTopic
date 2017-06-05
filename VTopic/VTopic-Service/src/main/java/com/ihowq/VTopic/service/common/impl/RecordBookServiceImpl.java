@@ -43,6 +43,17 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
     }
 
     @Override
+    public boolean isOpenSelect() {
+        List<CommonRecordBook> data = recordBookMapper.isOpenSelect();
+        logger.info("检查今年是否开题");
+        if (0==data.size()){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    @Override
     public void delRecodBook(Long bookId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException {
         RecordBook recordBook = new RecordBook();
         recordBook.setRecordbookid(bookId);

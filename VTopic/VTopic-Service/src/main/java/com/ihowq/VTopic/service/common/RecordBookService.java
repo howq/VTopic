@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.DigestException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
  * The interface Manage service.
@@ -27,6 +28,8 @@ public interface RecordBookService {
      */
     public PageBean<CommonRecordBook> getRecordBooks(int startPage, int pageSize) throws DataAccessException;
 
+
+    public boolean isOpenSelect();
 
     /**
      * Del recod book.

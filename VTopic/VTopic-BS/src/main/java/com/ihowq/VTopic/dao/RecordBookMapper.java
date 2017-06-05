@@ -42,6 +42,13 @@ public interface RecordBookMapper {
     RecordBook selectByPrimaryKey(Long recordbookid);
 
     /**
+     * Is open select list.
+     *
+     * @return the list
+     */
+    List<CommonRecordBook> isOpenSelect();
+
+    /**
      * Select record book list.
      *
      * @return the list

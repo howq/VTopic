@@ -34,10 +34,21 @@
                                         <input type="text" name="recordbookid" id="recordbookid" class="hidden"
                                                value=""/>
 
-                                        <button type="button" onclick="saveData()" class="btn btn-primary btn-sm"
+                                        <button type="button" onclick="saveData()" id="save"
+                                                <c:choose>
+                                                    <c:when test="${openstatus == 1}">
+                                                        disabled="disabled"
+                                                    </c:when>
+                                                </c:choose>
+                                                class="btn btn-primary btn-sm"
                                                 style="margin-left: 2px;position: absolute;top: 2px;left: 390px;">
                                             <i class="fa fa-check"></i>保存
                                         </button>
+                                        <c:choose>
+                                            <c:when test="${openstatus == 1}">
+                                                <div style="color: red"><span>本届学生已进入开题阶段，现只能进行删除或修改操作</span><div>
+                                            </c:when>
+                                        </c:choose>
                                     </div>
                                 </div>
                             </div>
@@ -155,6 +166,7 @@
         var res = data.starttime + " - " + data.endtime;
         $("#reservation").val(res);
         page.type = 1;
+        $("#save").attr("disabled", false);
     }
     function removeNews() {
         var data = $("#grid-news").datagrid('getSelected');

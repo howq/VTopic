@@ -7,9 +7,11 @@ import com.ihowq.VTopic.dto.CommonTopic;
 import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.common.MvRoleService;
+import com.ihowq.VTopic.service.common.RecordBookService;
 import com.ihowq.VTopic.service.common.TopicService;
 import com.ihowq.VTopic.util.PageBean;
 import com.ihowq.VTopic.util.Result;
+import com.ihowq.VTopic.util.common.VTopicConst;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +39,9 @@ public class TeacherController extends WebExceptionHandler {
     @Resource
     private VTConfig vtConfig;
 
+    @Resource
+    private RecordBookService recordBookService;
+
     /**
      * Index model and view.
      *
@@ -47,6 +52,11 @@ public class TeacherController extends WebExceptionHandler {
     public ModelAndView index(HttpServletRequest request) {
         logger.info("进入教师管理界面");
         ModelAndView modelAndView = new ModelAndView("common/layout");
+        if (recordBookService.isOpenSelect()){
+            modelAndView.addObject("openstatus", VTopicConst.OPEN_STATUS_1);
+        }else {
+            modelAndView.addObject("openstatus", VTopicConst.OPEN_STATUS_0);
+        }
         modelAndView = mvRoleService.MvInfoInit(request, modelAndView);
         modelAndView.addObject("curPage", 1);
         modelAndView.addObject("logout", "http://" + vtConfig.getLoginHost() + ":" + vtConfig.getLoginPort() + "/" + vtConfig.getLoginProjectName() + "/logout");

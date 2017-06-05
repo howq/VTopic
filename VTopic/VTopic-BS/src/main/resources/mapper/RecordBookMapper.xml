@@ -36,6 +36,17 @@
     from recordbook
     WHERE DELETEFLG=${NOT_DELETE} ORDER BY RECORDBOOKID DESC
   </select>
+  <select id="isOpenSelect" resultType="com.ihowq.VTopic.dto.CommonRecordBook">
+    select
+    <include refid="Common_Column_List" />
+    from recordbook
+    WHERE
+    DELETEFLG=${NOT_DELETE}
+    AND  curdate() >= STARTTIME
+    AND
+    ENDTIME >= curdate()
+    ORDER BY RECORDBOOKID DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from recordbook
     where RECORDBOOKID = #{recordbookid,jdbcType=BIGINT}

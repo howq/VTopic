@@ -8,107 +8,136 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <h3>选题页面</h3>
 <div class="row" style="margin-top: 0px">
-    <div class="col-lg-12">
-        <div class="container">
-            <div class="span12">
-                <hr/>
-                <div class="well">
-
-                    <form id="form" method="post" class="form-horizontal">
-                        <fieldset>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <div class="input-prepend input-group ">
-                                        <div class="form-group col-md-12">
-                                            <label class="col-md-2 control-label">课题名称</label>
-                                            <div class="col-md-9">
-                                                <input type="text" name="topicid" id="topicid" class="hidden"
-                                                       value=""/>
-                                                <input type="text" name="topicid" id="teacher" class="hidden"
-                                                       value=""/>
-                                                <input type="text" class="form-control" id="topicname" maxlength="40"
-                                                       placeholder="课题名称" readonly="true">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="col-md-2 control-label">课题描述</label>
-                                            <div class="col-md-9">
-                                                <textarea class="form-control" id="topiccoment" placeholder="课题描述"
-                                                          maxlength="80" readonly="true"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="col-md-2 control-label">类别</label>
-                                            <select id="categoryid" readonly="true" class="easyui-combobox col-md-2"
-                                                    data-options="url:'<%= request.getContextPath()%>/common/category',method:'get',required:false,textField:'categoryname',valueField:'categoryid'">
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="col-md-2 control-label">限选专业</label>
-                                            <input id="majorid" readonly="true" class="easyui-combobox col-md-2" name="major"
-                                                   data-options="valueField:'majorid',textField:'tag_name',url:'<%= request.getContextPath()%>/common/major',method:'get',required:false,textField:'majorname',valueField:'majorid',multiple:true"/>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="col-md-2 control-label">限选人数</label>
-                                            <div class="col-md-1">
-                                                <input type="text" readonly="true" class="form-control" id="limitnum" maxlength="40">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="col-md-2 control-label">学生</label>
-                                            <select id="student" class="easyui-combobox col-md-2"
-                                                    data-options="url:'<%= request.getContextPath()%>/common/student',method:'get',required:false,textField:'username',valueField:'userid'">
-                                            </select>
-                                        </div>
-                                    </div>
+    <c:choose>
+        <c:when test="${openstatus == 0}">
+            <div class="col-lg-12">
+                <div class="container">
+                    <div class="span12">
+                        <hr/>
+                        <div class="well">
+                            <div style="color: red"><span>尚未进入开题阶段，请等候通知</span>
+                                <div>
                                 </div>
                             </div>
-                        </fieldset>
-                    </form>
-
-                </div>
-
-                <div class="well">
-                    <table class="toolbar" id="actions" style="width:700px; margin-bottom: 10px">
-                        <tr>
-                            <td style="width:100%;">
-                                <a class="easyui-linkbutton" onclick="onSubmit()"
-                                   data-options="iconCls:'icon-add'">选题</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="grid-news" title="课题列表" class="easyui-datagrid" style="width: 530px" data-options="
-                       url:'<%= request.getContextPath()%>/common/topic',
-                       method:'get',
-                       singleSelect:true,
-                       collapsible:true,
-                       iconCls:'icon-edit',
-                       pagination:true,
-                       pageSize:10">
-                        <thead>
-                        <tr>
-                            <th data-options="field:'ck',checkbox:true"></th>
-                            <th data-options="field:'topicid',hidden:true"></th>
-                            <th data-options="field:'limitnum',hidden:true"></th>
-                            <th data-options="field:'teacher',hidden:true"></th>
-                            <th data-options="field:'majoeid',hidden:true"></th>
-                            <th data-options="field:'topicname',width:100,align:'center'">课题名称</th>
-                            <th data-options="field:'topiccoment',width:200,align:'center'">课题描述</th>
-                            <th data-options="field:'categoryid',width:200,align:'center ',hidden:true">类别id</th>
-                            <th data-options="field:'categoryname',width:200,align:'center '">类别</th>
-                        </tr>
-                        </thead>
-                    </table>
-
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </c:when>
+        <c:when test="${openstatus == 1}">
+            <div class="col-lg-12">
+                <div class="container">
+                    <div class="span12">
+                        <hr/>
+                        <div class="well">
+
+                            <form id="form" method="post" class="form-horizontal">
+                                <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="input-prepend input-group ">
+                                                <div class="form-group col-md-12">
+                                                    <label class="col-md-2 control-label">课题名称</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="topicid" id="topicid"
+                                                               class="hidden"
+                                                               value=""/>
+                                                        <input type="text" name="topicid" id="teacher"
+                                                               class="hidden"
+                                                               value=""/>
+                                                        <input type="text" class="form-control" id="topicname"
+                                                               maxlength="40"
+                                                               placeholder="课题名称" readonly="true">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label class="col-md-2 control-label">课题描述</label>
+                                                    <div class="col-md-9">
+                                            <textarea class="form-control" id="topiccoment" placeholder="课题描述"
+                                                      maxlength="80" readonly="true"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label class="col-md-2 control-label">类别</label>
+                                                    <select id="categoryid" readonly="true"
+                                                            class="easyui-combobox col-md-2"
+                                                            data-options="url:'<%= request.getContextPath()%>/common/category',method:'get',required:false,textField:'categoryname',valueField:'categoryid'">
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label class="col-md-2 control-label">限选专业</label>
+                                                    <input id="majorid" readonly="true"
+                                                           class="easyui-combobox col-md-2" name="major"
+                                                           data-options="valueField:'majorid',textField:'tag_name',url:'<%= request.getContextPath()%>/common/major',method:'get',required:false,textField:'majorname',valueField:'majorid',multiple:true"/>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label class="col-md-2 control-label">限选人数</label>
+                                                    <div class="col-md-1">
+                                                        <input type="text" readonly="true" class="form-control"
+                                                               id="limitnum" maxlength="40">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label class="col-md-2 control-label">学生</label>
+                                                    <select id="student" class="easyui-combobox col-md-2"
+                                                            data-options="url:'<%= request.getContextPath()%>/common/student',method:'get',required:false,textField:'username',valueField:'userid'">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+
+                        <div class="well">
+                            <table class="toolbar" id="actions" style="width:700px; margin-bottom: 10px">
+                                <tr>
+                                    <td style="width:100%;">
+                                        <a class="easyui-linkbutton" onclick="onSubmit()"
+                                           data-options="iconCls:'icon-add'">选题</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="grid-news" title="课题列表" class="easyui-datagrid" style="width: 530px"
+                                   data-options="
+                   url:'<%= request.getContextPath()%>/common/topic',
+                   method:'get',
+                   singleSelect:true,
+                   collapsible:true,
+                   iconCls:'icon-edit',
+                   pagination:true,
+                   pageSize:10">
+                                <thead>
+                                <tr>
+                                    <th data-options="field:'ck',checkbox:true"></th>
+                                    <th data-options="field:'topicid',hidden:true"></th>
+                                    <th data-options="field:'limitnum',hidden:true"></th>
+                                    <th data-options="field:'teacher',hidden:true"></th>
+                                    <th data-options="field:'majoeid',hidden:true"></th>
+                                    <th data-options="field:'topicname',width:100,align:'center'">课题名称</th>
+                                    <th data-options="field:'topiccoment',width:200,align:'center'">课题描述</th>
+                                    <th data-options="field:'categoryid',width:200,align:'center ',hidden:true">
+                                        类别id
+                                    </th>
+                                    <th data-options="field:'categoryname',width:200,align:'center '">类别</th>
+                                </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:when>
+    </c:choose>
+
 </div>
 
 <script type="text/javascript">
@@ -121,7 +150,7 @@
             data: {
                 topicid: $("#topicid").val(),
                 student: $('#student').combobox('getValue'),
-                teacher:$("#teacher").val(),
+                teacher: $("#teacher").val(),
                 isUpdate: 0
             },
             success: function (data) {

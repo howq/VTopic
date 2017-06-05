@@ -88,10 +88,13 @@ public class RecordServiceImpl extends VTopicServiceBase implements RecordServic
         if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
             Topic topic = topicMapper.selectByPrimaryKey(record.getTopicid());
             record.setTeacher(topic.getTeacher());
+            record.setStatus(VTopicConst.SELECT_STATUS_3);
         } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
             record.setTeacher(userInfo.getUserid());
+            record.setStatus(VTopicConst.SELECT_STATUS_2);
         } else if (VTopicConst.ROLE_STUDENT_CODE == userInfo.getRoleid()) {
             record.setStudent(userInfo.getUserid());
+            record.setStatus(VTopicConst.SELECT_STATUS_1);
         }
 
         record.setOperater(userInfo.getUserid());
