@@ -64,7 +64,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         UserInfo userInfo = loginSession.getUserInfo();
         Topic topic = new Topic();
         topic.setTopicid(topicId);
-        topic.setDeleteflg("1");
+        topic.setDeleteflg(VTopicConst.DELETE_FLAG_YES);
         topic.setDeletedatetime(DateUtil.getTimeStamp());
         topic.setDeleteman(userInfo.getUserid());
         topic.setChangedatetime(DateUtil.getTimeStamp());
@@ -85,7 +85,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
             topic.setCreater(userInfo.getUserid());
             topic.setTeacher(userInfo.getUserid());
             topic.setCreatdatetime(DateUtil.getTimeStamp());
-            topic.setDeleteflg("0");
+            topic.setDeleteflg(VTopicConst.DELETE_FLAG_NO);
             topicMapper.insert(topic);
             logger.info("新增题目成功");
         } else {

@@ -10,6 +10,7 @@ import com.ihowq.VTopic.service.VTopicServiceBase;
 import com.ihowq.VTopic.service.common.RecordBookService;
 import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
+import com.ihowq.VTopic.util.common.VTopicConst;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,7 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
     public void delRecodBook(Long bookId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException {
         RecordBook recordBook = new RecordBook();
         recordBook.setRecordbookid(bookId);
-        recordBook.setDeleteflg("1");
+        recordBook.setDeleteflg(VTopicConst.DELETE_FLAG_YES);
         recordBook.setDeletedatetime(DateUtil.getTimeStamp());
         CustLoginSession loginSession = sessionService.getSession(request);
         UserInfo userInfo = loginSession.getUserInfo();
@@ -72,7 +73,7 @@ public class RecordBookServiceImpl extends VTopicServiceBase implements RecordBo
 //            recordBook.setVyear(String.valueOf(year));
             recordBook.setCreater(userInfo.getUserid());
             recordBook.setCreatdatetime(DateUtil.getTimeStamp());
-            recordBook.setDeleteflg("0");
+            recordBook.setDeleteflg(VTopicConst.DELETE_FLAG_NO);
             recordBookMapper.insert(recordBook);
             logger.info("新增开题记录成功");
         } else {

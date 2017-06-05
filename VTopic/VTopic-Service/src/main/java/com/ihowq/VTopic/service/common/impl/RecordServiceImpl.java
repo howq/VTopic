@@ -7,6 +7,7 @@ import com.ihowq.VTopic.dto.CommonRecord;
 import com.ihowq.VTopic.model.Record;
 import com.ihowq.VTopic.model.Topic;
 import com.ihowq.VTopic.model.UserInfo;
+import com.ihowq.VTopic.service.VTConfig;
 import com.ihowq.VTopic.service.VTopicServiceBase;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.RecordService;
@@ -65,7 +66,7 @@ public class RecordServiceImpl extends VTopicServiceBase implements RecordServic
     public void delRecord(Long recordId, HttpServletRequest request) throws DataAccessException, DigestException, NoSuchAlgorithmException {
         Record record = new Record();
         record.setRecordid(recordId);
-        record.setDeleteflg("1");
+        record.setDeleteflg(VTopicConst.DELETE_FLAG_YES);
         record.setDeletedatetime(DateUtil.getTimeStamp());
         CustLoginSession loginSession = sessionService.getSession(request);
         UserInfo userInfo = loginSession.getUserInfo();
@@ -99,7 +100,7 @@ public class RecordServiceImpl extends VTopicServiceBase implements RecordServic
         if (!isUpdate) {
             record.setCreater(userInfo.getUserid());
             record.setCreatdatetime(DateUtil.getTimeStamp());
-            record.setDeleteflg("0");
+            record.setDeleteflg(VTopicConst.DELETE_FLAG_NO);
             recordMapper.insert(record);
             logger.info("新增选题记录成功");
         } else {

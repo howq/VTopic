@@ -10,6 +10,7 @@ import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.MajorService;
 import com.ihowq.VTopic.util.DateUtil;
 import com.ihowq.VTopic.util.PageBean;
+import com.ihowq.VTopic.util.common.VTopicConst;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,7 @@ public class MajorServiceImpl extends VTopicServiceBase implements MajorService{
         CustLoginSession loginSession = sessionService.getSession(request);
         UserInfo userInfo = loginSession.getUserInfo();
         Major major = new Major();
-        major.setDeleteflg("1");
+        major.setDeleteflg(VTopicConst.DELETE_FLAG_YES);
         major.setMajorid(majorId);
         major.setDeletedatetime(DateUtil.getTimeStamp());
         major.setDeleteman(userInfo.getUserid());
@@ -65,7 +66,7 @@ public class MajorServiceImpl extends VTopicServiceBase implements MajorService{
         if (!isUpdate) {
             major.setCreater(userInfo.getUserid());
             major.setCreatdatetime(DateUtil.getTimeStamp());
-            major.setDeleteflg("0");
+            major.setDeleteflg(VTopicConst.DELETE_FLAG_NO);
             majorMapper.insert(major);
             logger.info("新增专业成功");
         } else {

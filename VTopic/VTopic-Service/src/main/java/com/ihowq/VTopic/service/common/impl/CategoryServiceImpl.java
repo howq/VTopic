@@ -8,6 +8,7 @@ import com.ihowq.VTopic.service.VTopicServiceBase;
 import com.ihowq.VTopic.service.cache.model.CustLoginSession;
 import com.ihowq.VTopic.service.common.CategoryService;
 import com.ihowq.VTopic.util.DateUtil;
+import com.ihowq.VTopic.util.common.VTopicConst;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class CategoryServiceImpl extends VTopicServiceBase implements CategorySe
         UserInfo userInfo = loginSession.getUserInfo();
         Category category = new Category();
         category.setCategoryid(CategoryId);
-        category.setDeleteflg("1");
+        category.setDeleteflg(VTopicConst.DELETE_FLAG_YES);
         category.setDeletedatetime(DateUtil.getTimeStamp());
         category.setDeleteman(userInfo.getUserid());
         category.setChangedatetime(DateUtil.getTimeStamp());
@@ -61,7 +62,7 @@ public class CategoryServiceImpl extends VTopicServiceBase implements CategorySe
         if (!isUpdate) {
             category.setCreater(userInfo.getUserid());
             category.setCreatdatetime(DateUtil.getTimeStamp());
-            category.setDeleteflg("0");
+            category.setDeleteflg(VTopicConst.DELETE_FLAG_NO);
             categoryMapper.insert(category);
             logger.info("新增目录成功");
         } else {
