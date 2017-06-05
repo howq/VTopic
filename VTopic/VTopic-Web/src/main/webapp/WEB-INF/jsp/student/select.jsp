@@ -82,12 +82,16 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-12">
-                                                    <label class="col-md-2 control-label">学生</label>
-                                                    <select id="student" class="easyui-combobox col-md-2"
-                                                            data-options="url:'<%= request.getContextPath()%>/common/student',method:'get',required:false,textField:'username',valueField:'userid'">
-                                                    </select>
-                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${role != 2}">
+                                                        <div class="form-group col-md-12">
+                                                            <label class="col-md-2 control-label">学生</label>
+                                                            <select id="student" class="easyui-combobox col-md-2"
+                                                                    data-options="url:'<%= request.getContextPath()%>/common/student',method:'get',required:false,textField:'username',valueField:'userid'">
+                                                            </select>
+                                                        </div>
+                                                    </c:when>
+                                                </c:choose>
                                             </div>
                                         </div>
                                     </div>
@@ -102,6 +106,8 @@
                                     <td style="width:100%;">
                                         <a class="easyui-linkbutton" onclick="onSubmit()"
                                            data-options="iconCls:'icon-add'">选题</a>
+                                        <a class="easyui-linkbutton" data-toggle="modal" data-target="#myModal"
+                                           data-options="iconCls:'icon-add'">搜索</a>
                                     </td>
                                 </tr>
                             </table>
@@ -181,6 +187,17 @@
         $('#majorid').combobox('setValues', major);
 //        page.type = 1;
     }
+
+    $(document).ready(function () {
+        $("#student").combobox({
+            onChange: function (n,o) {
+//                alert($('#student').combobox('getValue'));
+//                var catogery_id = $('#categoryid_s').combobox('getValue');
+                $('#grid-news').datagrid('load', { studentid: $('#student').combobox('getValue')});
+                $('#myModal').modal('hide');
+            }
+        });
+    });
 
     (function ($) {
         function pagerFilter(data) {

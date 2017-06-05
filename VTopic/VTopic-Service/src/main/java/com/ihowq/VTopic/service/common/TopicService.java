@@ -26,7 +26,7 @@ public interface TopicService {
      * @return the topics
      * @throws DataAccessException the data access exception
      */
-    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic,int startPage, int pageSize, HttpServletRequest request) throws DataAccessException;
+    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic,String studentid, int startPage, int pageSize, HttpServletRequest request) throws DataAccessException;
 
     /**
      * Del topic.

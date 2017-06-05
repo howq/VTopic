@@ -33,7 +33,7 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
     @Resource(name = "topicMapper")
     private TopicMapper topicMapper;
 
-    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic, int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
+    public PageBean<CommonTopic> getTopics(CommonTopic commonTopic,String studentid, int startPage, int pageSize, HttpServletRequest request) throws DataAccessException {
         PageHelper.startPage(startPage, pageSize);
         CustLoginSession loginSession = null;
         try {
@@ -44,8 +44,11 @@ public class TopicServiceImpl extends VTopicServiceBase implements TopicService 
         }
         List<CommonTopic> list = null;
         UserInfo userInfo = loginSession.getUserInfo();
-
-        if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
+        if(null!=studentid){
+            commonTopic.setTeacher(studentid);
+            list = topicMapper.selectWithStudent(commonTopic);
+        }
+        else if (VTopicConst.ROLE_MANAGER_CODE == userInfo.getRoleid()) {
             list = topicMapper.selectWithManager(commonTopic);
         } else if (VTopicConst.ROLE_TEACHER_CODE == userInfo.getRoleid()) {
             commonTopic.setTeacher(userInfo.getUserid());

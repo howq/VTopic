@@ -57,13 +57,14 @@ public class CommonController extends WebExceptionHandler {
     @ResponseBody
     public String topic(HttpServletRequest request,
                         CommonTopic commonTopic,
+                        @RequestParam(value = "studentid", required = false) String studentid,
                         @RequestParam(value = "page", required = true) int startPage,
                         @RequestParam(value = "rows", required = true) int pageSize) {
         logger.info("=========获取课题列表==============");
         Result<Object> result = new Result<Object>();
         HashMap hashMap = new HashMap();
         try {
-            PageBean<CommonTopic> data = topicService.getTopics(commonTopic, startPage, pageSize, request);
+            PageBean<CommonTopic> data = topicService.getTopics(commonTopic,studentid, startPage, pageSize, request);
             hashMap.put("total", data.getTotal());
             hashMap.put("rows", data.getList());
         } catch (Exception e) {
